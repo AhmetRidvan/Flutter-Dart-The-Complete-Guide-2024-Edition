@@ -1,5 +1,10 @@
-import 'package:flutter/material.dart'
+import 'package:flutter/material.dart';
 
+// Daha karmaşık bitir.
 void main() {
-  runApp();
+  runApp(const MaterialApp(
+    home: Scaffold(
+      body: Center(child: Text('Hello World')),
+    ),
+  ));
 }

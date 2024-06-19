@@ -1,0 +1,14 @@
+void main() {
+  void isimlendirilmis({required int? a, int? b}) {
+    print(a! + b!);
+  }
+
+  void konumsal([ int? a, int? b = 3]) {
+    print(a! + b!);
+  }
+
+  isimlendirilmis(a: 3, b: 4);
+  konumsal(3,2);
+  
+  // [] isteğe bağlı
+}
