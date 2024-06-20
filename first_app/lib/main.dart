@@ -1,10 +1,28 @@
 import 'package:flutter/material.dart';
 
-// Daha karmaşık bitir.
+
+
 void main() {
-  runApp(const MaterialApp(
+  runApp(MaterialApp(
     home: Scaffold(
-      body: Center(child: Text('Hello World')),
+      body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.bottomLeft,
+              end: Alignment.topRight,
+              colors: [Colors.lightBlue, Colors.amberAccent],
+            ),
+          ),
+          child: const Center(
+              child: Text(
+            'Hello World',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 33,
+            ),
+          ))),
     ),
   ));
 }
+
+class
