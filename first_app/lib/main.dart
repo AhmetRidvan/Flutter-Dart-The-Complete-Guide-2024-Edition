@@ -1,28 +1,13 @@
+import 'dart:math';
+import 'package:first_app/styledtext.dart';
 import 'package:flutter/material.dart';
+import 'package:first_app/gradient_container.dart';
 
-
+//How NOT To bitir.
 
 void main() {
-  runApp(MaterialApp(
-    home: Scaffold(
-      body: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.bottomLeft,
-              end: Alignment.topRight,
-              colors: [Colors.lightBlue, Colors.amberAccent],
-            ),
-          ),
-          child: const Center(
-              child: Text(
-            'Hello World',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 33,
-            ),
-          ))),
-    ),
+  runApp(const MaterialApp(
+    home: Scaffold(body: GradiantContainer()),
   ));
 }
-
-class
+// extends özellikleri işlevleri almak
