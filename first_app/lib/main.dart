@@ -3,11 +3,14 @@ import 'package:first_app/styledtext.dart';
 import 'package:flutter/material.dart';
 import 'package:first_app/gradient_container.dart';
 
-//How NOT To bitir.
+//Module Summary bitir.
 
 void main() {
-  runApp(const MaterialApp(
-    home: Scaffold(body: GradiantContainer()),
+  runApp(MaterialApp(
+    home: Scaffold(
+        body: GradiantContainer(
+      colors: const [Colors.pinkAccent, Colors.teal],
+    )),
   ));
 }
 // extends özellikleri işlevleri almak
