@@ -2,6 +2,7 @@ import 'package:adv_basics/start_screen.dart';
 import 'package:flutter/material.dart';
 
 //6.50
+
 void main() {
   runApp(MaterialApp(
     home: Scaffold(
