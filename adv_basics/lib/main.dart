@@ -2,7 +2,7 @@ import 'package:adv_basics/quiz.dart';
 import 'package:adv_basics/start_screen.dart';
 import 'package:flutter/material.dart';
 
-//2:30
+//1.03
 
 void main() {
   runApp(Quiz());
