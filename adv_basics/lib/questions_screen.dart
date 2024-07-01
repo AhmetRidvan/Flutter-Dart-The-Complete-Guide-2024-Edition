@@ -1,6 +1,7 @@
 import 'package:adv_basics/answer_button.dart';
 import 'package:flutter/material.dart';
 import 'package:adv_basics/data/questions.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class QuiestionsScreen extends StatefulWidget {
   const QuiestionsScreen({super.key});
@@ -15,9 +16,9 @@ class _QuestionsScreen extends State<QuiestionsScreen> {
   int currentQuestionIndex = 0;
 
   void answerQuestionIndex() {
-    if (currentQuestionIndex < Questions.length -1) {
+    if (currentQuestionIndex < Questions.length) {
       setState(() {
-        currentQuestionIndex++; 
+        currentQuestionIndex++;
       });
     }
   }
@@ -37,8 +38,7 @@ class _QuestionsScreen extends State<QuiestionsScreen> {
             Text(
               currentQuestion.text,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                  color: Colors.white, fontWeight: FontWeight.bold),
+              style: GoogleFonts.actor(fontSize: 30, color: Colors.white),
             ),
             const SizedBox(
               height: 40,

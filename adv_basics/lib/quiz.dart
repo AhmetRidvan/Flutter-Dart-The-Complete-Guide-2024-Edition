@@ -1,6 +1,7 @@
 import 'package:adv_basics/questions_screen.dart';
 import 'package:adv_basics/start_screen.dart';
 import 'package:flutter/material.dart';
+
 // 34 left
 class Quiz extends StatefulWidget {
   Quiz({super.key});
@@ -12,6 +13,7 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
+  List<String> selectedAnswers = [];
   var activeScreen = "StartScreen";
 
   void switchScreen() {
@@ -22,9 +24,13 @@ class _QuizState extends State<Quiz> {
     );
   }
 
+  void chooseAnswer(String answer) {
+    selectedAnswers.add(answer);
+  }
+
   @override
   Widget build(BuildContext context) {
-    Widget screenWidget = StartScreen(switchScreen);
+    Widget screenWidget = StartScreen(switchScreen); // learn easy way
     if (activeScreen == "QuiestionsScreen") {
       screenWidget = const QuiestionsScreen();
     }

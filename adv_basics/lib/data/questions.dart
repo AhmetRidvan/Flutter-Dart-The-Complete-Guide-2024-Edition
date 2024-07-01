@@ -8,7 +8,7 @@ final Questions = [
   QuizQestion("Da Vinci'nin herkesten sakladığı mesleği nedir ?", [
     "Vinç operatörü",
     "Şişko olması",
-    "Çiroz olsdsdsdasdasasdasdasdasdasdasdasdasdasdasdasdması",
+    "Çiroz olması",
     "Emekli olması",
     "Şapkasının büyüklüğü"
   ]),
