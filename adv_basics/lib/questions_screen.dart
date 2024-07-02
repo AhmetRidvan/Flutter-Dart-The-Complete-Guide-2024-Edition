@@ -4,7 +4,9 @@ import 'package:adv_basics/data/questions.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class QuiestionsScreen extends StatefulWidget {
-  const QuiestionsScreen({super.key});
+  QuiestionsScreen({required this.cevapFonk, super.key});
+
+  Function(String answer) cevapFonk;
 
   @override
   State<QuiestionsScreen> createState() {
@@ -15,18 +17,16 @@ class QuiestionsScreen extends StatefulWidget {
 class _QuestionsScreen extends State<QuiestionsScreen> {
   int currentQuestionIndex = 0;
 
-  void answerQuestionIndex() {
-    if (currentQuestionIndex < Questions.length) {
-      setState(() {
-        currentQuestionIndex++;
-      });
-    }
+  void answerQuestionIndex(String selectedAnswer) {
+    widget.cevapFonk(selectedAnswer);
+    setState(() {
+      currentQuestionIndex++;
+    });
   }
 
   @override
   Widget build(context) {
     final currentQuestion = Questions[currentQuestionIndex];
-
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -47,7 +47,9 @@ class _QuestionsScreen extends State<QuiestionsScreen> {
               (e) {
                 return AnswerButton(
                   answertext: e,
-                  onTap: answerQuestionIndex,
+                  onTap: () {
+                    answerQuestionIndex(e);
+                  },
                 );
               },
             )
