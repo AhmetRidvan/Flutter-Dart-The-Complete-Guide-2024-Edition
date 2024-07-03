@@ -33,7 +33,7 @@ class StartScreen extends StatelessWidget {
           ),
           OutlinedButton.icon(
             style:
-                OutlinedButton.styleFrom(side: BorderSide(color: Colors.white)),
+                OutlinedButton.styleFrom(side: const BorderSide(color: Colors.white)),
             onPressed: startQuiz,
             label: Text(
               "Start Quiz",
