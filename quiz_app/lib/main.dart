@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/start_quiz.dart';
-
+import 'package:quiz_app/learn_flutter.dart';
+//20 Dakika left
 void main() {
   runApp(const MyPage());
 }
@@ -10,9 +10,23 @@ class MyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: StartQuiz(),
+      home: Scaffold(
+        body: Container(
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.bottomRight,
+                  end: Alignment.topLeft,
+                  colors: [
+                Colors.yellowAccent,
+                Colors.pinkAccent,
+                Colors.purpleAccent,
+                Colors.cyanAccent,
+              ])),
+          child: const StartQuiz(),
+        ),
+      ),
     );
   }
 }
