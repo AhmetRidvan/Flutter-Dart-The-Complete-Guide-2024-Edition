@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class StartQuiz extends StatefulWidget {
-  const StartQuiz({super.key});
+class LearnFlutter extends StatefulWidget {
+  const LearnFlutter({super.key});
 
   @override
-  State<StartQuiz> createState() {
-    return _StartQuizState();
+  State<LearnFlutter> createState() {
+    return _LearnFlutterState();
   }
 }
 
-class _StartQuizState extends State<StartQuiz> {
+class _LearnFlutterState extends State<LearnFlutter> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -20,6 +20,7 @@ class _StartQuizState extends State<StartQuiz> {
         Image.asset(
           "assets/images/quiz-logo.png",
           width: 333,
+          color: const Color.fromARGB(150, 255, 255, 255),
         ),
         const SizedBox(
           height: 60,
