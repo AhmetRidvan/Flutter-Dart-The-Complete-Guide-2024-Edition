@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class LearnFlutter extends StatefulWidget {
-  const LearnFlutter({super.key});
+  const LearnFlutter(this.LearnFlutter_QuestionsScreen,{super.key});
+
+  final void Function() LearnFlutter_QuestionsScreen;
 
   @override
   State<LearnFlutter> createState() {
@@ -37,7 +39,7 @@ class _LearnFlutterState extends State<LearnFlutter> {
           style: OutlinedButton.styleFrom(
               overlayColor: Colors.white,
               side: const BorderSide(color: Colors.white)),
-          onPressed: () {},
+          onPressed: widget.LearnFlutter_QuestionsScreen,
           icon: const Icon(
             Icons.arrow_forward_ios,
             color: Colors.white,

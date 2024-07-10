@@ -11,7 +11,13 @@ class PageControl extends StatefulWidget {
 }
 
 class _PageControlState extends State<PageControl> {
-  Widget activeScreen = const LearnFlutter(); 
+  Widget? activeScreen;
+
+  @override
+  void initState() {
+    activeScreen = LearnFlutter(switchScreen);
+    super.initState();
+  }
 
   void switchScreen() {
     setState(() {
