@@ -11,39 +11,38 @@ class PageControl extends StatefulWidget {
 }
 
 class _PageControlState extends State<PageControl> {
-  Widget? activeScreen;
-
-  @override
-  void initState() {
-    activeScreen = LearnFlutter(switchScreen);
-    super.initState();
-  }
+  String activeScreen = "LearnFlutter";
 
   void switchScreen() {
     setState(() {
-      activeScreen = const QuestionsScreen();
+      activeScreen = "QuestionsScreen";
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    Widget screenWidget = LearnFlutter(switchScreen);
+
+    if (activeScreen == "QuestionsScreen") {
+      screenWidget = const QuestionsScreen();
+    }
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Container(
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.bottomRight,
-                  end: Alignment.topLeft,
-                  colors: [
-                Colors.yellowAccent,
-                Colors.pinkAccent,
-                Colors.purpleAccent,
-                Colors.cyanAccent,
-                Colors.green,
-              ])),
-          child: activeScreen,
-        ),
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.bottomRight,
+                    end: Alignment.topLeft,
+                    colors: [
+                  Colors.yellowAccent,
+                  Colors.pinkAccent,
+                  Colors.purpleAccent,
+                  Colors.cyanAccent,
+                  Colors.green,
+                ])),
+            child: screenWidget),
       ),
     );
   }
