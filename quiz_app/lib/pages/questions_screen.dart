@@ -19,9 +19,21 @@ class _QuestionsScreen extends State<QuestionsScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(currentQuestion.question),
-          
-
+          Text(
+            currentQuestion.question,
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(
+            height: 60,
+          ),
+          ...currentQuestion.answers.map(
+            (e) {
+              return CustomAnswerButton(
+                answerText: e,
+                onTapFunction: () {},
+              );
+            },
+          )
         ],
       ),
     );
