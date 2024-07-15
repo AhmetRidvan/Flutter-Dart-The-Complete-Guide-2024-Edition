@@ -20,26 +20,8 @@ class _QuestionsScreen extends State<QuestionsScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(currentQuestion.question),
-          const SizedBox(
-            height: 30,
-          ),
-          CustomAnswerButton(
-              answerText: currentQuestion.answers[0], onTapFunction: () {}),
-          const SizedBox(
-            height: 5,
-          ),
-          CustomAnswerButton(
-              answerText: currentQuestion.answers[1], onTapFunction: () {}),
-          const SizedBox(
-            height: 5,
-          ),
-          CustomAnswerButton(
-              answerText: currentQuestion.answers[2], onTapFunction: () {}),
-          const SizedBox(
-            height: 5,
-          ),
-          CustomAnswerButton(
-              answerText: currentQuestion.answers[3], onTapFunction: () {}),
+          
+
         ],
       ),
     );
