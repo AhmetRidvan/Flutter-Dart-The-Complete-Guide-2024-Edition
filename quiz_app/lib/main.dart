@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/page_control.dart';
 
-
+//4:47
 void main() { 
   runApp(const MyPage());
 }
@@ -11,6 +11,6 @@ class MyPage extends StatelessWidget {
 
   @override
   Widget build( BuildContext context) {
-    return const PageControl();
+    return const PageControl(); 
   }
 }

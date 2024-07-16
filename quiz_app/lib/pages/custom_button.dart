@@ -11,11 +11,12 @@ class CustomAnswerButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         ElevatedButton(
           onPressed: onTapFunction,
           style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.symmetric(vertical: 30, horizontal: 40),
+              padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 40),
               backgroundColor: Colors.lightBlue,
               foregroundColor: Colors.white,
               shape: const StadiumBorder(
@@ -23,7 +24,7 @@ class CustomAnswerButton extends StatelessWidget {
               overlayColor: Colors.yellowAccent),
           child: Text(answerText),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         )
       ],
