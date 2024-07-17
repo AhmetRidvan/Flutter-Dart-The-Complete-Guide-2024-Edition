@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/pages/custom_button.dart';
 import 'package:quiz_app/data/questions.dart';
 
@@ -11,11 +12,19 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionsScreen extends State<QuestionsScreen> {
+  int counter = 0;
+
+  void increase() {
+    setState(() {
+      counter++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final currentQuestion = questions[0];
+    final currentQuestion = questions[counter];
     return Container(
-      margin: EdgeInsets.all(20),
+      margin: const EdgeInsets.all(20),
       child: SizedBox(
         width: double.infinity,
         child: Column(
@@ -24,6 +33,7 @@ class _QuestionsScreen extends State<QuestionsScreen> {
           children: [
             Text(
               textAlign: TextAlign.center,
+              style: GoogleFonts.anton(fontSize: 25),
               currentQuestion.question,
             ),
             const SizedBox(
@@ -33,7 +43,7 @@ class _QuestionsScreen extends State<QuestionsScreen> {
               (e) {
                 return CustomAnswerButton(
                   answerText: e,
-                  onTapFunction: () {},
+                  onTapFunction: increase,
                 );
               },
             )

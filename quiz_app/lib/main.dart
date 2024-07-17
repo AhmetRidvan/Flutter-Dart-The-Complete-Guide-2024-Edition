@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/page_control.dart';
 
-//4:47
+//3:57
 void main() { 
   runApp(const MyPage());
 }

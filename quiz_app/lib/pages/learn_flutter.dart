@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LearnFlutter extends StatefulWidget {
-  const LearnFlutter(this.LearnFlutter_QuestionsScreen,{super.key});
+  const LearnFlutter(this.LearnFlutter_QuestionsScreen, {super.key});
 
   final void Function() LearnFlutter_QuestionsScreen;
 
@@ -27,9 +28,9 @@ class _LearnFlutterState extends State<LearnFlutter> {
         const SizedBox(
           height: 60,
         ),
-        const Text(
+        Text(
           "Learn Flutter the fun way!",
-          style: TextStyle(
+          style: GoogleFonts.orbitron(
               fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
         ),
         const SizedBox(
@@ -41,12 +42,13 @@ class _LearnFlutterState extends State<LearnFlutter> {
               side: const BorderSide(color: Colors.white)),
           onPressed: widget.LearnFlutter_QuestionsScreen,
           icon: const Icon(
+            size: 33,
             Icons.arrow_forward_ios,
             color: Colors.white,
           ),
-          label: const Text(
+          label: Text(
             "Start Quiz",
-            style: TextStyle(
+            style: GoogleFonts.archivoBlack(
                 fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
           ),
         )

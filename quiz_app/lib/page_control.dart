@@ -11,6 +11,7 @@ class PageControl extends StatefulWidget {
 }
 
 class _PageControlState extends State<PageControl> {
+  List<String> selectedAnswers = []; // cevapları saklayacağız.
   String activeScreen = "LearnFlutter";
 
   void switchScreen() {

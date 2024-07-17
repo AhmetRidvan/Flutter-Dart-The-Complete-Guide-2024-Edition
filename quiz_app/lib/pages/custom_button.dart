@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomAnswerButton extends StatelessWidget {
   CustomAnswerButton(
@@ -22,7 +23,14 @@ class CustomAnswerButton extends StatelessWidget {
               shape: const StadiumBorder(
                   side: BorderSide(color: Colors.yellowAccent, width: 4)),
               overlayColor: Colors.yellowAccent),
-          child: Text(answerText),
+          child: Text(
+            answerText,
+            style: GoogleFonts.archivoBlack(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: Colors.yellowAccent),
+            textAlign: TextAlign.center,
+          ),
         ),
         const SizedBox(
           height: 10,
