@@ -4,7 +4,9 @@ import 'package:quiz_app/pages/custom_button.dart';
 import 'package:quiz_app/data/questions.dart';
 
 class QuestionsScreen extends StatefulWidget {
-  const QuestionsScreen({super.key});
+  QuestionsScreen({super.key, required this.onSelectedAnswer});
+  Function(String merhaba) onSelectedAnswer;
+
   @override
   State<StatefulWidget> createState() {
     return _QuestionsScreen();
@@ -14,7 +16,8 @@ class QuestionsScreen extends StatefulWidget {
 class _QuestionsScreen extends State<QuestionsScreen> {
   int counter = 0;
 
-  void increase() {
+  void increase(String selectedAnswer) {
+    widget.onSelectedAnswer(selectedAnswer);
     setState(() {
       counter++;
     });
@@ -43,7 +46,9 @@ class _QuestionsScreen extends State<QuestionsScreen> {
               (e) {
                 return CustomAnswerButton(
                   answerText: e,
-                  onTapFunction: increase,
+                  onTapFunction: () {
+                    
+                  },// burada kaldın 
                 );
               },
             )

@@ -20,12 +20,16 @@ class _PageControlState extends State<PageControl> {
     });
   }
 
+  void addAnswer(String answer) {
+    selectedAnswers.add(answer);
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget screenWidget = LearnFlutter(switchScreen);
 
     if (activeScreen == "QuestionsScreen") {
-      screenWidget = const QuestionsScreen();
+      screenWidget =  QuestionsScreen(onSelectedAnswer: addAnswer,);
     }
 
     return MaterialApp(

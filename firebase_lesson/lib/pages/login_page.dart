@@ -2,17 +2,18 @@ import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_lesson/pages/login_page.dart';
+import 'package:firebase_lesson/pages/home_page.dart';
+import 'package:firebase_lesson/pages/registe_page.dart';
 import 'package:flutter/material.dart';
 
-class RegisterPage extends StatefulWidget {
-  RegisterPage({super.key});
+class LoginPage extends StatefulWidget {
+  LoginPage({super.key});
 
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
+  State<LoginPage> createState() => _LoginPage();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _LoginPage extends State<LoginPage> {
   String? email, password;
 
   bool gorunurluk = false;
@@ -46,7 +47,17 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 autofillHints: const [AutofillHints.email],
               ),
-              SizedBox(
+              const SizedBox(
+                height: 11,
+              ),
+              Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                      onPressed: () {
+                        FirebaseAuth.instance.sendPasswordResetEmail(email: "ahmetridvanordulu@gmail.com");
+                      },
+                      child: const Text("Şifremi unuttum"))),
+              const SizedBox(
                 height: 11,
               ),
               TextFormField(
@@ -77,7 +88,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 autofillHints: const [AutofillHints.password],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 22,
               ),
               ElevatedButton(
@@ -85,37 +96,42 @@ class _RegisterPageState extends State<RegisterPage> {
                     _formkey.currentState!.validate();
                     _formkey.currentState!.save();
 
-                    _createUserWithEmailAndPassword(email!, password!);
+                    _sign(email!, password!);
                   },
-                  child: const Text("Kaydol")),
-              TextButton(
+                  child: const Text("Giriş yap")),
+              ElevatedButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RegisterPage(),
+                        ));
                   },
-                  child: Text("Zaten bir hesabın var mı ?"))
+                  child: const Text("Henüz bir hesabın yokmu"))
             ],
           ),
         ),
       ),
       appBar: AppBar(
-        title: const Text("Kayıt ol"),
+        title: const Text("Giriş yap"),
         centerTitle: true,
         backgroundColor: Colors.lightBlue,
       ),
     );
   }
 
-  _createUserWithEmailAndPassword(String email, String password) async {
+  _sign(String email, String password) async {
     try {
-      final user = FirebaseAuth.instance;
-      await user.createUserWithEmailAndPassword(
+      FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+      await firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
-          
-
-          
-          
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomePage(),
+          ));
     } catch (e) {
-      debugPrint("Bir hata meydana geldi $e");
+      debugPrint("hata $e");
     }
   }
 }
