@@ -47,8 +47,9 @@ class _QuestionsScreen extends State<QuestionsScreen> {
                 return CustomAnswerButton(
                   answerText: e,
                   onTapFunction: () {
-                    
-                  },// burada kaldın 
+                    increase(e);
+                    debugPrint(e);
+                  },
                 );
               },
             )

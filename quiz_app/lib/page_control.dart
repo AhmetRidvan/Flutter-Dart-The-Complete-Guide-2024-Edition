@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/data/questions.dart';
 import 'package:quiz_app/pages/learn_flutter.dart';
 import 'package:quiz_app/pages/questions_screen.dart';
+import 'package:quiz_app/pages/result_screen.dart';
 
 class PageControl extends StatefulWidget {
   const PageControl({super.key});
@@ -11,17 +13,24 @@ class PageControl extends StatefulWidget {
 }
 
 class _PageControlState extends State<PageControl> {
-  List<String> selectedAnswers = []; // cevapları saklayacağız.
+  List<String> selectedAnswers = [];
   String activeScreen = "LearnFlutter";
 
   void switchScreen() {
     setState(() {
+      selectedAnswers.clear();
       activeScreen = "QuestionsScreen";
     });
   }
 
   void addAnswer(String answer) {
     selectedAnswers.add(answer);
+
+    if (questions.length == selectedAnswers.length) {
+      setState(() {
+        activeScreen = "ResultScreen";
+      });
+    }
   }
 
   @override
@@ -29,7 +38,14 @@ class _PageControlState extends State<PageControl> {
     Widget screenWidget = LearnFlutter(switchScreen);
 
     if (activeScreen == "QuestionsScreen") {
-      screenWidget =  QuestionsScreen(onSelectedAnswer: addAnswer,);
+      screenWidget = QuestionsScreen(
+        onSelectedAnswer: addAnswer,
+      );
+    }
+
+    if (activeScreen == "ResultScreen") {
+      screenWidget = 
+       ResultScreen(gelencevaplar: selectedAnswers,);
     }
 
     return MaterialApp(
