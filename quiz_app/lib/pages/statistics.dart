@@ -10,9 +10,23 @@ class Statistics extends StatelessWidget {
     return Column(
       children: StatisticsData.map(
         (data) {
-          return  Row(children: [
-            Text(data["question_index"] + 1)
-          ],);
+          return Row(
+            children: [
+              Text((data["question_index"] + 1).toString()),
+              Expanded( // altındakinin boyutunu bir üstündeki kadar limitler
+                child: Column(
+                  children: [
+                    Text(data["question"]),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(data["user_answer"]),
+                    Text(data["correct_answer"]),
+                  ],
+                ),
+              )
+            ],
+          );
         },
       ).toList(),
     );

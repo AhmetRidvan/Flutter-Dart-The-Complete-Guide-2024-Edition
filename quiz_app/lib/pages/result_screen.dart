@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/data/questions.dart';
+import 'package:quiz_app/pages/statistics.dart';
 
 class ResultScreen extends StatelessWidget {
   ResultScreen({super.key, required this.gelencevaplar});
@@ -11,10 +12,10 @@ class ResultScreen extends StatelessWidget {
 
     for (int x = 0; x < gelencevaplar.length; x++) {
       ozet.add({
-        "question_index" : questions[x],
-        "question" : questions[x].question,
-        "correct_answer" : questions[x].answers[0],
-        "user_answer" : gelencevaplar[x]
+        "question_index": x,
+        "question": questions[x].question,
+        "correct_answer": questions[x].answers[0],
+        "user_answer": gelencevaplar[x],
       });
     }
 
@@ -23,6 +24,13 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Map<String, dynamic>> data = ozetGetir();
+    final numOfTotalQuestions = questions.length;
+    final numOfCorrectQuestions = data.where(
+      (element) {
+        return ;
+      },
+    );
     return Container(
       child: Center(
         child: Column(
@@ -32,7 +40,7 @@ class ResultScreen extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            const Text("List of answers and questions"),
+            Statistics(StatisticsData: data),
             const SizedBox(
               height: 30,
             ),
