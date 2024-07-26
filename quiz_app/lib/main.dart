@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/page_control.dart';
 
-// 5:10
+// Ödev talimatlarındayız.
 void main() { 
   runApp(const MyPage());
 }
