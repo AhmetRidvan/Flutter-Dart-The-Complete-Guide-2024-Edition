@@ -23,6 +23,13 @@ class _PageControlState extends State<PageControl> {
     });
   }
 
+  void restart() {
+    setState(() {
+      selectedAnswers.clear();
+      activeScreen = "LearnFlutter";
+    });
+  }
+
   void addAnswer(String answer) {
     selectedAnswers.add(answer);
 
@@ -44,8 +51,10 @@ class _PageControlState extends State<PageControl> {
     }
 
     if (activeScreen == "ResultScreen") {
-      screenWidget = 
-       ResultScreen(gelencevaplar: selectedAnswers,);
+      screenWidget = ResultScreen(
+        gelencevaplar: selectedAnswers,
+        rest: restart,
+      );
     }
 
     return MaterialApp(

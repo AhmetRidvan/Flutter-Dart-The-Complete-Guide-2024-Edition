@@ -4,7 +4,7 @@ class QuestionModel {
 
   QuestionModel(this.question, this.answers);
 
-  List<String> karistir() {
+  List<String> get karistir {
     final kopya = List.of(answers);
     kopya.shuffle();
     return kopya;

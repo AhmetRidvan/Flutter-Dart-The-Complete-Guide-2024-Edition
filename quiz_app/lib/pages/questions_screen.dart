@@ -7,6 +7,8 @@ class QuestionsScreen extends StatefulWidget {
   QuestionsScreen({super.key, required this.onSelectedAnswer});
   Function(String merhaba) onSelectedAnswer;
 
+
+  
   @override
   State<StatefulWidget> createState() {
     return _QuestionsScreen();
@@ -42,7 +44,7 @@ class _QuestionsScreen extends State<QuestionsScreen> {
             const SizedBox(
               height: 60,
             ),
-            ...currentQuestion.karistir().map(
+            ...currentQuestion.karistir.map(
               (e) {
                 return CustomAnswerButton(
                   answerText: e,
