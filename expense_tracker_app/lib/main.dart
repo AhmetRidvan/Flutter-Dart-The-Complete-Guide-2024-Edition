@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:expense_tracker_app/widgets/expenses.dart';
+import 'package:expense_tracker_app/widgets/expenses_page.dart';
 
-//1.47
+//4:18 Siz kesinlikle istediğiniz widget'i kullanın.
 void main() {
   runApp(
     const MaterialApp(

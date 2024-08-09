@@ -1,5 +1,5 @@
 import 'package:expense_tracker_app/widgets/expenses_list/expenses_list.dart';
-import 'package:expense_tracker_app/models/expense.dart';
+import 'package:expense_tracker_app/models/Expensemodel.dart';
 import 'package:flutter/material.dart';
 
 class Expenses extends StatefulWidget {
