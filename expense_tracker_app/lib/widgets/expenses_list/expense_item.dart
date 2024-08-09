@@ -2,13 +2,42 @@ import 'package:expense_tracker_app/models/Expensemodel.dart';
 import 'package:flutter/material.dart';
 
 class ExpenseItem extends StatelessWidget {
-  ExpenseItem(this.e1,{super.key});
+  ExpenseItem(this.expensemodel1, {super.key});
 
-  Expensemodel e1;
+  Expensemodel expensemodel1;
 
   @override
   Widget build(BuildContext context) {
-    return Text("asd");
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+        child: Column(
+          children: [
+            Text(expensemodel1.title),
+            const SizedBox(
+              height: 5,
+            ),
+            Row(
+              children: [
+                Text("\$${expensemodel1.amount.toStringAsFixed(2)}"),
+                const Spacer(),
+                Row(
+                  children: [
+                    const Icon(Icons.alarm),
+                    const SizedBox(
+                      width: 7,
+                    ),
+                    Text(
+                      expensemodel1.date.toString(),
+                      style: const TextStyle(color: Colors.red),
+                    ),
+                  ],
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
- 
