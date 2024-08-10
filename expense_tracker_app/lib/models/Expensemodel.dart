@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
+import 'package:intl/intl.dart';
 
-var uuid1 = Uuid();
+var xes = DateFormat.yMd(); // tarihleri biçimlendirmek için yMd
+
+var uuid1 = const Uuid();
 
 enum Category {
   food,
@@ -10,7 +13,7 @@ enum Category {
   work
 } // Rastgele parametre giremesin benim dediğim parametleri girebilsin
 
-var category = {
+var categoryIcons = {
   Category.food: const Icon(Icons.food_bank),
   Category.travel: const Icon(Icons.card_travel),
   Category.leisure: const Icon(Icons.movie_filter_sharp),
@@ -30,4 +33,8 @@ class Expensemodel {
   double amount;
   DateTime date;
   Category category;
+
+  String get formattedDate {
+    return xes.format(date);
+  }
 }

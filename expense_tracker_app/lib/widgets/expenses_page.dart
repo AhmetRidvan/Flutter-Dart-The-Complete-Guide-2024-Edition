@@ -16,10 +16,11 @@ class _expenses extends State<StatefulWidget> {
   Widget build(BuildContext context) {
     List<Expensemodel> FakeExpenses = [
       Expensemodel(
-          title: "Cinema",
-          amount: 12.33,
-          date: DateTime.now(),
-          category: Category.food),
+        title: "Cinema",
+        amount: 12.33,
+        date: DateTime.now(),
+        category: Category.food,
+      ),
       Expensemodel(
           title: "Party",
           amount: 59.33,
@@ -27,11 +28,35 @@ class _expenses extends State<StatefulWidget> {
           category: Category.leisure),
     ];
 
+    void openAddExtense() {
+      print("Hello");
+    }
+
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "Flutter ExpenseTracker",
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: Colors.yellowAccent,
+        actions: [
+          IconButton(
+              onPressed: openAddExtense,
+              icon: const Icon(
+                Icons.add,
+                color: Colors.black,
+                size: 35,
+              ))
+        ],
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Text("Grafik"),
             Expanded(child: ExpensesList(expenses: FakeExpenses)),
           ],
         ),
