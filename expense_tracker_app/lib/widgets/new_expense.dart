@@ -19,6 +19,14 @@ class _NewExpense extends State<NewExpense> {
     super.dispose();
   }
 
+  void _presentDatePicker() async {
+    final now = DateTime.now();
+    final first = DateTime(now.year - 1, now.month, now.day + 2);
+    
+    showDatePicker(
+        context: context, firstDate: first, lastDate: now, initialDate: now);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -42,22 +50,48 @@ class _NewExpense extends State<NewExpense> {
                   style: TextStyle(color: Colors.red),
                 )),
           ),
-
-          TextField(
-            keyboardType: TextInputType.number,
-            maxLength: 10,
-            cursorColor: Colors.red,
-            decoration: const InputDecoration(
-                prefixText: "\$ ",
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.red)),
-                enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black)),
-                label: Text(
-                  "Amount",
-                  style: TextStyle(color: Colors.red),
-                )),
-            controller: _amountController,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: TextField(
+                  keyboardType: TextInputType.number,
+                  maxLength: 10,
+                  cursorColor: Colors.red,
+                  decoration: const InputDecoration(
+                      prefixText: "\$ ",
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.red)),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black)),
+                      label: Text(
+                        "Amount",
+                        style: TextStyle(color: Colors.red),
+                      )),
+                  controller: _amountController,
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text("Selected Date"),
+                    IconButton(
+                        onPressed: () {
+                          _presentDatePicker();
+                        },
+                        icon: const Icon(
+                          Icons.calendar_month,
+                          color: Colors.red,
+                        )),
+                  ],
+                ),
+              ),
+            ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
