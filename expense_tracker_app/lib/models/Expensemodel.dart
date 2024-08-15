@@ -6,7 +6,7 @@ var xes = DateFormat.yMd(); // tarihleri biçimlendirmek için yMd
 
 var uuid1 = const Uuid();
 
-enum Category {
+enum CategoryEnum {
   food,
   travel,
   leisure,
@@ -14,10 +14,10 @@ enum Category {
 } // Rastgele parametre giremesin benim dediğim parametleri girebilsin
 
 var categoryIcons = {
-  Category.food: const Icon(Icons.food_bank),
-  Category.travel: const Icon(Icons.card_travel),
-  Category.leisure: const Icon(Icons.movie_filter_sharp),
-  Category.work: const Icon(Icons.work),
+  CategoryEnum.food: const Icon(Icons.food_bank),
+  CategoryEnum.travel: const Icon(Icons.card_travel),
+  CategoryEnum.leisure: const Icon(Icons.movie_filter_sharp),
+  CategoryEnum.work: const Icon(Icons.work),
 };
 
 class Expensemodel {
@@ -32,7 +32,7 @@ class Expensemodel {
   String title;
   double amount;
   DateTime date;
-  Category category;
+  CategoryEnum category;
 
   String get formattedDate {
     return xes.format(date);

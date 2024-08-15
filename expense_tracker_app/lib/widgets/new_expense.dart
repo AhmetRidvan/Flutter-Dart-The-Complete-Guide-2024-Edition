@@ -1,4 +1,7 @@
+import 'package:expense_tracker_app/models/Expensemodel.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class NewExpense extends StatefulWidget {
   const NewExpense({super.key});
@@ -9,8 +12,12 @@ class NewExpense extends StatefulWidget {
 }
 
 class _NewExpense extends State<NewExpense> {
+  final formattedDate = DateFormat.yMd();
+
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
+
+  DateTime? secilentarih;
 
   @override
   void dispose() {
@@ -22,9 +29,15 @@ class _NewExpense extends State<NewExpense> {
   void _presentDatePicker() async {
     final now = DateTime.now();
     final first = DateTime(now.year - 1, now.month, now.day + 2);
-    
-    showDatePicker(
+
+    var pickedDate = await showDatePicker(
         context: context, firstDate: first, lastDate: now, initialDate: now);
+
+    setState(() {
+      secilentarih = pickedDate;
+    });
+
+    print(pickedDate);
   }
 
   @override
@@ -79,7 +92,9 @@ class _NewExpense extends State<NewExpense> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text("Selected Date"),
+                    Text(secilentarih == null
+                        ? "No date selected"
+                        : formattedDate.format(secilentarih!)),
                     IconButton(
                         onPressed: () {
                           _presentDatePicker();
@@ -96,6 +111,16 @@ class _NewExpense extends State<NewExpense> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              DropdownButton(
+                items: CategoryEnum.values
+                    .map(
+                      (value) => DropdownMenuItem(
+                        child: Text(value.name), //3:50
+                      ), // eyer name yazmaz isen CategoryEnum.food şeklinde alır ama name ile sadece food yani öğeyi alıyoruz.
+                    )
+                    .toList(),
+                onChanged: (value) {},
+              ),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
                   onPressed: () {

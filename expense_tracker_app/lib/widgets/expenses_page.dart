@@ -20,13 +20,13 @@ class _expenses extends State<StatefulWidget> {
         title: "Cinema",
         amount: 12.33,
         date: DateTime.now(),
-        category: Category.food,
+        category: CategoryEnum.food,
       ),
       Expensemodel(
           title: "Party",
           amount: 59.33,
           date: DateTime.now(),
-          category: Category.leisure),
+          category: CategoryEnum.leisure),
     ];
 
     void openAddExtense() {
