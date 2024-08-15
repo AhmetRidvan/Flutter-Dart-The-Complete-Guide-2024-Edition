@@ -13,11 +13,10 @@ class NewExpense extends StatefulWidget {
 
 class _NewExpense extends State<NewExpense> {
   final formattedDate = DateFormat.yMd();
-
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
-
   DateTime? secilentarih;
+  CategoryEnum _selectedCategory = CategoryEnum.leisure;
 
   @override
   void dispose() {
@@ -108,51 +107,76 @@ class _NewExpense extends State<NewExpense> {
               ),
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              DropdownButton(
-                items: CategoryEnum.values
-                    .map(
-                      (value) => DropdownMenuItem(
-                        child: Text(value.name), //3:50
-                      ), // eyer name yazmaz isen CategoryEnum.food şeklinde alır ama name ile sadece food yani öğeyi alıyoruz.
-                    )
-                    .toList(),
-                onChanged: (value) {},
-              ),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                  onPressed: () {
-                    Navigator.pop(context);
+          SizedBox(
+            height: 10,
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                DropdownButton(
+                  dropdownColor: Colors.green,
+                  value: _selectedCategory,
+                  items: CategoryEnum.values
+                      .map(
+                        (value) => DropdownMenuItem(
+                          value: value, // Hangisi seçildiyseyi aşağı gönderiyor
+                          child: Text(value.name.toUpperCase()), //3:50
+                        ), // eyer name yazmaz isen CategoryEnum.food şeklinde alır ama name ile sadece food yani öğeyi alıyoruz.
+                      )
+                      .toList(),
+                  onChanged: (value) {
+                    if (value == null) {
+                      return; //return son koddur devamı çalışmaz
+                    }
+                    setState(() {
+                      _selectedCategory = value;
+                    });
                   },
-                  child: const Text(
-                    "Cancel",
-                    style: TextStyle(color: Colors.white),
-                  )),
-              ElevatedButton(
-                  style:
-                      ElevatedButton.styleFrom(backgroundColor: Colors.green),
-                  onPressed: () {
-                    _titleController.clear();
-                    _amountController.clear();
-                  },
-                  child: const Text(
-                    "Clear",
-                    style: TextStyle(color: Colors.white),
-                  )),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.lightBlue),
-                  onPressed: () {
-                    print(_titleController.text);
-                    print(_amountController.text);
-                  },
-                  child: const Text(
-                    "Save Expense",
-                    style: TextStyle(color: Colors.white),
-                  )),
-            ],
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                ElevatedButton(
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text(
+                      "Cancel",
+                      style: TextStyle(color: Colors.white),
+                    )),
+                const SizedBox(
+                  width: 5,
+                ),
+                ElevatedButton(
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                    onPressed: () {
+                      _titleController.clear();
+                      _amountController.clear();
+                    },
+                    child: const Text(
+                      "Clear",
+                      style: TextStyle(color: Colors.white),
+                    )),
+                const SizedBox(
+                  width: 5,
+                ),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.lightBlue),
+                    onPressed: () {
+                      print(_titleController.text);
+                      print(_amountController.text);
+                    },
+                    child: const Text(
+                      "Save Expense",
+                      style: TextStyle(color: Colors.white),
+                    )),
+              ],
+            ),
           )
         ],
       ),
