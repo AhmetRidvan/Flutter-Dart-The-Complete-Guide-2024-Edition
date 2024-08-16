@@ -38,6 +38,38 @@ class _NewExpense extends State<NewExpense> {
 
     print(pickedDate);
   }
+//trim() sağdaki ve soldaki boşlukları iptal eder.
+// and && or ||
+
+  void _saveExpense() {
+    var enteredAmount = double.tryParse(_amountController.text);
+    bool CheckEnteredAmount = enteredAmount == null || enteredAmount <= 0;
+
+    if (_titleController.text.trim().isEmpty ||
+        CheckEnteredAmount ||
+        secilentarih == null) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text("Invalid input"),
+            content: const Text(
+              "Please make sure a valid title, amount, date and category was entered",
+              style: TextStyle(fontSize: 30),
+            ),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text("Okay"))
+            ],
+          );
+        },
+      );
+      return;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +139,7 @@ class _NewExpense extends State<NewExpense> {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           SingleChildScrollView(
@@ -120,9 +152,9 @@ class _NewExpense extends State<NewExpense> {
                   items: CategoryEnum.values
                       .map(
                         (value) => DropdownMenuItem(
-                          value: value, // Hangisi seçildiyseyi aşağı gönderiyor
+                          value: value, //Hangisi seçildiyseyi aşağı gönderiyor
                           child: Text(value.name.toUpperCase()), //3:50
-                        ), // eyer name yazmaz isen CategoryEnum.food şeklinde alır ama name ile sadece food yani öğeyi alıyoruz.
+                        ), // Eyer name yazmaz isen CategoryEnum.food şeklinde alır ama name ile sadece food yani öğeyi alıyoruz.
                       )
                       .toList(),
                   onChanged: (value) {
@@ -154,8 +186,12 @@ class _NewExpense extends State<NewExpense> {
                     style:
                         ElevatedButton.styleFrom(backgroundColor: Colors.green),
                     onPressed: () {
-                      _titleController.clear();
-                      _amountController.clear();
+                      setState(() {
+                        _titleController.clear();
+                        _amountController.clear();
+                        _selectedCategory = CategoryEnum.leisure;
+                        secilentarih = null;
+                      });
                     },
                     child: const Text(
                       "Clear",
@@ -167,10 +203,7 @@ class _NewExpense extends State<NewExpense> {
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.lightBlue),
-                    onPressed: () {
-                      print(_titleController.text);
-                      print(_amountController.text);
-                    },
+                    onPressed: _saveExpense,
                     child: const Text(
                       "Save Expense",
                       style: TextStyle(color: Colors.white),
