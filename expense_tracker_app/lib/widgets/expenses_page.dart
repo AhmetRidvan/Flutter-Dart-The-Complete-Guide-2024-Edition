@@ -13,31 +13,41 @@ class Expenses extends StatefulWidget {
 }
 
 class _expenses extends State<StatefulWidget> {
+  List<Expensemodel> FakeExpenses = [
+    Expensemodel(
+      title: "Cinema",
+      amount: 12.33,
+      date: DateTime.now(),
+      category: CategoryEnum.food,
+    ),
+    Expensemodel(
+        title: "Party",
+        amount: 59.33,
+        date: DateTime.now(),
+        category: CategoryEnum.leisure),
+  ];
+
+  void openAddExtense() {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      builder: (context) {
+        return Center(
+            child: NewExpense(
+          incomingFunction: _addExpense,
+        ));
+      },
+    );
+  }
+
+  void _addExpense(Expensemodel e1) {
+    setState(() {
+      FakeExpenses.add(e1);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<Expensemodel> FakeExpenses = [
-      Expensemodel(
-        title: "Cinema",
-        amount: 12.33,
-        date: DateTime.now(),
-        category: CategoryEnum.food,
-      ),
-      Expensemodel(
-          title: "Party",
-          amount: 59.33,
-          date: DateTime.now(),
-          category: CategoryEnum.leisure),
-    ];
-
-    void openAddExtense() {
-      showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return const Center(child: NewExpense());
-        },
-      );
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: const Text(

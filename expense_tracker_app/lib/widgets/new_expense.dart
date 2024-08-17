@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class NewExpense extends StatefulWidget {
-  const NewExpense({super.key});
+  NewExpense({super.key, required this.incomingFunction});
+
+  void Function(Expensemodel Expensemodel1) incomingFunction;
+
   @override
   State<StatefulWidget> createState() {
     return _NewExpense();
@@ -44,7 +47,6 @@ class _NewExpense extends State<NewExpense> {
   void _saveExpense() {
     var enteredAmount = double.tryParse(_amountController.text);
     bool CheckEnteredAmount = enteredAmount == null || enteredAmount <= 0;
-
     if (_titleController.text.trim().isEmpty ||
         CheckEnteredAmount ||
         secilentarih == null) {
@@ -67,15 +69,24 @@ class _NewExpense extends State<NewExpense> {
           );
         },
       );
-      return;
+    } else {
+      widget.incomingFunction(Expensemodel(
+          title: _titleController.text,
+          amount: enteredAmount,
+          date: secilentarih!,
+          category: _selectedCategory));
+      Navigator.pop(context);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(
-        20,
+      padding: const EdgeInsets.fromLTRB(
+        15,
+        60,
+        15,
+        15,
       ),
       child: Column(
         children: [

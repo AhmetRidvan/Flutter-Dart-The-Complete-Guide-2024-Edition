@@ -24,7 +24,6 @@ class ExpenseItem extends StatelessWidget {
                 Row(
                   children: [
                     categoryIcons[expensemodel1.category] as Widget,
-                    
                     const SizedBox(
                       width: 7,
                     ),
