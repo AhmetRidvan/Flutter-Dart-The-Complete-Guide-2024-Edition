@@ -15,14 +15,13 @@ class Expenses extends StatefulWidget {
 class _expenses extends State<StatefulWidget> {
   List<Expensemodel> FakeExpenses = [
     Expensemodel(
-      title: "Cinema",
-      amount: 12.33,
-      date: DateTime.now(),
-      category: CategoryEnum.food,
-    ),
+        title: "asd",
+        amount: 12,
+        date: DateTime.now(),
+        category: CategoryEnum.food),
     Expensemodel(
-        title: "Party",
-        amount: 59.33,
+        title: "hjk",
+        amount: 132,
         date: DateTime.now(),
         category: CategoryEnum.leisure),
   ];
@@ -47,13 +46,41 @@ class _expenses extends State<StatefulWidget> {
   }
 
   void _removeExpense(Expensemodel e1) {
+    var index = FakeExpenses.indexOf(
+        e1); // bu nesnenin kaçıncı indexte olduğunu buluyoruz.
     setState(() {
       FakeExpenses.remove(e1);
     });
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: const Text("Expense deleted"),
+      duration: const Duration(seconds: 3),
+      action: SnackBarAction(
+        label: "Undo",
+        onPressed: () {
+          setState(() {
+            FakeExpenses.insert(index, e1); // o indexe eklemeye yarıyor
+          });
+        },
+      ),
+    ));
+    
   }
 
   @override
   Widget build(BuildContext context) {
+    Widget mainContent = Expanded(
+        child: ExpensesList(
+      expenses: FakeExpenses,
+      sil: _removeExpense,
+    ));
+
+    if (FakeExpenses.isEmpty) {
+      mainContent = const Center(
+        child: Text("There is nothing here"),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -78,12 +105,8 @@ class _expenses extends State<StatefulWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Grafik"),
-            Expanded(
-                child: ExpensesList(
-              expenses: FakeExpenses,
-              sil: _removeExpense,
-            )),
+            const Text("Grafik"),
+            mainContent,
           ],
         ),
       ),
