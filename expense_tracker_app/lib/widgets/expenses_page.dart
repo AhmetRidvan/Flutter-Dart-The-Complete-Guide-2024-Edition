@@ -46,6 +46,12 @@ class _expenses extends State<StatefulWidget> {
     });
   }
 
+  void _removeExpense(Expensemodel e1) {
+    setState(() {
+      FakeExpenses.remove(e1);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,8 +78,12 @@ class _expenses extends State<StatefulWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("Grafik"),
-            Expanded(child: ExpensesList(expenses: FakeExpenses)),
+            Text("Grafik"),
+            Expanded(
+                child: ExpensesList(
+              expenses: FakeExpenses,
+              sil: _removeExpense,
+            )),
           ],
         ),
       ),
