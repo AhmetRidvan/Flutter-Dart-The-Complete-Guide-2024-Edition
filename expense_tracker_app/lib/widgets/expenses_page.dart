@@ -64,7 +64,6 @@ class _expenses extends State<StatefulWidget> {
         },
       ),
     ));
-    
   }
 
   @override
@@ -90,7 +89,6 @@ class _expenses extends State<StatefulWidget> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Colors.yellowAccent,
         actions: [
           IconButton(
               onPressed: openAddExtense,
