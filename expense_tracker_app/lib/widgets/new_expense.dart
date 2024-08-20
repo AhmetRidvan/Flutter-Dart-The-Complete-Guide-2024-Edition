@@ -170,7 +170,7 @@ class _NewExpense extends State<NewExpense> {
                       .toList(),
                   onChanged: (value) {
                     if (value == null) {
-                      return; //return son koddur devamı çalışmaz
+                      return; //return son k oddur devamı çalışmaz
                     }
                     setState(() {
                       _selectedCategory = value;
@@ -181,14 +181,12 @@ class _NewExpense extends State<NewExpense> {
                   width: 5,
                 ),
                 ElevatedButton(
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                    style: ElevatedButton.styleFrom(),
                     onPressed: () {
                       Navigator.pop(context);
                     },
                     child: const Text(
                       "Cancel",
-                      style: TextStyle(color: Colors.white),
                     )),
                 const SizedBox(
                   width: 5,

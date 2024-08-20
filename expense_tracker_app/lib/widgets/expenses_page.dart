@@ -85,7 +85,7 @@ class _expenses extends State<StatefulWidget> {
         title: const Text(
           "Flutter ExpenseTracker",
           style: TextStyle(
-            color: Colors.black,
+           
             fontWeight: FontWeight.bold,
           ),
         ),
