@@ -8,12 +8,18 @@ var kColorSheme = ColorScheme.fromSeed(seedColor: Colors.orange);
 void main() {
   runApp(
     MaterialApp(
+      // ignore: prefer_const_constructors
       theme: ThemeData().copyWith(
+        cardTheme: CardTheme(
+                color: kColorSheme.secondaryContainer,
+                margin: EdgeInsets.all(14))
+            .copyWith(),
         colorScheme: kColorSheme,
         //sadece yaptığın değişiklikleri uygular başka yok
         appBarTheme: AppBarTheme(
-          titleTextStyle: TextStyle(color: Colors.black, fontSize: 30),
+          titleTextStyle: const TextStyle(color: Colors.white, fontSize: 20),
           foregroundColor: kColorSheme.primaryContainer,
+          
           backgroundColor: kColorSheme.onPrimaryContainer,
           toolbarHeight: 100,
         ),

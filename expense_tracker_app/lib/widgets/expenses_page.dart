@@ -94,7 +94,7 @@ class _expenses extends State<StatefulWidget> {
               onPressed: openAddExtense,
               icon: const Icon(
                 Icons.add,
-                color: Colors.black,
+               
                 size: 35,
               ))
         ],
