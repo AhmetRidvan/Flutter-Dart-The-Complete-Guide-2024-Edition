@@ -82,19 +82,14 @@ class _expenses extends State<StatefulWidget> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "Flutter ExpenseTracker",
-          style: TextStyle(
-           
-            fontWeight: FontWeight.bold,
-          ),
         ),
         actions: [
           IconButton(
               onPressed: openAddExtense,
               icon: const Icon(
                 Icons.add,
-               
                 size: 35,
               ))
         ],
