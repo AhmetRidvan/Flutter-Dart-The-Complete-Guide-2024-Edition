@@ -12,14 +12,24 @@ class ExpenseItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(expensemodel1.title),
+            Text(
+              expensemodel1.title,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge!
+                  .copyWith(color: Colors.red), //copywith genele dokunmadan sadece o özelliği değiştirir
+            ),
             const SizedBox(
               height: 5,
             ),
             Row(
               children: [
-                Text("\$${expensemodel1.amount.toStringAsFixed(2)}"),
+                Text(
+                  "\$${expensemodel1.amount.toStringAsFixed(2)}",
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
                 const Spacer(),
                 Row(
                   children: [
@@ -29,7 +39,7 @@ class ExpenseItem extends StatelessWidget {
                     ),
                     Text(
                       expensemodel1.formattedDate,
-                      style: const TextStyle(color: Colors.black),
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ],
                 )

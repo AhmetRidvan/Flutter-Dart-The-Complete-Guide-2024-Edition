@@ -84,6 +84,7 @@ class _expenses extends State<StatefulWidget> {
       appBar: AppBar(
         title: Text(
           "Flutter ExpenseTracker",
+          style: Theme.of(context).textTheme.titleMedium,
         ),
         actions: [
           IconButton(

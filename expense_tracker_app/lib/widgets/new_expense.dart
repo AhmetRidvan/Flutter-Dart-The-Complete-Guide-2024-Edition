@@ -136,7 +136,8 @@ class _NewExpense extends State<NewExpense> {
                   children: [
                     Text(secilentarih == null
                         ? "No date selected"
-                        : formattedDate.format(secilentarih!)),
+                        : formattedDate.format(secilentarih!)
+                        ,style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 13),),
                     IconButton(
                         onPressed: () {
                           _presentDatePicker();
@@ -164,7 +165,7 @@ class _NewExpense extends State<NewExpense> {
                       .map(
                         (value) => DropdownMenuItem(
                           value: value, //Hangisi seçildiyseyi aşağı gönderiyor
-                          child: Text(value.name.toUpperCase()), //3:50
+                          child: Text(value.name.toUpperCase(),style: Theme.of(context).textTheme.titleLarge,), //3:50
                         ), // Eyer name yazmaz isen CategoryEnum.food şeklinde alır ama name ile sadece food yani öğeyi alıyoruz.
                       )
                       .toList(),
@@ -181,7 +182,7 @@ class _NewExpense extends State<NewExpense> {
                   width: 5,
                 ),
                 ElevatedButton(
-                    style: ElevatedButton.styleFrom(),
+                    style: ElevatedButtonTheme.of(context).style,
                     onPressed: () {
                       Navigator.pop(context);
                     },
@@ -192,8 +193,7 @@ class _NewExpense extends State<NewExpense> {
                   width: 5,
                 ),
                 ElevatedButton(
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                    style: ElevatedButtonTheme.of(context).style,
                     onPressed: () {
                       setState(() {
                         _titleController.clear();
@@ -204,18 +204,15 @@ class _NewExpense extends State<NewExpense> {
                     },
                     child: const Text(
                       "Clear",
-                      style: TextStyle(color: Colors.white),
                     )),
                 const SizedBox(
                   width: 5,
                 ),
                 ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.lightBlue),
+                    style: ElevatedButtonTheme.of(context).style,
                     onPressed: _saveExpense,
-                    child: const Text(
+                    child: Text(
                       "Save Expense",
-                      style: TextStyle(color: Colors.white),
                     )),
               ],
             ),
