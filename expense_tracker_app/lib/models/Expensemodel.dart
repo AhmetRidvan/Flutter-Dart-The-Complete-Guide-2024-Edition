@@ -38,3 +38,12 @@ class Expensemodel {
     return xes.format(date);
   }
 }
+
+class ExpenseBucket {
+  ExpenseBucket({required this.c1, required this.l1});
+
+  CategoryEnum c1;
+  List<Expensemodel> l1;
+
+  //1:40
+}

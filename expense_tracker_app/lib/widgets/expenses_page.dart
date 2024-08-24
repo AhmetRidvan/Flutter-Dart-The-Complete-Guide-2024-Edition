@@ -100,6 +100,7 @@ class _expenses extends State<StatefulWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text("Grafik"),
+            
             mainContent,
           ],
         ),

@@ -17,9 +17,14 @@ class ExpensesList extends StatelessWidget {
             background: Container(
               margin: Theme.of(context).cardTheme.margin,
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.error.withOpacity(0.50),
                 borderRadius: BorderRadius.circular(22),
+                color: Theme.of(context).colorScheme.error.withOpacity(0.50),
               ),
+              child: const Center(
+                  child: Text(
+                "Sil",
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              )),
             ),
             onDismissed: (direction) => sil(expenses[index]),
             key: ValueKey(expenses[index]),

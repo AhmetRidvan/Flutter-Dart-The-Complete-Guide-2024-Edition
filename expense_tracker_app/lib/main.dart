@@ -11,7 +11,7 @@ void main() {
   runApp(
     MaterialApp(
       darkTheme: ThemeData.dark().copyWith(
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
             titleLarge: TextStyle(
                 color: Colors.white,
                 fontSize: 20,
@@ -40,7 +40,7 @@ void main() {
             backgroundColor: kColorSheme.onPrimaryContainer,
             toolbarHeight: 100, // 7:51
           ),
-          textTheme: TextTheme(
+          textTheme: const TextTheme(
               titleLarge: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
