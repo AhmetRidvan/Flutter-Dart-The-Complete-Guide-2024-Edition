@@ -14,11 +14,19 @@ enum CategoryEnum {
 } // Rastgele parametre giremesin benim dediğim parametleri girebilsin
 
 var categoryIcons = {
+  CategoryEnum.food: Icons.food_bank,
+  CategoryEnum.travel: Icons.card_travel,
+  CategoryEnum.leisure: Icons.movie_filter_sharp,
+  CategoryEnum.work: Icons.work,
+};
+
+var categoryIcons2 = {
   CategoryEnum.food: const Icon(Icons.food_bank),
   CategoryEnum.travel: const Icon(Icons.card_travel),
   CategoryEnum.leisure: const Icon(Icons.movie_filter_sharp),
   CategoryEnum.work: const Icon(Icons.work),
 };
+
 
 class Expensemodel {
   Expensemodel({
@@ -39,11 +47,28 @@ class Expensemodel {
   }
 }
 
+
+
 class ExpenseBucket {
-  ExpenseBucket({required this.c1, required this.l1});
+  ExpenseBucket({required this.category, required this.expenses});
 
-  CategoryEnum c1;
-  List<Expensemodel> l1;
+  CategoryEnum category;
+  List<Expensemodel> expenses;
 
-  //1:40
+  ExpenseBucket.forCategory(List<Expensemodel> allExpenses, this.category)
+      : expenses = allExpenses
+            .where(
+              (element) => element.category == category, // neden yapılıyor zaten eşit olmak zorundaki category
+            )  
+            .toList();
+  
+  double get TotalExpenses {
+    double sum = 0;
+
+    for (Expensemodel x in expenses) {
+      sum += x.amount;
+    }
+
+    return sum;
+  }
 }

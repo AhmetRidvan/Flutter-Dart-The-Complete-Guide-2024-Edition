@@ -1,3 +1,4 @@
+import 'package:expense_tracker_app/widgets/chart/chart.dart';
 import 'package:expense_tracker_app/widgets/expenses_list/expenses_list.dart';
 import 'package:expense_tracker_app/models/Expensemodel.dart';
 import 'package:expense_tracker_app/widgets/new_expense.dart';
@@ -99,8 +100,7 @@ class _expenses extends State<StatefulWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("Grafik"),
-            
+            Chart(expenses: FakeExpenses),
             mainContent,
           ],
         ),

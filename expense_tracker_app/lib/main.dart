@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:expense_tracker_app/widgets/expenses_page.dart';
 
-// 1:30
+// 3:56 video yu baştan sona izle sonra uygulamalı yap
 
 var kColorSheme = ColorScheme.fromSeed(seedColor: Colors.orange);
 var kDarkColorSheme = ColorScheme.fromSeed(
