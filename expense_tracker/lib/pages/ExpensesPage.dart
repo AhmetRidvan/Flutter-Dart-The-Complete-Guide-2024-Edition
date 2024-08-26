@@ -14,7 +14,10 @@ class _ExpensesPage extends State<ExpensesPage> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Column(
-        children: [Text("The chart"), Text("Expenses list...")],
+        children: [
+          Text("The chart"),
+          Text("Expenses list..."),
+        ],
       ),
     );
   }
