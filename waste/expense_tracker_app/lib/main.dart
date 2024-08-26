@@ -20,7 +20,7 @@ void main() {
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
                 foregroundColor: kDarkColorSheme
-                    .onPrimaryContainer, // onPrimaryContainer burada ismen düşün
+                    .onPrimaryContainer, // onPrimaryContainer burada ismen düşüne
                 backgroundColor: kDarkColorSheme.primaryContainer)),
       ),
       // ignore: prefer_const_constructors
