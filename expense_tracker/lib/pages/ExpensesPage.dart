@@ -11,12 +11,10 @@ class ExpensesPage extends StatefulWidget {
 }
 
 class _ExpensesPage extends State<ExpensesPage> {
-  ExpenseModel e1 =
-      ExpenseModel(title: "asd", amount: 34, date: DateTime.now());
+
 
   @override
   Widget build(BuildContext context) {
-    e1.id;
     return const Scaffold(
       body: Column(
         children: [
