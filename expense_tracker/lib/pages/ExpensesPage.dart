@@ -11,7 +11,18 @@ class ExpensesPage extends StatefulWidget {
 }
 
 class _ExpensesPage extends State<ExpensesPage> {
-
+  final List<ExpenseModel> _fakeExpenses = [
+    ExpenseModel(
+        title: "C++",
+        amount: 12.31,
+        date: DateTime.now(),
+        category: Category.food),
+    ExpenseModel(
+        title: "Python",
+        amount: 11.94,
+        date: DateTime.now(),
+        category: Category.work)
+  ];
 
   @override
   Widget build(BuildContext context) {
