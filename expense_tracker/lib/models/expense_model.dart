@@ -16,6 +16,6 @@ class ExpenseModel {
   String id;
   String title;
   double amount;
-  DateTime date; 
+  DateTime date;
   Category category;
 }
