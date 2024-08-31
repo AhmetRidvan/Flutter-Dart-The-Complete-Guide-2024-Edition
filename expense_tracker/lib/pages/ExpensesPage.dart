@@ -1,4 +1,6 @@
 import 'package:expense_tracker/models/expense_model.dart';
+import 'package:expense_tracker/widgets/modal.dart';
+import 'package:expense_tracker/widgets/app_bar.dart';
 import 'package:expense_tracker/widgets/expense_builder.dart';
 import 'package:flutter/material.dart';
 
@@ -25,9 +27,19 @@ class _ExpensesPage extends State<ExpensesPage> {
         category: Category.work)
   ];
 
+  addExpense() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Modal();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: appBar(addExpense),
       body: Column(
         children: [
           const Text("The chart"),
