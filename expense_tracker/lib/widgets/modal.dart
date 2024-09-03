@@ -13,6 +13,14 @@ class _Modal extends State<Modal> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
 
+  void _datePicker() {
+    DateTime dt1 = DateTime.now();
+    DateTime first = DateTime(dt1.year - 1, dt1.day, dt1.month); //!!
+    DateTime end = DateTime(dt1.year + 1, dt1.month, dt1.day);
+    showDatePicker(
+        context: context, firstDate: first, lastDate: end, initialDate: dt1);
+  }
+
   @override
   void dispose() {
     _titleController.dispose();
@@ -59,9 +67,12 @@ class _Modal extends State<Modal> {
               ),
               Expanded(
                   child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text("33/22/2023"), //2:34
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.date_range))
+                  Text("33/22/2023"), //2:34
+                  IconButton(
+                      onPressed: _datePicker, icon: Icon(Icons.date_range))
                 ],
               ))
             ],
