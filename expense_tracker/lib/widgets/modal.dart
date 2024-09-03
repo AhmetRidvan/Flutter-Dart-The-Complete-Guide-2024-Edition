@@ -16,6 +16,7 @@ class _Modal extends State<Modal> {
   @override
   void dispose() {
     _titleController.dispose();
+    _amountController.dispose();
     super.dispose();
   }
 
@@ -38,15 +39,32 @@ class _Modal extends State<Modal> {
                   onPressed: () {
                     print(_titleController.text);
                   },
-                  child: const Text("Save"))
+                  child: const Text("Save")),
             ],
           ),
-          TextField(
-            controller: _amountController,
-            keyboardType: TextInputType.number,
-            decoration: const InputDecoration(
-              label: Text("Amount"),
-            ),
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: _amountController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    prefix: Text("\$"),
+                    label: Text("Amount"),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 14,
+              ),
+              Expanded(
+                  child: Row(
+                children: [
+                  const Text("33/22/2023"), //2:34
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.date_range))
+                ],
+              ))
+            ],
           ),
           Row(
             children: [
@@ -61,7 +79,7 @@ class _Modal extends State<Modal> {
                     _titleController.clear();
                   },
                   child: const Text("Clear")),
-              ElevatedButton(
+              TextButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
