@@ -1,3 +1,4 @@
+import 'package:expense_tracker/models/expense_model.dart';
 import 'package:flutter/material.dart';
 
 class Modal extends StatefulWidget {
@@ -12,13 +13,23 @@ class Modal extends StatefulWidget {
 class _Modal extends State<Modal> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
+  Category g1 = Category.food;
+
+  DateTime? selectedDate;
 
   void _datePicker() {
     DateTime dt1 = DateTime.now();
     DateTime first = DateTime(dt1.year - 1, dt1.day, dt1.month); //!!
     DateTime end = DateTime(dt1.year + 1, dt1.month, dt1.day);
     showDatePicker(
-        context: context, firstDate: first, lastDate: end, initialDate: dt1);
+            context: context, firstDate: first, lastDate: end, initialDate: dt1)
+        .then(
+      (value) {
+        setState(() {
+          selectedDate = value;
+        });
+      },
+    );
   }
 
   @override
@@ -43,15 +54,6 @@ class _Modal extends State<Modal> {
           ),
           Row(
             children: [
-              ElevatedButton(
-                  onPressed: () {
-                    print(_titleController.text);
-                  },
-                  child: const Text("Save")),
-            ],
-          ),
-          Row(
-            children: [
               Expanded(
                 child: TextField(
                   controller: _amountController,
@@ -70,18 +72,38 @@ class _Modal extends State<Modal> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text("33/22/2023"), //2:34
+                  Text(selectedDate == null
+                      ? "No date"
+                      : formattedDatetime.format(selectedDate!)), //2:34
                   IconButton(
-                      onPressed: _datePicker, icon: Icon(Icons.date_range))
+                    onPressed: _datePicker,
+                    icon: const Icon(Icons.date_range),
+                  ),
                 ],
               ))
             ],
           ),
           Row(
             children: [
+              DropdownButton(
+                value: g1,
+                items: Category.values.map(
+                  (e) {
+                    return DropdownMenuItem(
+                        value: e, child: Text(e.name.toUpperCase()));
+                  },
+                ).toList(),
+                onChanged: (value) {
+                  setState(() {
+                    g1 = value!;
+                    print(g1);
+                  });
+                },
+              ),
               ElevatedButton(
                   onPressed: () {
                     print(_amountController.text);
+                    print(_titleController.text);
                   },
                   child: const Text("Save")),
               ElevatedButton(
