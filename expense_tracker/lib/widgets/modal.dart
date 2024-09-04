@@ -83,9 +83,13 @@ class _Modal extends State<Modal> {
               ))
             ],
           ),
+          SizedBox(
+            height: 10,
+          ),
           Row(
             children: [
               DropdownButton(
+                icon: Icon(Icons.emoji_objects),
                 value: g1,
                 items: Category.values.map(
                   (e) {
@@ -100,10 +104,15 @@ class _Modal extends State<Modal> {
                   });
                 },
               ),
+              Spacer(),
               ElevatedButton(
                   onPressed: () {
                     print(_amountController.text);
                     print(_titleController.text);
+                    selectedDate == null
+                        ? print("Geçersiz tarih")
+                        : print(formattedDatetime.format(selectedDate!));
+                    print(g1);
                   },
                   child: const Text("Save")),
               ElevatedButton(
