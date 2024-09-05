@@ -14,7 +14,6 @@ class _Modal extends State<Modal> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
   Category g1 = Category.food;
-
   DateTime? selectedDate;
 
   void _datePicker() {
@@ -30,6 +29,17 @@ class _Modal extends State<Modal> {
         });
       },
     );
+  }
+
+  submitData() {
+    double? sayi = double.tryParse(_amountController.text);
+    bool evetHayir = sayi == null || sayi <= 0;
+
+    if (_titleController.text.trim().isEmpty ||
+        evetHayir ||
+        selectedDate == null) {
+      print("Hatalı giriş");
+    }
   }
 
   @override
@@ -104,21 +114,14 @@ class _Modal extends State<Modal> {
                   });
                 },
               ),
-              Spacer(),
-              ElevatedButton(
-                  onPressed: () {
-                    print(_amountController.text);
-                    print(_titleController.text);
-                    selectedDate == null
-                        ? print("Geçersiz tarih")
-                        : print(formattedDatetime.format(selectedDate!));
-                    print(g1);
-                  },
-                  child: const Text("Save")),
+              const Spacer(),
+              ElevatedButton(onPressed: submitData, child: const Text("Save")),
               ElevatedButton(
                   onPressed: () {
                     _amountController.clear();
                     _titleController.clear();
+                    selectedDate = null;
+                    setState(() {});
                   },
                   child: const Text("Clear")),
               TextButton(
