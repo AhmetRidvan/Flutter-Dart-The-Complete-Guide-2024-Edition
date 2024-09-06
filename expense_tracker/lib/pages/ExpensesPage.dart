@@ -27,11 +27,20 @@ class _ExpensesPage extends State<ExpensesPage> {
         category: Category.work)
   ];
 
+  void _addToList(ExpenseModel a1) {
+    setState(() {
+      _fakeExpenses.add(a1);
+    });
+  }
+
   addExpense() {
     showModalBottomSheet(
+      isScrollControlled: true,
       context: context,
       builder: (context) {
-        return Modal();
+        return Modal(
+          onData: _addToList,
+        );
       },
     );
   }

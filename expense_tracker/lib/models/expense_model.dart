@@ -17,8 +17,8 @@ enum Category {
   leisure,
   work,
 }
-
 class ExpenseModel {
+
   ExpenseModel(
       {required this.title,
       required this.amount,

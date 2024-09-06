@@ -2,7 +2,9 @@ import 'package:expense_tracker/models/expense_model.dart';
 import 'package:flutter/material.dart';
 
 class Modal extends StatefulWidget {
-  Modal({super.key});
+  Modal({super.key, required this.onData});
+
+  final Function(ExpenseModel) onData;
 
   @override
   State<StatefulWidget> createState() {
@@ -38,7 +40,31 @@ class _Modal extends State<Modal> {
     if (_titleController.text.trim().isEmpty ||
         evetHayir ||
         selectedDate == null) {
-      print("Hatalı giriş");
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text("Okay"))
+            ],
+            content: const Text(
+                "Please make sure a valid title, amount, date and category was entered"),
+            title: const Text("Invalid input"),
+          );
+        },
+      );
+      return;
+    } else {
+      widget.onData(ExpenseModel(
+          title: _titleController.text,
+          amount: sayi,
+          date: selectedDate!,
+          category: g1));
+      Navigator.pop(context);
     }
   }
 
@@ -52,7 +78,7 @@ class _Modal extends State<Modal> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.only(top: 40, left: 10, right: 10),
       child: Column(
         children: [
           TextField(
@@ -93,13 +119,13 @@ class _Modal extends State<Modal> {
               ))
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
             children: [
               DropdownButton(
-                icon: Icon(Icons.emoji_objects),
+                icon: const Icon(Icons.emoji_objects),
                 value: g1,
                 items: Category.values.map(
                   (e) {
