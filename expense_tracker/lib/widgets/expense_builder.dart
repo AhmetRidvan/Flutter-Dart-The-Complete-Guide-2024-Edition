@@ -6,9 +6,11 @@ class ExpenseBuilder extends StatelessWidget {
   ExpenseBuilder({
     super.key,
     required this.expenses,
+    required this.e1,
   });
 
   List<ExpenseModel> expenses;
+  Function(ExpenseModel) e1;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,14 @@ class ExpenseBuilder extends StatelessWidget {
   }
 
   Widget? items(BuildContext context, int sayi) {
-    return ExpenseItem(e1: expenses[sayi]);
+    return Dismissible(
+      onDismissed: (direction) {
+        e1(expenses[sayi]);
+      },
+      key: ValueKey(expenses[sayi]),
+      child: ExpenseItem(
+        e1: expenses[sayi], 
+      ),
+    );
   }
 }

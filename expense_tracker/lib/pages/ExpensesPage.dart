@@ -33,6 +33,29 @@ class _ExpensesPage extends State<ExpensesPage> {
     });
   }
 
+  void _remove(ExpenseModel m1) {
+    var hangiIndex = _fakeExpenses.indexOf(m1);
+
+    setState(() {
+      _fakeExpenses.remove(m1);
+    });
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        action: SnackBarAction(
+          label: "Undo",
+          onPressed: () {
+            setState(() {
+              _fakeExpenses.insert(hangiIndex, m1);
+            });
+          },
+        ),
+        backgroundColor: Colors.red,
+        content: Text("Expense deleted"),
+      ),
+    );
+  }
+
   addExpense() {
     showModalBottomSheet(
       isScrollControlled: true,
@@ -47,12 +70,23 @@ class _ExpensesPage extends State<ExpensesPage> {
 
   @override
   Widget build(BuildContext context) {
+    Widget w1 = Center(
+      child: Text("There is nothing here"),
+    );
+
+    if (_fakeExpenses.isNotEmpty) {
+      w1 = ExpenseBuilder(
+        expenses: _fakeExpenses,
+        e1: _remove,
+      );
+    }
+
     return Scaffold(
       appBar: appBar(addExpense),
       body: Column(
         children: [
           const Text("The chart"),
-          Expanded(child: ExpenseBuilder(expenses: _fakeExpenses)),
+          Expanded(child: w1),
         ],
       ),
     );
