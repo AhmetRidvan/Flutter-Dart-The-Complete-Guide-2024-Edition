@@ -6,7 +6,7 @@ AppBar appBar(Function f1) {
       "Expense tracker",
       style: TextStyle(fontWeight: FontWeight.bold),
     ),
-    centerTitle: true,
+   
     actions: [
       IconButton(
           onPressed: () {
