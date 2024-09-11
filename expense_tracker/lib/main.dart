@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 var kColorSheme = ColorScheme.fromSeed(seedColor: Colors.pinkAccent);
 
 void main() {
-  //2:33
+  //6:50
   runApp(MaterialApp(
     theme: ThemeData(
         useMaterial3: true,
@@ -15,12 +15,13 @@ void main() {
           centerTitle: true,
         ),
         cardTheme: CardTheme(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(33)),
           color: kColorSheme.primary,
           margin: const EdgeInsets.symmetric(horizontal: 13, vertical: 4),
         ),
         textTheme: const TextTheme(
-          titleLarge:
-              TextStyle(fontWeight: FontWeight.bold, fontSize: 25), 
+          titleLarge: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(

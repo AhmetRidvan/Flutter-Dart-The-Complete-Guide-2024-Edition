@@ -22,12 +22,16 @@ class ExpenseBuilder extends StatelessWidget {
 
   Widget? items(BuildContext context, int sayi) {
     return Dismissible(
+      background: Container(
+        margin: Theme.of(context).cardTheme.margin,
+        color: Theme.of(context).colorScheme.error,
+      ),
       onDismissed: (direction) {
         e1(expenses[sayi]);
       },
       key: ValueKey(expenses[sayi]),
       child: ExpenseItem(
-        e1: expenses[sayi], 
+        e1: expenses[sayi],
       ),
     );
   }
