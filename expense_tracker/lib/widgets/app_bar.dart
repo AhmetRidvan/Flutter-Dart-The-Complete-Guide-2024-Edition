@@ -4,7 +4,7 @@ AppBar appBar(Function f1) {
   return AppBar(
     title: const Text(
       "Expense tracker",
-      style: TextStyle(fontWeight: FontWeight.bold),
+     
     ),
    
     actions: [

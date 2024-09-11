@@ -8,12 +8,11 @@ class ExpenseItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
         child: Column(
           children: [
-            Text(e1.title),
+            Text(e1.title,style: Theme.of(context).textTheme.titleLarge,),
             const SizedBox(
               height: 10,
             ),
