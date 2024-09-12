@@ -23,8 +23,12 @@ class ExpenseBuilder extends StatelessWidget {
   Widget? items(BuildContext context, int sayi) {
     return Dismissible(
       background: Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.rectangle,
+          borderRadius: (Theme.of(context).cardTheme.shape as RoundedRectangleBorder).borderRadius,
+          color: Theme.of(context).colorScheme.error.withOpacity(0.3),
+        ),
         margin: Theme.of(context).cardTheme.margin,
-        color: Theme.of(context).colorScheme.error,
       ),
       onDismissed: (direction) {
         e1(expenses[sayi]);
@@ -35,4 +39,4 @@ class ExpenseBuilder extends StatelessWidget {
       ),
     );
   }
-}
+} 

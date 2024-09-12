@@ -82,7 +82,7 @@ class _ExpensesPage extends State<ExpensesPage> {
     }
 
     return Scaffold(
-      appBar: appBar(addExpense,context),
+      appBar: appBar(addExpense, context),
       body: Column(
         children: [
           const Text("The chart"),
