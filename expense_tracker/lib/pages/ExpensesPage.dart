@@ -27,6 +27,7 @@ class _ExpensesPage extends State<ExpensesPage> {
         category: Category.work)
   ];
 
+
   void _addToList(ExpenseModel a1) {
     setState(() {
       _fakeExpenses.add(a1);

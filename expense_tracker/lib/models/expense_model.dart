@@ -5,7 +5,7 @@ import 'package:uuid/uuid.dart';
 var formattedDatetime = DateFormat.yMd();
 
 Map categoryIcons = {
-  Category.food:  Icons.fastfood,
+  Category.food: Icons.fastfood,
   Category.leisure: Icons.games,
   Category.travel: Icons.luggage_rounded,
   Category.work: Icons.work
@@ -17,8 +17,8 @@ enum Category {
   leisure,
   work,
 }
-class ExpenseModel {
 
+class ExpenseModel {
   ExpenseModel(
       {required this.title,
       required this.amount,
@@ -33,6 +33,38 @@ class ExpenseModel {
   Category category;
 
   String get formatter {
-    return formattedDatetime.format(date); 
+    return formattedDatetime.format(date);
+  }
+}
+
+//Grup masrafı için
+//Her kategory için  bir kova
+
+
+
+class ExpenseBucket {
+  ExpenseBucket({required this.category, required this.expenses});
+  //belirli bir kategoriye ait olan filtreme işlemi
+
+  //bunu tekrar yap,ÖK'dan sonra an
+  ExpenseBucket.forCategory(List<ExpenseModel> allExpenses, this.category)
+      : expenses = allExpenses
+            .where(
+              (x) => x.category == category,
+            )
+            .toList();
+  
+
+  List<ExpenseModel> expenses;
+  Category category;
+
+  double get totalExpenses {
+    double sayi = 0;
+
+    for (var x in expenses) {
+      sayi += x.amount;
+    }
+
+    return sayi;
   }
 }
