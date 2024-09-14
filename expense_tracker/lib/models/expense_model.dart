@@ -40,25 +40,22 @@ class ExpenseModel {
 //Grup masrafı için
 //Her kategory için  bir kova
 
-
-
 class ExpenseBucket {
   ExpenseBucket({required this.category, required this.expenses});
   //belirli bir kategoriye ait olan filtreme işlemi
 
-  //bunu tekrar yap,ÖK'dan sonra an
-  ExpenseBucket.forCategory(List<ExpenseModel> allExpenses, this.category)
-      : expenses = allExpenses
+  ExpenseBucket.forCategory(List<ExpenseModel> as, this.category)
+      : expenses = as
             .where(
-              (x) => x.category == category,
+              (element) => element.category == category,
             )
             .toList();
-  
 
   List<ExpenseModel> expenses;
   Category category;
+ 
 
-  double get totalExpenses {
+  double get totalExpenses { // bir kovanın toplam harcaması
     double sayi = 0;
 
     for (var x in expenses) {

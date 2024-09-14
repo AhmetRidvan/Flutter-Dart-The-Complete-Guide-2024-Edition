@@ -8,7 +8,7 @@ var kLightColorSheme = ColorScheme.fromSeed(
 var kDarkColorSheme =
     ColorScheme.fromSeed(seedColor: Colors.grey, brightness: Brightness.dark);
 
-void main() {
+void main() { //5:20
   //6:50
   //copywith sadece istenilen değişikliği yapmaya yarar temayı bozmaz.
   runApp(MaterialApp(

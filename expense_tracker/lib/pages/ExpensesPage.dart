@@ -1,4 +1,5 @@
 import 'package:expense_tracker/models/expense_model.dart';
+import 'package:expense_tracker/widgets/chart.dart';
 import 'package:expense_tracker/widgets/modal.dart';
 import 'package:expense_tracker/widgets/app_bar.dart';
 import 'package:expense_tracker/widgets/expense_builder.dart';
@@ -14,6 +15,7 @@ class ExpensesPage extends StatefulWidget {
 }
 
 class _ExpensesPage extends State<ExpensesPage> {
+  
   final List<ExpenseModel> _fakeExpenses = [
     ExpenseModel(
         title: "C++",
@@ -83,10 +85,10 @@ class _ExpensesPage extends State<ExpensesPage> {
     }
 
     return Scaffold(
-      appBar: appBar(addExpense, context),
+      appBar: appBar(addExpense, context), 
       body: Column(
         children: [
-          const Text("The chart"),
+          Chart(expenses: _fakeExpenses),
           Expanded(child: w1),
         ],
       ),
