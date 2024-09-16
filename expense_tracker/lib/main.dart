@@ -13,12 +13,18 @@ void main() {
   //5:20
   //6:50
   //copywith sadece istenilen değişikliği yapmaya yarar temayı bozmaz.
+ /*
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]).then(
     (value) {
-      return runApp(MaterialApp(
+     
+     
+    },
+  );
+ */
+  runApp(MaterialApp(
         themeMode: ThemeMode.system,
         darkTheme: ThemeData(
           colorScheme: kDarkColorSheme,
@@ -56,6 +62,4 @@ void main() {
                     backgroundColor: kLightColorSheme.primaryContainer))),
         home: const ExpensesPage(),
       ));
-    },
-  );
 }
