@@ -15,7 +15,6 @@ class ExpensesPage extends StatefulWidget {
 }
 
 class _ExpensesPage extends State<ExpensesPage> {
-  
   final List<ExpenseModel> _fakeExpenses = [
     ExpenseModel(
         title: "C++",
@@ -28,7 +27,6 @@ class _ExpensesPage extends State<ExpensesPage> {
         date: DateTime.now(),
         category: Category.work)
   ];
-
 
   void _addToList(ExpenseModel a1) {
     setState(() {
@@ -73,6 +71,9 @@ class _ExpensesPage extends State<ExpensesPage> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     Widget w1 = Center(
       child: Text("There is nothing here"),
     );
@@ -85,13 +86,20 @@ class _ExpensesPage extends State<ExpensesPage> {
     }
 
     return Scaffold(
-      appBar: appBar(addExpense, context), 
-      body: Column(
-        children: [
-          Chart(expenses: _fakeExpenses),
-          Expanded(child: w1),
-        ],
-      ),
+      appBar: appBar(addExpense, context),
+      body: width < height 
+          ? Column(
+              children: [
+                Chart(expenses: _fakeExpenses),
+                Expanded(child: w1),
+              ],
+            )
+          : Row(
+              children: [
+                Expanded(child: Chart(expenses: _fakeExpenses)), // expanded ekran boyutuna da bakıyor.
+                Expanded(child: w1),
+              ],
+            ),
     );
   }
 }

@@ -12,7 +12,7 @@ var kDarkColorSheme =
 void main() {
   //5:20
   //6:50
-  //copywith sadece istenilen değişikliği yapmaya yarar temayı bozmaz.
+  // copywith sadece istenilen değişikliği yapmaya yarar temayı bozmaz.
  /*
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
