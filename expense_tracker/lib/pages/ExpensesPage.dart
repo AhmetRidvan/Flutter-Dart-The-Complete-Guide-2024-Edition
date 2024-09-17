@@ -59,6 +59,7 @@ class _ExpensesPage extends State<ExpensesPage> {
 
   addExpense() {
     showModalBottomSheet(
+      useSafeArea: true,
       isScrollControlled: true,
       context: context,
       builder: (context) {
@@ -87,7 +88,7 @@ class _ExpensesPage extends State<ExpensesPage> {
 
     return Scaffold(
       appBar: appBar(addExpense, context),
-      body: width < height 
+      body: width < height
           ? Column(
               children: [
                 Chart(expenses: _fakeExpenses),
@@ -96,7 +97,10 @@ class _ExpensesPage extends State<ExpensesPage> {
             )
           : Row(
               children: [
-                Expanded(child: Chart(expenses: _fakeExpenses)), // expanded ekran boyutuna da bakıyor.
+                Expanded(
+                    child: Chart(
+                        expenses:
+                            _fakeExpenses)), // expanded ekran boyutuna da bakıyor.
                 Expanded(child: w1),
               ],
             ),
