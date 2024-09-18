@@ -78,95 +78,100 @@ class _Modal extends State<Modal> {
   @override
   Widget build(BuildContext context) {
     double w1 = MediaQuery.of(context).viewInsets.bottom;
-    return SizedBox(
-      height: double.infinity,
-      child: SingleChildScrollView(
-        child: Padding(
-          padding:
-              EdgeInsets.only(top: 40, left: 10, right: 10, bottom: w1 + 30),
-          child: Column(
-            children: [
-              TextField(
-                controller: _titleController,
-                maxLength: 50,
-                decoration: const InputDecoration(
-                  label: Text("Title"),
-                ),
-              ),
-              Row(
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        print(constraints.maxHeight);
+        return SizedBox(
+          height: double.infinity,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(
+                  top: 40, left: 10, right: 10, bottom: w1 + 30),
+              child: Column(
                 children: [
-                  Expanded(
-                    child: TextField(
-                      controller: _amountController,
-                      keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                        prefix: Text("\$"),
-                        label: Text("Amount"),
-                      ),
+                  TextField(
+                    controller: _titleController,
+                    maxLength: 50,
+                    decoration: const InputDecoration(
+                      label: Text("Title"),
                     ),
                   ),
-                  const SizedBox(
-                    width: 14,
-                  ),
-                  Expanded(
-                      child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                  Row(
                     children: [
-                      Text(selectedDate == null
-                          ? "No date"
-                          : formattedDatetime.format(selectedDate!)), //2:34
-                      IconButton(
-                        onPressed: _datePicker,
-                        icon: const Icon(Icons.date_range),
+                      Expanded(
+                        child: TextField(
+                          controller: _amountController,
+                          keyboardType: TextInputType.number,
+                          decoration: const InputDecoration(
+                            prefix: Text("\$"),
+                            label: Text("Amount"),
+                          ),
+                        ),
                       ),
+                      const SizedBox(
+                        width: 14,
+                      ),
+                      Expanded(
+                          child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(selectedDate == null
+                              ? "No date"
+                              : formattedDatetime.format(selectedDate!)), //2:34
+                          IconButton(
+                            onPressed: _datePicker,
+                            icon: const Icon(Icons.date_range),
+                          ),
+                        ],
+                      ))
                     ],
-                  ))
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                children: [
-                  DropdownButton(
-                    icon: const Icon(Icons.emoji_objects),
-                    value: g1,
-                    items: Category.values.map(
-                      (e) {
-                        return DropdownMenuItem(
-                            value: e, child: Text(e.name.toUpperCase()));
-                      },
-                    ).toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        g1 = value!;
-                        print(g1);
-                      });
-                    },
                   ),
-                  const Spacer(),
-                  ElevatedButton(
-                      onPressed: submitData, child: const Text("Save")),
-                  ElevatedButton(
-                      onPressed: () {
-                        _amountController.clear();
-                        _titleController.clear();
-                        selectedDate = null;
-                        setState(() {});
-                      },
-                      child: const Text("Clear")),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text("Cancel")),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      DropdownButton(
+                        icon: const Icon(Icons.emoji_objects),
+                        value: g1,
+                        items: Category.values.map(
+                          (e) {
+                            return DropdownMenuItem(
+                                value: e, child: Text(e.name.toUpperCase()));
+                          },
+                        ).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            g1 = value!;
+                            print(g1);
+                          });
+                        },
+                      ),
+                      const Spacer(),
+                      ElevatedButton(
+                          onPressed: submitData, child: const Text("Save")),
+                      ElevatedButton(
+                          onPressed: () {
+                            _amountController.clear();
+                            _titleController.clear();
+                            selectedDate = null;
+                            setState(() {});
+                          },
+                          child: const Text("Clear")),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text("Cancel")),
+                    ],
+                  )
                 ],
-              )
-            ],
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

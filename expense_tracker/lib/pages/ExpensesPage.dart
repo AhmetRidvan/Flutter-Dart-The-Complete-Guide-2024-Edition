@@ -78,7 +78,7 @@ class _ExpensesPage extends State<ExpensesPage> {
     Widget w1 = Center(
       child: Text("There is nothing here"),
     );
-
+    
     if (_fakeExpenses.isNotEmpty) {
       w1 = ExpenseBuilder(
         expenses: _fakeExpenses,
