@@ -79,8 +79,11 @@ class _Modal extends State<Modal> {
   Widget build(BuildContext context) {
     double w1 = MediaQuery.of(context).viewInsets.bottom;
     return LayoutBuilder(
+      //o widget'în ekranda kapladğı maksimum ve minimum alanları
       builder: (context, constraints) {
-        print(constraints.maxHeight);
+        double width = constraints.maxWidth;
+        double height = constraints.maxHeight;
+
         return SizedBox(
           height: double.infinity,
           child: SingleChildScrollView(

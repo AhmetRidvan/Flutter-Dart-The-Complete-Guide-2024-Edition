@@ -2,7 +2,7 @@ import 'package:expense_tracker/pages/ExpensesPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-//2:40
+//5:04
 
 var kLightColorSheme = ColorScheme.fromSeed(
   seedColor: Colors.pinkAccent,
@@ -25,7 +25,7 @@ void main() {
      
     },
   );
- */
+ */ 
   runApp(MaterialApp(
         themeMode: ThemeMode.system,
         darkTheme: ThemeData(
