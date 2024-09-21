@@ -78,7 +78,7 @@ class _Modal extends State<Modal> {
   submitData() {
     double? sayi = double.tryParse(_amountController.text);
     bool evetHayir = sayi == null || sayi <= 0;
-
+    
     if (_titleController.text.trim().isEmpty ||
         evetHayir ||
         selectedDate == null) {
@@ -108,183 +108,187 @@ class _Modal extends State<Modal> {
       //o widget'în ekranda kapladğı maksimum ve minimum alanları
       builder: (context, constraints) {
         double width = constraints.maxWidth;
-        double height = constraints.maxHeight;
+        double height = constraints.maxHeight; //:052
 
         return SizedBox(
           height: double.infinity,
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.only(
-                  top: 40, left: 10, right: 10, bottom: w1 + 30),
-              child: Column(
-                children: [
-                  if (height < width)
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            controller: _titleController,
-                            maxLength: 50,
-                            decoration: const InputDecoration(
-                              label: Text("Title"),
+          child: Padding(
+            padding: EdgeInsets.only(left: 20, right: 20, bottom: w1 + 10),
+            child: SingleChildScrollView(
+              child: Container(
+                color: Colors.transparent,
+                child: Column(
+                  children: [
+                    if (height < width)
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              controller: _titleController,
+                              maxLength: 50,
+                              decoration: const InputDecoration(
+                                label: Text("Title"),
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 50,
-                        ),
-                        Expanded(
-                          child: TextField(
-                            controller: _amountController,
-                            keyboardType: TextInputType.number,
-                            decoration: const InputDecoration(
-                              prefix: Text("\$"),
-                              label: Text("Amount"),
+                          const SizedBox(
+                            width: 50,
+                          ),
+                          Expanded(
+                            child: TextField(
+                              controller: _amountController,
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                prefix: Text("\$"),
+                                label: Text("Amount"),
+                              ),
                             ),
                           ),
+                        ],
+                      )
+                    else
+                      TextField(
+                        controller: _titleController,
+                        maxLength: 50,
+                        decoration: const InputDecoration(
+                          label: Text("Title"),
                         ),
-                      ],
-                    )
-                  else
-                    TextField(
-                      controller: _titleController,
-                      maxLength: 50,
-                      decoration: const InputDecoration(
-                        label: Text("Title"),
                       ),
-                    ),
-                  if (height < width)
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        DropdownButton(
-                          icon: const Icon(Icons.emoji_objects),
-                          value: g1,
-                          items: Category.values.map(
-                            (e) {
-                              return DropdownMenuItem(
-                                  value: e, child: Text(e.name.toUpperCase()));
+                    if (height < width)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          DropdownButton(
+                            icon: const Icon(Icons.emoji_objects),
+                            value: g1,
+                            items: Category.values.map(
+                              (e) {
+                                return DropdownMenuItem(
+                                    value: e,
+                                    child: Text(e.name.toUpperCase()));
+                              },
+                            ).toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                g1 = value!;
+                                print(g1);
+                              });
                             },
-                          ).toList(),
-                          onChanged: (value) {
-                            setState(() {
-                              g1 = value!;
-                              print(g1);
-                            });
-                          },
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(selectedDate == null
-                                ? "No date"
-                                : formattedDatetime
-                                    .format(selectedDate!)), //2:34
-                            IconButton(
-                              onPressed: _datePicker,
-                              icon: const Icon(Icons.date_range),
-                            ),
-                          ],
-                        )
-                      ],
-                    )
-                  else
-                    Row(
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            controller: _amountController,
-                            keyboardType: TextInputType.number,
-                            decoration: const InputDecoration(
-                              prefix: Text("\$"),
-                              label: Text("Amount"),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(selectedDate == null
+                                  ? "No date"
+                                  : formattedDatetime
+                                      .format(selectedDate!)), //2:34
+                              IconButton(
+                                onPressed: _datePicker,
+                                icon: const Icon(Icons.date_range),
+                              ),
+                            ],
+                          )
+                        ],
+                      )
+                    else
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              controller: _amountController,
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                prefix: Text("\$"),
+                                label: Text("Amount"),
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 14,
-                        ),
-                        Expanded(
-                            child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(selectedDate == null
-                                ? "No date"
-                                : formattedDatetime
-                                    .format(selectedDate!)), //2:34
-                            IconButton(
-                              onPressed: _datePicker,
-                              icon: const Icon(Icons.date_range),
-                            ),
-                          ],
-                        ))
-                      ],
+                          const SizedBox(
+                            width: 14,
+                          ),
+                          Expanded(
+                              child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(selectedDate == null
+                                  ? "No date"
+                                  : formattedDatetime
+                                      .format(selectedDate!)), //2:34
+                              IconButton(
+                                onPressed: _datePicker,
+                                icon: const Icon(Icons.date_range),
+                              ),
+                            ],
+                          ))
+                        ],
+                      ),
+                    const SizedBox(
+                      height: 10,
                     ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  if (height < width)
-                    Row(
-                      children: [
-                        const Spacer(),
-                        ElevatedButton(
-                            onPressed: submitData, child: const Text("Save")),
-                        ElevatedButton(
-                            onPressed: () {
-                              _amountController.clear();
-                              _titleController.clear();
-                              selectedDate = null;
-                              setState(() {});
+                    if (height < width)
+                      Row(
+                        children: [
+                          const Spacer(),
+                          ElevatedButton(
+                              onPressed: submitData, child: const Text("Save")),
+                          ElevatedButton(
+                              onPressed: () {
+                                _amountController.clear();
+                                _titleController.clear();
+                                selectedDate = null;
+                                setState(() {});
+                              },
+                              child: const Text("Clear")),
+                          TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text("Cancel")),
+                        ],
+                      )
+                    else
+                      Row(
+                        children: [
+                          DropdownButton(
+                            icon: const Icon(Icons.emoji_objects),
+                            value: g1,
+                            items: Category.values.map(
+                              (e) {
+                                return DropdownMenuItem(
+                                    value: e,
+                                    child: Text(e.name.toUpperCase()));
+                              },
+                            ).toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                g1 = value!;
+                                print(g1);
+                              });
                             },
-                            child: const Text("Clear")),
-                        TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text("Cancel")),
-                      ],
-                    )
-                  else
-                    Row(
-                      children: [
-                        DropdownButton(
-                          icon: const Icon(Icons.emoji_objects),
-                          value: g1,
-                          items: Category.values.map(
-                            (e) {
-                              return DropdownMenuItem(
-                                  value: e, child: Text(e.name.toUpperCase()));
-                            },
-                          ).toList(),
-                          onChanged: (value) {
-                            setState(() {
-                              g1 = value!;
-                              print(g1);
-                            });
-                          },
-                        ),
-                        const Spacer(),
-                        ElevatedButton(
-                            onPressed: submitData, child: const Text("Save")),
-                        ElevatedButton(
-                            onPressed: () {
-                              _amountController.clear();
-                              _titleController.clear();
-                              selectedDate = null;
-                              setState(() {});
-                            },
-                            child: const Text("Clear")),
-                        TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text("Cancel")),
-                      ],
-                    )
-                ],
+                          ),
+                          const Spacer(),
+                          ElevatedButton(
+                              onPressed: submitData, child: const Text("Save")),
+                          ElevatedButton(
+                              onPressed: () {
+                                _amountController.clear();
+                                _titleController.clear();
+                                selectedDate = null;
+                                setState(() {});
+                              },
+                              child: const Text("Clear")),
+                          TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text("Cancel")),
+                        ],
+                      )
+                  ],
+                ),
               ),
             ),
           ),
