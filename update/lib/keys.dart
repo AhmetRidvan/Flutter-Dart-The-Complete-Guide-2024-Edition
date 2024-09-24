@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:update/checkable_todo_item.dart';
 
-
 class Todo {
   const Todo(this.text, this.priority);
 
@@ -68,8 +67,9 @@ class _KeysState extends State<Keys> {
           child: Column(
             children: [
               // for (final todo in _orderedTodos) TodoItem(todo.text, todo.priority),
-              for (final todo in _orderedTodos)
+              for (final todo in _orderedTodos) // benzersiz olacak
                 CheckableTodoItem(
+                  key: ValueKey(todo.text), 
                   todo.text,
                   todo.priority,
                 ),
