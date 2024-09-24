@@ -14,6 +14,7 @@ class CheckableTodoItem extends StatefulWidget {
 
 class _CheckableTodoItemState extends State<CheckableTodoItem> {
   var _done = false;
+  
 
   void _setDone(bool? isChecked) {
     setState(() {
