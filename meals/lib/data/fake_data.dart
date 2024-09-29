@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../models/categoryModel.dart';
 
-var availableCategories = [
+List<Categorymodel> availableCategories = [
   Categorymodel(
     id: 'c1',
     title: 'Italian',
