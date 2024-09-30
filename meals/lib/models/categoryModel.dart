@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Categorymodel {
-  Categorymodel({
+class CategoryModel {
+  CategoryModel({
     required this.id,
     required this.title,
     this.color = Colors.red,

@@ -4,7 +4,7 @@ import 'package:meals/models/categoryModel.dart';
 class GridItem extends StatelessWidget {
   GridItem({super.key, required this.c1});
 
-  Categorymodel c1;
+  CategoryModel c1;
 
   @override
   Widget build(BuildContext context) {
