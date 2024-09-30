@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:meals/screens/categories.dart';
 
-//1.45
+// kendiniz yapmayı mutlaka deneyin yemek yoksa yedek metinler göstersin mesela o kategoride hiç yemek yoksa 160.dersten başla
 final theme = ThemeData(
   useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(

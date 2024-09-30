@@ -11,7 +11,7 @@ class Meals extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(title, context), // kendiniz yapmayı mutlaka deneyin yemek yoksa yedek metinler göstersin mesela o kategoride hiç yemek yoksa
+      appBar: appBar(title, context), 
     );
   }
 }
