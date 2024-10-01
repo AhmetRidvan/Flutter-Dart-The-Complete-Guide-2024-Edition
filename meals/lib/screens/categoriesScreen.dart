@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:meals/Widgets/appbar.dart';
-import 'package:meals/Widgets/grid_item.dart';
-import 'package:meals/data/fake_data.dart';
 
-class Categories extends StatelessWidget {
-  const Categories({super.key});
+import 'package:meals/data/fake_data.dart';
+import 'package:meals/screens/mealsScreen.dart';
+import 'package:meals/widgets/grid_item.dart';
+
+class CategoriesScreen extends StatelessWidget {
+  const CategoriesScreen({super.key});
+
+  void selectACategory(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => MealsScreen(title: "Hi", mealsList: fakeMeals),
+    ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +29,12 @@ class Categories extends StatelessWidget {
           children: [
             ...fakeCategories.map(
               (e) {
-                return GridItem(c1: e);
+                return GridItem(
+                  c1: e,
+                  islev: () {
+                    selectACategory(context);
+                  },
+                );
               },
             ),
           ],

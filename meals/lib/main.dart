@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:google_fonts/google_fonts.dart';
-import 'package:meals/screens/categories.dart';
+import 'package:meals/screens/categoriesScreen.dart';
+//islev() bu fonksiyonu çağırır 
+//islev fonksiyonu bir yere aktarıcak ise kullanır.
 
-// kendiniz yapmayı mutlaka deneyin yemek yoksa yedek metinler göstersin mesela o kategoride hiç yemek yoksa 160.dersten başla
 final theme = ThemeData(
   useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(
@@ -24,7 +24,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: theme,
-      home: const Categories(),
+      home: const CategoriesScreen(), //const Categories()
     );
   }
 }

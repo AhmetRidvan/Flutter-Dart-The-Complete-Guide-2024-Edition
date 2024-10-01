@@ -2,15 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:meals/models/categoryModel.dart';
 
 class GridItem extends StatelessWidget {
-  GridItem({super.key, required this.c1});
+  GridItem({
+    super.key,
+    required this.c1,
+    required this.islev,
+  });
 
   CategoryModel c1;
+  Function() islev;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(16),
-      onTap: () {},
+      onTap: () {
+        islev();
+      },
       splashColor: Theme.of(context).primaryColor,
       child: Container(
         padding: const EdgeInsets.all(16),
