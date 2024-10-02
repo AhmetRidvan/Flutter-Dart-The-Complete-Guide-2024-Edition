@@ -56,8 +56,8 @@ List<CategoryModel> fakeCategories = [
   ),
 ];
 
-const fakeMeals = [
-  MealModel(
+List<MealModel> fakeMeals = [
+  const MealModel(
     id: 'm1',
     categories: [
       'c1',
@@ -91,7 +91,7 @@ const fakeMeals = [
     isVegetarian: true,
     isLactoseFree: true,
   ),
-  MealModel(
+  const MealModel(
     id: 'm2',
     categories: [
       'c2',
@@ -119,7 +119,7 @@ const fakeMeals = [
     isVegetarian: false,
     isLactoseFree: false,
   ),
-  MealModel(
+  const MealModel(
     id: 'm3',
     categories: [
       'c2',
@@ -151,7 +151,7 @@ const fakeMeals = [
     isVegetarian: false,
     isLactoseFree: true,
   ),
-  MealModel(
+  const MealModel(
     id: 'm4',
     categories: [
       'c4',
@@ -186,7 +186,7 @@ const fakeMeals = [
     isVegetarian: false,
     isLactoseFree: false,
   ),
-  MealModel(
+  const MealModel(
     id: 'm5',
     categories: [
       'c2'
@@ -222,7 +222,7 @@ const fakeMeals = [
     isVegetarian: true,
     isLactoseFree: true,
   ),
-  MealModel(
+  const MealModel(
     id: 'm6',
     categories: [
       'c6',
@@ -258,7 +258,7 @@ const fakeMeals = [
     isVegetarian: true,
     isLactoseFree: false,
   ),
-  MealModel(
+  const MealModel(
     id: 'm7',
     categories: [
       'c7',
@@ -289,7 +289,7 @@ const fakeMeals = [
     isVegetarian: true,
     isLactoseFree: false,
   ),
-  MealModel(
+  const MealModel(
     id: 'm8',
     categories: [
       'c8',
@@ -322,7 +322,7 @@ const fakeMeals = [
     isVegetarian: false,
     isLactoseFree: true,
   ),
-  MealModel(
+  const MealModel(
     id: 'm9',
     categories: [
       'c9',
@@ -371,7 +371,7 @@ const fakeMeals = [
     isVegetarian: true,
     isLactoseFree: false,
   ),
-  MealModel(
+  const MealModel(
     id: 'm10',
     categories: [
       'c2',
