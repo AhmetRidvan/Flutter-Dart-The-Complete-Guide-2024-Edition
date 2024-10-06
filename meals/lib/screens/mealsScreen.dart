@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals/Widgets/meal_item.dart';
 import 'package:meals/models/mealModel.dart';
 import 'package:meals/widgets/appbar.dart';
 
@@ -13,13 +14,7 @@ class MealsScreen extends StatelessWidget {
     Widget w1 = ListView.builder(
       itemCount: mealsList.length,
       itemBuilder: (context, index) {
-        return Text(
-          mealsList[index].title,
-          style: Theme.of(context)
-              .textTheme
-              .titleLarge!
-              .copyWith(color: Theme.of(context).colorScheme.onSurface),
-        );
+        return MealItem(m1: mealsList[index]);
       },
     );
 
