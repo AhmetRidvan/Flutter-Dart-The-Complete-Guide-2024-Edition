@@ -1,12 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:meals/Widgets/meal_item_trait.dart';
 import 'package:meals/models/mealModel.dart';
+import 'package:meals/screens/detailsScreen.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class MealItem extends StatelessWidget {
   MealItem({super.key, required this.m1});
 
   final MealModel m1;
+
+  String get upper {
+    return m1.complexity.name[0].toUpperCase() +
+        m1.complexity.name.substring(1);
+  }
+
+  String get upper2 {
+    return m1.affordability.name[0].toUpperCase() +
+        m1.affordability.name.substring(1);
+  }
+
+  void gec(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => Detailsscreen(m1: m1),
+    ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +33,9 @@ class MealItem extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       elevation: 10,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          gec(context);
+        },
         child: Stack(
           children: [
             FadeInImage(
@@ -46,9 +65,26 @@ class MealItem extends StatelessWidget {
                         height: 12,
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           MealItemTrait(
-                              i: Icons.schedule, s: "${m1.duration} min")
+                            i: Icons.schedule,
+                            s: "${m1.duration} min",
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          MealItemTrait(
+                            i: Icons.work,
+                            s: upper,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          MealItemTrait(
+                            i: Icons.attach_money,
+                            s: upper2,
+                          ),
                         ],
                       )
                     ],
