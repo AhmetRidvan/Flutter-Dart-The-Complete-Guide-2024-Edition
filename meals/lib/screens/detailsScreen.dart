@@ -13,15 +13,60 @@ class Detailsscreen extends StatelessWidget {
     return Scaffold(
       appBar: appBar(m1.title, context),
       body: Center(
-        child: Column(
-          children: [
-            Image.network(
-              m1.imageUrl,
-              height: 333,
-              width: double.infinity,
-              fit: BoxFit.scaleDown,
-            )
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Image.network(
+                m1.imageUrl,
+                height: 300,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Text(
+                "Ingredients",
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              for (String home in m1.ingredients)
+                Text(
+                  home,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineMedium!
+                      .copyWith(color: Theme.of(context).colorScheme.onSurface),
+                ),
+              const SizedBox(
+                height: 20,
+              ),
+              Text(
+                "Steps",
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              for (String e in m1.steps)
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+                  child: Text(
+                    e,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                        color: Theme.of(context).colorScheme.onSurface),
+                  ),
+                )
+            ],
+          ),
         ),
       ),
     );
