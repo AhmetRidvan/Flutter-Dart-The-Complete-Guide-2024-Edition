@@ -5,10 +5,10 @@ import 'package:meals/screens/detailsScreen.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class MealItem extends StatelessWidget {
-  MealItem({super.key, required this.m1});
+  MealItem({super.key, required this.m1,required this.merhaba});
 
   final MealModel m1;
-
+  final Function(MealModel model) merhaba;
   String get upper {
     return m1.complexity.name[0].toUpperCase() +
         m1.complexity.name.substring(1);
@@ -17,12 +17,6 @@ class MealItem extends StatelessWidget {
   String get upper2 {
     return m1.affordability.name[0].toUpperCase() +
         m1.affordability.name.substring(1);
-  }
-
-  void gec(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => Detailsscreen(m1: m1),
-    ));
   }
 
   @override
@@ -34,7 +28,7 @@ class MealItem extends StatelessWidget {
       elevation: 10,
       child: InkWell(
         onTap: () {
-          gec(context);
+          merhaba(m1);
         },
         child: Stack(
           children: [
