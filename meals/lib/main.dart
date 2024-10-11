@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:meals/screens/categoriesScreen.dart';
 //islev() bu fonksiyonu çağırır
 //islev fonksiyonu bir yere aktarıcak ise kullanır.
-//7:55
+//10:33
 
 final theme = ThemeData(
   useMaterial3: true,
