@@ -8,7 +8,8 @@ import 'package:meals/screens/mealsScreen.dart';
 import 'package:meals/widgets/grid_item.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key});
+   CategoriesScreen({super.key,required this.f1});
+  void Function(MealModel nee) f1;
 
   void selectACategory(BuildContext context, CategoryModel m1) {
     final filteredMeals = fakeMeals
@@ -19,34 +20,32 @@ class CategoriesScreen extends StatelessWidget {
 
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) =>
-          MealsScreen(title: m1.title, mealsList: filteredMeals),
+          MealsScreen(title: m1.title, mealsList: filteredMeals,f1: f1,),
     ));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: appBar("Pick your category", context),
-        body: GridView(
-          padding: EdgeInsets.all(20),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 1.3,
-            mainAxisSpacing: 20,
-            crossAxisSpacing: 20,
-          ),
-          children: [
-            ...fakeCategories.map(
-              (e) {
-                return GridItem(
-                  c1: e,
-                  islev: () {
-                    selectACategory(context, e);
-                  },
-                );
+    return GridView(
+      padding: EdgeInsets.all(20),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 1.3,
+        mainAxisSpacing: 20,
+        crossAxisSpacing: 20,
+      ),
+      children: [
+        ...fakeCategories.map(
+          (e) {
+            return GridItem(
+              c1: e,
+              islev: () {
+                selectACategory(context, e);
               },
-            ),
-          ],
-        ));
+            );
+          },
+        ),
+      ],
+    );
   }
 }

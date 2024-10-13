@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
-
 import 'package:meals/models/mealModel.dart';
 import 'package:meals/screens/detailsScreen.dart';
 import 'package:meals/widgets/appbar.dart';
 import 'package:meals/widgets/meal_item.dart';
 
 class MealsScreen extends StatelessWidget {
-  MealsScreen({super.key, required this.title, required this.mealsList});
+  MealsScreen(
+      {super.key, this.title, required this.mealsList, required this.f1});
 
-  final String title;
+  final String? title;
   final List<MealModel> mealsList;
+  Function(MealModel nee) f1;
 
   void navi(BuildContext context, MealModel m2) {
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => Detailsscreen(m1: m2),
+      builder: (context) => Detailsscreen(
+        m1: m2,
+        f1: f1,
+      ),
     ));
   }
 
@@ -40,6 +44,13 @@ class MealsScreen extends StatelessWidget {
       );
     }
 
-    return Scaffold(appBar: appBar(title, context), body: w1);
+    if (title == null) {
+      return w1;
+    }
+
+    return Scaffold(
+      appBar: appBar(title!, context),
+      body: w1,
+    );
   }
 }

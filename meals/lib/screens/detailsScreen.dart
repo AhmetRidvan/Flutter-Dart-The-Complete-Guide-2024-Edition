@@ -4,14 +4,27 @@ import 'package:meals/models/mealModel.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class Detailsscreen extends StatelessWidget {
-  Detailsscreen({super.key, required this.m1});
+  Detailsscreen({super.key, required this.m1, required this.f1});
 
   MealModel m1;
+  void Function(MealModel nee) f1;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(m1.title, context),
+      appBar: AppBar(
+        title: Text(m1.title),
+        actions: [
+          IconButton(
+              onPressed: () {
+                f1(m1);
+              },
+              icon: Icon(
+                Icons.favorite_rounded,
+                color: Colors.red,
+              ))
+        ],
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Column(

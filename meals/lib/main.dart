@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:meals/screens/categoriesScreen.dart';
+import 'package:meals/screens/tabs.dart';
 //islev() bu fonksiyonu çağırır
 //islev fonksiyonu bir yere aktarıcak ise kullanır.
-//10:33
-
+//return den sonra kod devam etmez.
+//7:01
 final theme = ThemeData(
   useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(
@@ -25,7 +25,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: theme,
-      home: const CategoriesScreen(), //const Categories()
+      home:  TabScreen(), //const Categories()
     );
   }
 }
