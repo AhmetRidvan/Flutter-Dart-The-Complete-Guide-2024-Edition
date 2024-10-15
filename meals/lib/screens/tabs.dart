@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meals/Widgets/appbar.dart';
+import 'package:meals/Widgets/myDrawer.dart';
 import 'package:meals/models/mealModel.dart';
 import 'package:meals/screens/categoriesScreen.dart';
 import 'package:meals/screens/mealsScreen.dart';
@@ -23,11 +24,23 @@ class _TabScreen extends State<TabScreen> {
     });
   }
 
+  void yilan(String message) {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
+  }
+
   void _addOrDeleteFavorites(MealModel m1) {
     if (_favorites.contains(m1)) {
-      _favorites.remove(m1);
+      setState(() {
+        _favorites.remove(m1);
+        yilan("Meal is no longer a favorite");
+      });
     } else {
-      _favorites.add(m1);
+      setState(() {
+        _favorites.add(m1);
+        yilan("Meal added");
+      });
     }
     print("Favoriler tetiklendi.");
   }
@@ -52,6 +65,7 @@ class _TabScreen extends State<TabScreen> {
     }
 
     return Scaffold(
+      drawer: Mydrawer(),
       appBar: appBar(pagetitle, context),
       body: w1,
       bottomNavigationBar: BottomNavigationBar(
