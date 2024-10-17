@@ -64,8 +64,19 @@ class _TabScreen extends State<TabScreen> {
       pagetitle = "Favorites";
     }
 
+    void _setScreen(String identifier) {
+      print(identifier);
+      if (identifier == "m") {
+        Navigator.of(context).pop();
+      } else if (identifier == "f") {
+        print(identifier);
+      }
+    }
+
     return Scaffold(
-      drawer: Mydrawer(),
+      drawer: Mydrawer(
+        merhaba: _setScreen,
+      ),
       appBar: appBar(pagetitle, context),
       body: w1,
       bottomNavigationBar: BottomNavigationBar(
