@@ -3,6 +3,7 @@ import 'package:meals/Widgets/appbar.dart';
 import 'package:meals/Widgets/myDrawer.dart';
 import 'package:meals/models/mealModel.dart';
 import 'package:meals/screens/categoriesScreen.dart';
+import 'package:meals/screens/filterscreen.dart';
 import 'package:meals/screens/mealsScreen.dart';
 
 class TabScreen extends StatefulWidget {
@@ -65,11 +66,12 @@ class _TabScreen extends State<TabScreen> {
     }
 
     void _setScreen(String identifier) {
-      print(identifier);
-      if (identifier == "m") {
-        Navigator.of(context).pop();
-      } else if (identifier == "f") {
-        print(identifier);
+      Navigator.of(context).pop();
+
+      if (identifier == "f") {
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => FilterScreen(),
+        ));
       }
     }
 
