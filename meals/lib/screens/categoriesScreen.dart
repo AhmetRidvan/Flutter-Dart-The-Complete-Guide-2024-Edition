@@ -8,7 +8,7 @@ import 'package:meals/screens/mealsScreen.dart';
 import 'package:meals/widgets/grid_item.dart';
 
 class CategoriesScreen extends StatelessWidget {
-   CategoriesScreen({super.key,required this.f1});
+  CategoriesScreen({super.key, required this.f1});
   void Function(MealModel nee) f1;
 
   void selectACategory(BuildContext context, CategoryModel m1) {
@@ -19,8 +19,11 @@ class CategoriesScreen extends StatelessWidget {
         .toList();
 
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) =>
-          MealsScreen(title: m1.title, mealsList: filteredMeals,f1: f1,),
+      builder: (context) => MealsScreen(
+        title: m1.title,
+        mealsList: filteredMeals,
+        f1: f1,
+      ),
     ));
   }
 
