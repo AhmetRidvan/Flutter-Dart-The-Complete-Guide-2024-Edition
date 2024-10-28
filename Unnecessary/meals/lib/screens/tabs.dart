@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:meals/Widgets/appbar.dart';
 import 'package:meals/Widgets/myDrawer.dart';
+import 'package:meals/data/fake_data.dart';
 import 'package:meals/models/mealModel.dart';
 import 'package:meals/screens/categoriesScreen.dart';
 import 'package:meals/screens/filterscreen.dart';
 import 'package:meals/screens/mealsScreen.dart';
 
 var KInitialFilters = {
-   Filter.glutenFree: false,
-    Filter.lactoseFree: false,
-    Filter.vegetarian: false,
-    Filter.vegan: false,
+  Filter.glutenFree: false,
+  Filter.lactoseFree: false,
+  Filter.vegetarian: false,
+  Filter.vegan: false,
 };
 
 class TabScreen extends StatefulWidget {
@@ -34,6 +35,7 @@ class _TabScreen extends State<TabScreen> {
   }
 
   void yilan(String message) {
+   
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(message)));
@@ -81,6 +83,7 @@ class _TabScreen extends State<TabScreen> {
           builder: (context) => FilterScreen(),
         ));
         _selectedFilters = _result ?? KInitialFilters;
+        print(_result);
       }
     }
 

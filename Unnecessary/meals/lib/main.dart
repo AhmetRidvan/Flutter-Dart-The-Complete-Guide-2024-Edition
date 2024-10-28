@@ -5,7 +5,7 @@ import 'package:meals/screens/tabs.dart';
 //islev() bu fonksiyonu çağırır
 //islev fonksiyonu bir yere aktarıcak ise kullanır.
 //return den sonra kod devam etmez.
-// 4:15
+// 7:09
 final theme = ThemeData(
   useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(
