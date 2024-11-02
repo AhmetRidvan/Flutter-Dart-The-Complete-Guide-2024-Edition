@@ -9,10 +9,10 @@ class Categoriesscreen extends StatelessWidget {
     return Scaffold(
       body: GridView(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
+            crossAxisCount: 3,
             childAspectRatio: 2,
-            crossAxisSpacing: 1,
-            mainAxisSpacing: 1),
+            crossAxisSpacing: 2,
+            mainAxisSpacing: 3),
         children: [
           Container(
             color: Colors.red,
@@ -25,12 +25,12 @@ class Categoriesscreen extends StatelessWidget {
             width: 100,
           ),
           Container(
-            color: Colors.purple,
+            color: Colors.amber,
             height: 100,
             width: 100,
           ),
           Container(
-            color: Colors.black,
+            color: Colors.yellowAccent,
             height: 100,
             width: 100,
           ),
