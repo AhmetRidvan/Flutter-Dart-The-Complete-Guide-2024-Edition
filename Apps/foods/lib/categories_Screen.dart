@@ -4,7 +4,7 @@ import 'package:foods/widgets/app_bar.dart';
 class Categoriesscreen extends StatelessWidget {
   const Categoriesscreen({super.key});
 
-  @override //3:17
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: GridView(
@@ -14,11 +14,7 @@ class Categoriesscreen extends StatelessWidget {
             crossAxisSpacing: 2,
             mainAxisSpacing: 3),
         children: [
-          Container(
-            color: Colors.red,
-            height: 100,
-            width: 100,
-          ),
+          
           Container(
             color: Colors.green,
             height: 100,
