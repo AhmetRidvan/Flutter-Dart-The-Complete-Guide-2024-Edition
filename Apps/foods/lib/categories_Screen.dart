@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:foods/data/category_data.dart';
 import 'package:foods/widgets/app_bar.dart';
+import 'package:foods/widgets/gridView_Item.dart';
 
 class Categoriesscreen extends StatelessWidget {
   const Categoriesscreen({super.key});
@@ -7,32 +9,22 @@ class Categoriesscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GridView(
+      backgroundColor: Theme.of(context).colorScheme.primary,
+      body: GridView.builder(
+        itemCount: CategoriesList.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            childAspectRatio: 2,
+            crossAxisCount: 2,
+            childAspectRatio: 1,
             crossAxisSpacing: 2,
-            mainAxisSpacing: 3),
-        children: [
-          
-          Container(
-            color: Colors.green,
-            height: 100,
-            width: 100,
-          ),
-          Container(
-            color: Colors.amber,
-            height: 100,
-            width: 100,
-          ),
-          Container(
-            color: Colors.yellowAccent,
-            height: 100,
-            width: 100,
-          ),
-        ],
+            mainAxisSpacing: 2),
+        itemBuilder: (context, index) {
+          return GridViewItem(categoryModel: CategoriesList[index]);
+        },
       ),
-      appBar: apb("Pick your category"),
+      appBar: apb(
+        "Pick your category",
+        Theme.of(context).colorScheme.primary,
+      ),
     );
   }
 }

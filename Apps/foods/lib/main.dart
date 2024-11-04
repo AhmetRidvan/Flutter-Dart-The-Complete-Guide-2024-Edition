@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foods/categories_Screen.dart';
 
-final theme = ThemeData( //4.03
+final theme = ThemeData( 
   useMaterial3: true,
  
   colorScheme: ColorScheme.fromSeed(
