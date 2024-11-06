@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:foods/data/category_data.dart';
+import 'package:foods/data/data.dart';
 import 'package:foods/widgets/app_bar.dart';
 import 'package:foods/widgets/gridView_Item.dart';
 
-class Categoriesscreen extends StatelessWidget {
-  const Categoriesscreen({super.key});
+class CategoriesScreen extends StatelessWidget {
+  const CategoriesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foods/models/Category_model.dart';
+import 'package:foods/models/category_model.dart';
 
 class GridViewItem extends StatelessWidget {
   GridViewItem({super.key, required this.categoryModel});
@@ -13,7 +13,7 @@ class GridViewItem extends StatelessWidget {
       borderRadius: BorderRadius.all(Radius.circular(500)),
       splashColor: Theme.of(context).colorScheme.onPrimary,
       child: Container(
-        margin: EdgeInsets.all(12),
+        margin: const EdgeInsets.all(12),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
             shape: BoxShape.circle,
