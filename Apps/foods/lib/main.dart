@@ -23,7 +23,7 @@ class App extends StatelessWidget {
         theme: theme,
         home: FoodsScreen(
           categoryModel: CategoriesList[0],
-          foodModelList: nullFoodList,
+          foodModelList: FoodsList,
         ));
   }
 }

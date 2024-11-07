@@ -24,6 +24,7 @@ class CategoriesScreen extends StatelessWidget {
       appBar: apb(
         "Pick your category",
         Theme.of(context).colorScheme.primary,
+        context
       ),
     );
   }

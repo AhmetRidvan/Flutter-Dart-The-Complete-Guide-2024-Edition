@@ -13,16 +13,28 @@ class FoodsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget content = Column(
+      children: foodModelList.map(
+        (e) {
+          return Text(e.title);
+        },
+      ).toList(),
+    );
+
+    if (foodModelList.isEmpty) {
+      content = Center(
+          child: Text(
+        "No data !",
+        style: Theme.of(context)
+            .textTheme
+            .displayLarge!
+            .copyWith(color: Theme.of(context).colorScheme.inversePrimary),
+      ));
+    }
+
     return Scaffold(
-        appBar: apb(categoryModel.title, categoryModel.color),
-        body: foodModelList.isEmpty
-            ? Center(child: const Text("No data "))
-            : Column(
-                children: foodModelList.map(
-                  (e) {
-                    return Text(e.title);
-                  },
-                ).toList(),
-              ));
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        appBar: apb(categoryModel.title, categoryModel.color, context),
+        body: content);
   }
 }
