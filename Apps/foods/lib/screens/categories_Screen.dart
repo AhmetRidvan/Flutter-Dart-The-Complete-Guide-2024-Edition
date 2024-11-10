@@ -1,10 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:foods/data/data.dart';
+import 'package:foods/models/category_model.dart';
+import 'package:foods/models/food_model.dart';
+import 'package:foods/screens/foods_screen.dart';
 import 'package:foods/widgets/app_bar.dart';
-import 'package:foods/widgets/gridView_Item.dart';
+import 'package:foods/widgets/category_gridView_item.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
+
+  void _toTheFoodsScreen(BuildContext context, CategoryModel categoryModel1) {
+    List<FoodModel> _filteredList = FoodsList.where(
+      (element) {
+        return element.categories.contains(categoryModel1.id);
+      },
+    ).toList();
+
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) {
+        return FoodsScreen(
+          categoryModel: categoryModel1,
+          foodModelList: _filteredList,
+        );
+      },
+    ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +38,16 @@ class CategoriesScreen extends StatelessWidget {
             crossAxisSpacing: 2,
             mainAxisSpacing: 2),
         itemBuilder: (context, index) {
-          return GridViewItem(categoryModel: CategoriesList[index]);
+          return CategoryGridViewItem(
+            categoryModel: CategoriesList[index],
+            touchedCategory: () {
+              _toTheFoodsScreen(context, CategoriesList[index]);
+            },
+          );
         },
       ),
       appBar: apb(
-        "Pick your category",
-        Theme.of(context).colorScheme.primary,
-        context
-      ),
+          "Pick your category", Theme.of(context).colorScheme.primary, context),
     );
   }
 }

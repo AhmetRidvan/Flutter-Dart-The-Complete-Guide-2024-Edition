@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:foods/data/data.dart';
+import 'package:foods/screens/categories_Screen.dart';
 import 'package:foods/screens/foods_screen.dart';
-
+// 1:49
 final theme = ThemeData(
   useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(
@@ -19,11 +20,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        theme: theme,
-        home: FoodsScreen(
-          categoryModel: CategoriesList[0],
-          foodModelList: FoodsList,
-        ));
+    return MaterialApp(theme: theme, home: CategoriesScreen());
   }
 }

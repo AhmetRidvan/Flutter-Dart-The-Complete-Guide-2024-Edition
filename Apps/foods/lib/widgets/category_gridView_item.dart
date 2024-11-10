@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:foods/models/category_model.dart';
 
-class GridViewItem extends StatelessWidget {
-  GridViewItem({super.key, required this.categoryModel});
+class CategoryGridViewItem extends StatelessWidget {
+  CategoryGridViewItem(
+      {super.key, required this.categoryModel, required this.touchedCategory});
 
   CategoryModel categoryModel;
+  Function() touchedCategory;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        touchedCategory();
+      },
       borderRadius: BorderRadius.all(Radius.circular(500)),
       splashColor: Theme.of(context).colorScheme.onPrimary,
       child: Container(
