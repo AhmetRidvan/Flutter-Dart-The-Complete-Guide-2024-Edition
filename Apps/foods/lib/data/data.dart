@@ -408,23 +408,19 @@ final FoodsList = [
   const FoodModel(
       id: "m11",
       categories: ["c2", "c4"],
-      title: "French toast",
+      title: "Potatoes",
       imageUrl:
-          "https://joyfoodsunshine.com/wp-content/uploads/2018/05/best-easy-french-toast-recipe-8.jpg",
+          "https://github.com/prabinmagar/meal-search-api-vanilla-js/blob/master/food.jpg?raw=true",
       ingredients: [
-        "Bread",
-        "Eggs",
-        "Milk",
-        "Sugar",
-        "Vanilla extract",
-        "Salt",
-        "Butter or oil"
+        "ingredients 1",
+        "ingredients 2",
+        "ingredients 3",
+        "ingredients 4",
       ],
       steps: [
-        "Whisk together eggs, milk, sugar, vanilla, and salt in a shallow dish",
-        "Dip the bread slices into the batter",
-        "Cook the bread in butter or oil until golden brown on both sides",
-        "Serve immediately with your favorite toppings.",
+        "Step 1",
+        "Step 2",
+        "Step 3",
       ],
       duration: 20,
       complexity: Complexity.simple,

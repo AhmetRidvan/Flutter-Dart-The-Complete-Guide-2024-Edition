@@ -14,12 +14,14 @@ class FoodsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget content = Column(
-      children: foodModelList.map(
-        (e) {
-          return FoodItem(foodModel: e);
-        },
-      ).toList(),
+    Widget content = SingleChildScrollView(
+      child: Column(
+        children: foodModelList.map(
+          (e) {
+            return FoodItem(foodModel: e);
+          },
+        ).toList(),
+      ),
     );
 
     if (foodModelList.isEmpty) {

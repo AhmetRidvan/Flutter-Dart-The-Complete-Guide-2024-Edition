@@ -21,7 +21,18 @@ class FoodItem extends StatelessWidget {
               bottom: 0,
               child: Container(
                 color: Colors.red,
-                child: Text("asd"),
+                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                child: Column(
+                  children: [
+                    Text(
+                      textAlign: TextAlign.center,
+                      softWrap: false,
+                      "hi",
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    )
+                  ],
+                ),
               ),
             )
           ],
