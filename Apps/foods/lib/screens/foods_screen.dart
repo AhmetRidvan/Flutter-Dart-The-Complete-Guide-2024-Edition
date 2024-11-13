@@ -18,7 +18,10 @@ class FoodsScreen extends StatelessWidget {
       child: Column(
         children: foodModelList.map(
           (e) {
-            return FoodItem(foodModel: e);
+            return FoodItem(
+              foodModel: e,
+              color: categoryModel.color,
+            );
           },
         ).toList(),
       ),
