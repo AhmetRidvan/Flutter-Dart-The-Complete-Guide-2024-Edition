@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foods/models/food_model.dart';
+import 'package:foods/widgets/food_item_meta.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class FoodItem extends StatelessWidget {
@@ -8,12 +9,22 @@ class FoodItem extends StatelessWidget {
   FoodModel foodModel;
   Color color;
 
+  String get ComplexityToUpperCase {
+    return foodModel.complexity.name[0].toUpperCase() +
+        foodModel.complexity.name.substring(1);
+  }
+
+  String get AffordabilityToUpperCase {
+    return foodModel.affordability.name[0].toUpperCase() +
+        foodModel.affordability.name.substring(1);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 15,
       shadowColor: color,
-      margin: EdgeInsets.only(bottom: 20, left: 15, right: 15),
+      margin: const EdgeInsets.only(bottom: 20, left: 15, right: 15),
       shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(50)),
       clipBehavior: Clip.hardEdge,
       child: InkWell(
@@ -32,10 +43,11 @@ class FoodItem extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(33),
-                  color: color,
+                  color: color.withOpacity(0.6),
                 ),
-                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
@@ -44,7 +56,18 @@ class FoodItem extends StatelessWidget {
                       maxLines: 1,
                       foodModel.title,
                       overflow: TextOverflow.ellipsis,
-                    )
+                    ),
+                    FoodItemMeta(
+                        icon: Icons.access_time_filled_rounded,
+                        text: "${foodModel.duration} min"),
+                    FoodItemMeta(
+                      icon: Icons.workspaces_sharp,
+                      text: (ComplexityToUpperCase),
+                    ),
+                    FoodItemMeta(
+                      icon: Icons.diamond,
+                      text: (AffordabilityToUpperCase),
+                    ),
                   ],
                 ),
               ),

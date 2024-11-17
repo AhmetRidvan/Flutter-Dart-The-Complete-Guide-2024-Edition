@@ -14,7 +14,7 @@ class CategoryGridViewItem extends StatelessWidget {
       onTap: () {
         touchedCategory();
       },
-      borderRadius: BorderRadius.all(Radius.circular(500)),
+      borderRadius: const  BorderRadius.all(Radius.circular(500)),
       splashColor: Theme.of(context).colorScheme.onPrimary,
       child: Container(
         margin: const EdgeInsets.all(12),

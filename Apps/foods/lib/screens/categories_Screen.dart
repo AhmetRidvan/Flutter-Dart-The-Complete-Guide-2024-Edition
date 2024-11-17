@@ -10,7 +10,7 @@ class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
 
   void _toTheFoodsScreen(BuildContext context, CategoryModel categoryModel1) {
-    List<FoodModel> _filteredList = FoodsList.where(
+    List<FoodModel> filteredList = FoodsList.where(
       (element) {
         return element.categories.contains(categoryModel1.id);
       },
@@ -20,7 +20,7 @@ class CategoriesScreen extends StatelessWidget {
       builder: (context) {
         return FoodsScreen(
           categoryModel: categoryModel1,
-          foodModelList: _filteredList,
+          foodModelList: filteredList,
         );
       },
     ));
