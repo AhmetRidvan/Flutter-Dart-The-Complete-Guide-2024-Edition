@@ -1,13 +1,20 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foods/models/food_model.dart';
+import 'package:foods/screens/foods_details_screen.dart';
 import 'package:foods/widgets/food_item_meta.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class FoodItem extends StatelessWidget {
-  FoodItem({super.key, required this.foodModel, required this.color});
+  FoodItem(
+      {super.key,
+      required this.foodModel,
+      required this.color,
+      required this.toFoodsDetailsScreenFunction});
 
   FoodModel foodModel;
   Color color;
+  Function(FoodModel foodmodel,BuildContext context,Color color) toFoodsDetailsScreenFunction;
 
   String get ComplexityToUpperCase {
     return foodModel.complexity.name[0].toUpperCase() +
@@ -19,6 +26,15 @@ class FoodItem extends StatelessWidget {
         foodModel.affordability.name.substring(1);
   }
 
+  // void toFoodsDetailsScreen(
+  //     FoodModel foodmodel, BuildContext context, Color color) {
+  //   Navigator.of(context).push(MaterialPageRoute(
+  //     builder: (context) {
+  //       return FoodsDetails(foodModel: foodModel, color: color);
+  //     },
+  //   ));
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -28,6 +44,9 @@ class FoodItem extends StatelessWidget {
       shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(50)),
       clipBehavior: Clip.hardEdge,
       child: InkWell(
+        onTap: () {
+          toFoodsDetailsScreenFunction(foodModel,context,color);
+        },
         child: Stack(
           children: [
             FadeInImage(
