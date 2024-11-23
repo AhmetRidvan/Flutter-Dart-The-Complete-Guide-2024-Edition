@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foods/data/data.dart';
 import 'package:foods/screens/categories_Screen.dart';
 import 'package:foods/screens/foods_screen.dart';
-// 12:02
+// 1:44
 final theme = ThemeData(
   useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(

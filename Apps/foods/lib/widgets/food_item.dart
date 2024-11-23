@@ -14,7 +14,8 @@ class FoodItem extends StatelessWidget {
 
   FoodModel foodModel;
   Color color;
-  Function(FoodModel foodmodel,BuildContext context,Color color) toFoodsDetailsScreenFunction;
+  Function(FoodModel foodmodel, BuildContext context, Color color)
+      toFoodsDetailsScreenFunction;
 
   String get ComplexityToUpperCase {
     return foodModel.complexity.name[0].toUpperCase() +
@@ -45,7 +46,7 @@ class FoodItem extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       child: InkWell(
         onTap: () {
-          toFoodsDetailsScreenFunction(foodModel,context,color);
+          toFoodsDetailsScreenFunction(foodModel, context, color);
         },
         child: Stack(
           children: [
@@ -64,7 +65,8 @@ class FoodItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(33),
                   color: color.withOpacity(0.6),
                 ),
-                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 13, horizontal: 13),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [

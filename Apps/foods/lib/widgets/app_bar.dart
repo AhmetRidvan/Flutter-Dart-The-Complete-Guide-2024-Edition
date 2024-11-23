@@ -11,10 +11,8 @@ AppBar apb(String st1, Color c1, BuildContext context) {
     ),
     title: Text(
       st1,
-      style: Theme.of(context)
-          .textTheme
-          .displaySmall!
-          .copyWith(color: Theme.of(context).colorScheme.onPrimary),
+      style: Theme.of(context).textTheme.displaySmall!.copyWith(
+          fontSize: 17, color: Theme.of(context).colorScheme.onPrimary),
     ),
     backgroundColor: c1,
     centerTitle: true,
