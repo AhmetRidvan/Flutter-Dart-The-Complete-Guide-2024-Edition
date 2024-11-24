@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:foods/data/data.dart';
 import 'package:foods/screens/categories_Screen.dart';
 import 'package:foods/screens/foods_screen.dart';
-// 1:44
+import 'package:foods/screens/tab_screen.dart';
+ // 11:22
 final theme = ThemeData(
   useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(
@@ -20,6 +21,10 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(theme: theme, home: const CategoriesScreen());
+    return MaterialApp(
+      theme: theme,
+      home: TabScreen(),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }

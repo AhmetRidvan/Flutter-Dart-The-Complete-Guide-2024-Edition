@@ -7,8 +7,9 @@ import 'package:foods/widgets/app_bar.dart';
 import 'package:foods/widgets/category_gridView_item.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key});
+  CategoriesScreen({super.key, required this.title});
 
+  String title;
   void _toTheFoodsScreen(BuildContext context, CategoryModel categoryModel1) {
     List<FoodModel> filteredList = FoodsList.where(
       (element) {
@@ -46,8 +47,7 @@ class CategoriesScreen extends StatelessWidget {
           );
         },
       ),
-      appBar: apb(
-          "Pick your category", Theme.of(context).colorScheme.primary, context),
+      appBar: apb(title, Theme.of(context).colorScheme.primary, context),
     );
   }
 }
