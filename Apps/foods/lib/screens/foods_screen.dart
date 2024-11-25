@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foods/data/data.dart';
 import 'package:foods/models/category_model.dart';
 import 'package:foods/models/food_model.dart';
 import 'package:foods/screens/foods_details_screen.dart';
@@ -6,17 +7,16 @@ import 'package:foods/widgets/app_bar.dart';
 import 'package:foods/widgets/food_item.dart';
 
 class FoodsScreen extends StatelessWidget {
-  FoodsScreen(
-      {super.key, required this.categoryModel, required this.foodModelList});
+  FoodsScreen({super.key, this.categoryModel, required this.foodModelList});
 
-  CategoryModel categoryModel;
+  CategoryModel? categoryModel;
   List<FoodModel> foodModelList;
 
   void toFoodsDetailsScreenFunction_1(
       FoodModel foodmodel, BuildContext context, Color color) {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) {
-        return FoodsDetails(
+        return FoodsDetailsScreen(
           foodModel: foodmodel,
           color: color,
         );
@@ -32,7 +32,7 @@ class FoodsScreen extends StatelessWidget {
           (e) {
             return FoodItem(
               foodModel: e,
-              color: categoryModel.color,
+              color: categoryModel!.color,
               toFoodsDetailsScreenFunction: (foodmodel, context2, color) {
                 toFoodsDetailsScreenFunction_1(foodmodel, context, color);
               },
@@ -53,9 +53,13 @@ class FoodsScreen extends StatelessWidget {
       ));
     }
 
+    if (categoryModel == null) {
+      return content;
+    }
+
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.primary,
-        appBar: apb(categoryModel.title, categoryModel.color, context),
+        appBar: apb(categoryModel!.title, categoryModel!.color, context),
         body: content);
   }
 }

@@ -29,25 +29,21 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.primary,
-      body: GridView.builder(
-        itemCount: CategoriesList.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 1,
-            crossAxisSpacing: 2,
-            mainAxisSpacing: 2),
-        itemBuilder: (context, index) {
-          return CategoryGridViewItem(
-            categoryModel: CategoriesList[index],
-            touchedCategory: () {
-              _toTheFoodsScreen(context, CategoriesList[index]);
-            },
-          );
-        },
-      ),
-      appBar: apb(title, Theme.of(context).colorScheme.primary, context),
+    return GridView.builder(
+      itemCount: CategoriesList.length,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 1,
+          crossAxisSpacing: 2,
+          mainAxisSpacing: 2),
+      itemBuilder: (context, index) {
+        return CategoryGridViewItem(
+          categoryModel: CategoriesList[index],
+          touchedCategory: () {
+            _toTheFoodsScreen(context, CategoriesList[index]);
+          },
+        );
+      },
     );
   }
 }

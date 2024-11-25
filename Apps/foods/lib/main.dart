@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:foods/data/data.dart';
 import 'package:foods/screens/categories_Screen.dart';
 import 'package:foods/screens/foods_screen.dart';
-import 'package:foods/screens/tab_screen.dart';
- // 11:22
+import 'package:foods/screens/bottom_navigation_bar_screen.dart';
+
+// 2:08
 final theme = ThemeData(
   useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(
@@ -23,7 +24,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: theme,
-      home: TabScreen(),
+      home: BottomNavigationBarScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

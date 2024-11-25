@@ -3,8 +3,8 @@ import 'package:foods/models/food_model.dart';
 import 'package:foods/widgets/app_bar.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-class FoodsDetails extends StatelessWidget {
-  FoodsDetails({super.key, required this.foodModel, required this.color});
+class FoodsDetailsScreen extends StatelessWidget {
+  FoodsDetailsScreen({super.key, required this.foodModel, required this.color});
 
   FoodModel foodModel;
   Color color;
@@ -13,10 +13,10 @@ class FoodsDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.primary,
-        appBar: apb(foodModel.title, color, context),
+        appBar: apb(foodModel.title, color, context, is_it_a_favorite: true),
         body: ListView(
           children: [
-            Column( 
+            Column(
               children: [
                 Center(
                   child: ClipRRect(
@@ -67,13 +67,23 @@ class FoodsDetails extends StatelessWidget {
                   (e) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 30),
-                      child: Text(
-                        textAlign: TextAlign.center,
-                        e,
-                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                            color: Theme.of(context).colorScheme.onPrimary,
-                            fontSize: 20),
+                          vertical: 10, horizontal: 10),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(3443),
+                        child: Text(
+                          textAlign: TextAlign.center,
+                          e,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary,
+                                  backgroundColor: color,
+                                  fontSize: 20),
+                        ),
                       ),
                     );
                   },

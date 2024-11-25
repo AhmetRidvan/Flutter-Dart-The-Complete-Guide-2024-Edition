@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:foods/data/data.dart';
 import 'package:foods/screens/categories_Screen.dart';
-import 'package:foods/screens/favorites_screen.dart';
 import 'package:foods/screens/foods_screen.dart';
 import 'package:foods/widgets/app_bar.dart';
 
-class TabScreen extends StatefulWidget {
-  TabScreen({super.key});
+class BottomNavigationBarScreen extends StatefulWidget {
+  BottomNavigationBarScreen({super.key});
 
   @override
   State<StatefulWidget> createState() {
-    return _tabScreen();
+    return _BottomNavigationBarScreen();
   }
 }
 
-class _tabScreen extends State<TabScreen> {
+class _BottomNavigationBarScreen extends State<BottomNavigationBarScreen> {
   int currentPageIndex = 0;
 
   void _selectPage(int value) {
@@ -32,12 +31,12 @@ class _tabScreen extends State<TabScreen> {
       title: title,
     );
     if (currentPageIndex == 1) {
-      page = FavoritesScreen(
-          foodModelList: [], color: color.primary, text: "Favorites");
+      page = FoodsScreen(foodModelList: []);
       title = "Favorites";
     }
 
     return Scaffold(
+      appBar: apb(title, Theme.of(context).colorScheme.onPrimary, context),
       body: page,
       backgroundColor: Theme.of(context).colorScheme.primary,
       bottomNavigationBar: BottomNavigationBar(
