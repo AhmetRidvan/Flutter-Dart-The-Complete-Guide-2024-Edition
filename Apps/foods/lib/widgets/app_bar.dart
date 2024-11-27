@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:foods/models/food_model.dart';
 
 AppBar apb(String st1, Color c1, BuildContext context,
-    {bool? is_it_a_favorite}) {
+    {bool? is_it_a_favorite,
+    Function(FoodModel asd)? function,
+    FoodModel? foodmodel}) {
   if (is_it_a_favorite != null) {
     return AppBar(
       actions: [
-        IconButton(onPressed: () {}, icon: Icon(Icons.stacked_bar_chart))
+        IconButton(
+            onPressed: () {
+              function!(foodmodel!);
+              
+            },
+            icon: Icon(Icons.stacked_bar_chart))
       ],
       flexibleSpace: Container(
         decoration: BoxDecoration(

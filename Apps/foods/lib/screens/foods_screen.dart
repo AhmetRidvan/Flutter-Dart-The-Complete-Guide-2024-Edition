@@ -7,25 +7,31 @@ import 'package:foods/widgets/app_bar.dart';
 import 'package:foods/widgets/food_item.dart';
 
 class FoodsScreen extends StatelessWidget {
-  FoodsScreen({super.key, this.categoryModel, required this.foodModelList});
+  FoodsScreen(
+      {super.key,
+      this.categoryModel,
+      required this.foodModelList,
+      required this.changeFavorites});
 
   CategoryModel? categoryModel;
   List<FoodModel> foodModelList;
+  void Function(FoodModel foodmodel) changeFavorites;
 
   void toFoodsDetailsScreenFunction_1(
       FoodModel foodmodel, BuildContext context, Color color) {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) {
         return FoodsDetailsScreen(
-          foodModel: foodmodel,
-          color: color,
-        );
+            foodModel: foodmodel,
+            color: color,
+            changeFavorites: changeFavorites);
       },
     ));
   }
 
   @override
   Widget build(BuildContext context) {
+    
     Widget content = SingleChildScrollView(
       child: Column(
         children: foodModelList.map(

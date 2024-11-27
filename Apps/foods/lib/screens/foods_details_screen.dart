@@ -4,16 +4,17 @@ import 'package:foods/widgets/app_bar.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class FoodsDetailsScreen extends StatelessWidget {
-  FoodsDetailsScreen({super.key, required this.foodModel, required this.color});
+  FoodsDetailsScreen({super.key, required this.foodModel, required this.color,required this.changeFavorites});
 
   FoodModel foodModel;
   Color color;
+  void Function(FoodModel foodmodel) changeFavorites;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.primary,
-        appBar: apb(foodModel.title, color, context, is_it_a_favorite: true),
+        appBar: apb(foodModel.title, color, context, is_it_a_favorite: true,foodmodel: foodModel,function: changeFavorites),
         body: ListView(
           children: [
             Column(

@@ -7,7 +7,10 @@ import 'package:foods/widgets/app_bar.dart';
 import 'package:foods/widgets/category_gridView_item.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  CategoriesScreen({super.key, required this.title});
+  CategoriesScreen({super.key, required this.title, required this.changeFavorites});
+
+  void Function(FoodModel foodmodel) changeFavorites;
+
 
   String title;
   void _toTheFoodsScreen(BuildContext context, CategoryModel categoryModel1) {
@@ -20,6 +23,7 @@ class CategoriesScreen extends StatelessWidget {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) {
         return FoodsScreen(
+          changeFavorites: changeFavorites,
           categoryModel: categoryModel1,
           foodModelList: filteredList,
         );

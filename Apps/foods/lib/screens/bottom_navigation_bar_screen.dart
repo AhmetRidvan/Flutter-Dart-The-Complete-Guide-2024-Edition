@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foods/data/data.dart';
+import 'package:foods/models/food_model.dart';
 import 'package:foods/screens/categories_Screen.dart';
 import 'package:foods/screens/foods_screen.dart';
 import 'package:foods/widgets/app_bar.dart';
@@ -15,6 +16,20 @@ class BottomNavigationBarScreen extends StatefulWidget {
 
 class _BottomNavigationBarScreen extends State<BottomNavigationBarScreen> {
   int currentPageIndex = 0;
+  List<FoodModel> favorites = [];
+
+  void addOrRemoveFavorites(FoodModel foodmodel1) {
+    bool bool1 = favorites.contains(foodmodel1);
+    if (bool1) {
+      setState(() {
+        favorites.remove(foodmodel1);
+      });
+    } else {
+      setState(() {
+        favorites.add(foodmodel1);
+      });
+    }
+  }
 
   void _selectPage(int value) {
     setState(() {
@@ -28,10 +43,15 @@ class _BottomNavigationBarScreen extends State<BottomNavigationBarScreen> {
 
     var color = Theme.of(context).colorScheme;
     Widget page = CategoriesScreen(
+      changeFavorites: addOrRemoveFavorites,
       title: title,
     );
     if (currentPageIndex == 1) {
-      page = FoodsScreen(foodModelList: []);
+      page = FoodsScreen(
+        foodModelList: favorites,
+        
+        changeFavorites: addOrRemoveFavorites,
+      );
       title = "Favorites";
     }
 
