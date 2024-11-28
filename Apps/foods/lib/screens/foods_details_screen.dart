@@ -4,7 +4,11 @@ import 'package:foods/widgets/app_bar.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class FoodsDetailsScreen extends StatelessWidget {
-  FoodsDetailsScreen({super.key, required this.foodModel, required this.color,required this.changeFavorites});
+  FoodsDetailsScreen(
+      {super.key,
+      required this.foodModel,
+      required this.color,
+      required this.changeFavorites});
 
   FoodModel foodModel;
   Color color;
@@ -14,7 +18,10 @@ class FoodsDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.primary,
-        appBar: apb(foodModel.title, color, context, is_it_a_favorite: true,foodmodel: foodModel,function: changeFavorites),
+        appBar: apb(foodModel.title, color, context,
+            is_it_a_favorite: true,
+            foodmodel: foodModel,
+            function: changeFavorites),
         body: ListView(
           children: [
             Column(
@@ -66,24 +73,23 @@ class FoodsDetailsScreen extends StatelessWidget {
                 ),
                 ...foodModel.steps.map(
                   (e) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 10),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(3443),
+                    return Container(
+                      margin: EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                          borderRadius: BorderRadius.circular(22)),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 10),
                         child: Text(
                           textAlign: TextAlign.center,
                           e,
-                          maxLines: 1,
+                          maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge!
-                              .copyWith(
-                                  color:
-                                      Theme.of(context).colorScheme.onPrimary,
-                                  backgroundColor: color,
-                                  fontSize: 20),
+                              .copyWith(color: Colors.white, fontSize: 20),
                         ),
                       ),
                     );

@@ -49,7 +49,6 @@ class _BottomNavigationBarScreen extends State<BottomNavigationBarScreen> {
     if (currentPageIndex == 1) {
       page = FoodsScreen(
         foodModelList: favorites,
-        
         changeFavorites: addOrRemoveFavorites,
       );
       title = "Favorites";

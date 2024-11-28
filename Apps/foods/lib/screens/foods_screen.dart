@@ -31,14 +31,13 @@ class FoodsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     Widget content = SingleChildScrollView(
       child: Column(
         children: foodModelList.map(
           (e) {
             return FoodItem(
               foodModel: e,
-              color: categoryModel!.color,
+              color: Theme.of(context).colorScheme.onPrimary,
               toFoodsDetailsScreenFunction: (foodmodel, context2, color) {
                 toFoodsDetailsScreenFunction_1(foodmodel, context, color);
               },
