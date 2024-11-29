@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:foods/data/data.dart';
-import 'package:foods/screens/categories_Screen.dart';
-import 'package:foods/screens/foods_screen.dart';
 import 'package:foods/screens/bottom_navigation_bar_screen.dart';
 
-// 2:08
+// 1:20
 final theme = ThemeData(
   useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(

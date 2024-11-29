@@ -13,7 +13,7 @@ AppBar apb(String st1, Color c1, BuildContext context,
               function!(foodmodel!);
               
             },
-            icon: Icon(Icons.stacked_bar_chart))
+            icon: const Icon(Icons.stacked_bar_chart))
       ],
       flexibleSpace: Container(
         decoration: BoxDecoration(

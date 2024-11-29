@@ -6,7 +6,7 @@ import 'package:foods/screens/foods_screen.dart';
 import 'package:foods/widgets/app_bar.dart';
 
 class BottomNavigationBarScreen extends StatefulWidget {
-  BottomNavigationBarScreen({super.key});
+  const BottomNavigationBarScreen({super.key});
 
   @override
   State<StatefulWidget> createState() {
@@ -18,15 +18,26 @@ class _BottomNavigationBarScreen extends State<BottomNavigationBarScreen> {
   int currentPageIndex = 0;
   List<FoodModel> favorites = [];
 
+  void snack(String text) {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(text),
+      ),
+    );
+  }
+
   void addOrRemoveFavorites(FoodModel foodmodel1) {
     bool bool1 = favorites.contains(foodmodel1);
     if (bool1) {
       setState(() {
         favorites.remove(foodmodel1);
+        snack("Removed");
       });
     } else {
       setState(() {
         favorites.add(foodmodel1);
+        snack("Added");
       });
     }
   }

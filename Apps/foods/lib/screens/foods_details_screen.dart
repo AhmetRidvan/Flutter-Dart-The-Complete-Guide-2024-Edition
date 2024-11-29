@@ -37,7 +37,7 @@ class FoodsDetailsScreen extends StatelessWidget {
                         image: NetworkImage(foodModel.imageUrl)),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 14,
                 ),
                 Text(
@@ -45,7 +45,7 @@ class FoodsDetailsScreen extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                       color: color, fontSize: 17, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 for (var x in foodModel.ingredients)
@@ -68,13 +68,13 @@ class FoodsDetailsScreen extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                       color: color, fontSize: 17, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 ...foodModel.steps.map(
                   (e) {
                     return Container(
-                      margin: EdgeInsets.all(20),
+                      margin: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
                           color: Theme.of(context).colorScheme.onPrimary,
                           borderRadius: BorderRadius.circular(22)),
@@ -94,7 +94,7 @@ class FoodsDetailsScreen extends StatelessWidget {
                       ),
                     );
                   },
-                ).toList()
+                )
               ],
             ),
           ],

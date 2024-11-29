@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foods/models/food_model.dart';
-import 'package:foods/screens/foods_details_screen.dart';
 import 'package:foods/widgets/food_item_meta.dart';
 import 'package:transparent_image/transparent_image.dart';
 

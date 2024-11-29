@@ -3,7 +3,6 @@ import 'package:foods/data/data.dart';
 import 'package:foods/models/category_model.dart';
 import 'package:foods/models/food_model.dart';
 import 'package:foods/screens/foods_screen.dart';
-import 'package:foods/widgets/app_bar.dart';
 import 'package:foods/widgets/category_gridView_item.dart';
 
 class CategoriesScreen extends StatelessWidget {
