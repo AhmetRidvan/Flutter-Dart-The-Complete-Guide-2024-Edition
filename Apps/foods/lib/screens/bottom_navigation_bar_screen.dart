@@ -4,6 +4,7 @@ import 'package:foods/models/food_model.dart';
 import 'package:foods/screens/categories_Screen.dart';
 import 'package:foods/screens/foods_screen.dart';
 import 'package:foods/widgets/app_bar.dart';
+import 'package:foods/widgets/dra_wer.dart';
 
 class BottomNavigationBarScreen extends StatefulWidget {
   const BottomNavigationBarScreen({super.key});
@@ -67,6 +68,7 @@ class _BottomNavigationBarScreen extends State<BottomNavigationBarScreen> {
 
     return Scaffold(
       appBar: apb(title, Theme.of(context).colorScheme.onPrimary, context),
+      drawer: Dra_wer(),
       body: page,
       backgroundColor: Theme.of(context).colorScheme.primary,
       bottomNavigationBar: BottomNavigationBar(
