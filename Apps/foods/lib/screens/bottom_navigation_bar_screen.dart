@@ -49,6 +49,14 @@ class _BottomNavigationBarScreen extends State<BottomNavigationBarScreen> {
     });
   }
 
+  void _drawerScreenControl(String controlText) {
+    if (controlText == "Filters") {
+      print("hi");
+    } else if (controlText == "Foods") {
+      Navigator.of(context).pop();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     String title = "Categories";
@@ -68,7 +76,11 @@ class _BottomNavigationBarScreen extends State<BottomNavigationBarScreen> {
 
     return Scaffold(
       appBar: apb(title, Theme.of(context).colorScheme.onPrimary, context),
-      drawer: Dra_wer(),
+      drawer: Dra_wer(
+        textFunction: (text) {
+          _drawerScreenControl(text);
+        },
+      ),
       body: page,
       backgroundColor: Theme.of(context).colorScheme.primary,
       bottomNavigationBar: BottomNavigationBar(

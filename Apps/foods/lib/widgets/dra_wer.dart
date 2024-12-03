@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Dra_wer extends StatelessWidget {
-  Dra_wer({super.key});
+  Dra_wer({super.key, required this.textFunction});
+
+  Function(String text) textFunction;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,9 @@ class Dra_wer extends StatelessWidget {
               style: Theme.of(context).textTheme.titleSmall!.copyWith(
                   color: Theme.of(context).colorScheme.onSurface, fontSize: 30),
             ),
-            onTap: () {},
+            onTap: () {
+              textFunction("Foods");
+            },
           ),
           ListTile(
             leading: Icon(
@@ -63,7 +67,9 @@ class Dra_wer extends StatelessWidget {
               style: Theme.of(context).textTheme.titleSmall!.copyWith(
                   color: Theme.of(context).colorScheme.onSurface, fontSize: 30),
             ),
-            onTap: () {},
+            onTap: () {
+              textFunction("Filters");
+            },
           )
         ],
       ),
