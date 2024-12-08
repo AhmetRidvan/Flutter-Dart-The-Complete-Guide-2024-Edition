@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:foods/data/data.dart';
 import 'package:foods/models/food_model.dart';
 import 'package:foods/screens/categories_Screen.dart';
+import 'package:foods/screens/filters_Screen.dart';
 import 'package:foods/screens/foods_screen.dart';
 import 'package:foods/widgets/app_bar.dart';
 import 'package:foods/widgets/dra_wer.dart';
@@ -50,10 +50,13 @@ class _BottomNavigationBarScreen extends State<BottomNavigationBarScreen> {
   }
 
   void _drawerScreenControl(String controlText) {
+    Navigator.of(context).pop();
     if (controlText == "Filters") {
-      print("hi");
-    } else if (controlText == "Foods") {
-      Navigator.of(context).pop();
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) {
+          return FiltersScreen();
+        },
+      ));
     }
   }
 
