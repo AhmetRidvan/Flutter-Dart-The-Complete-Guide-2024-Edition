@@ -52,9 +52,9 @@ class _BottomNavigationBarScreen extends State<BottomNavigationBarScreen> {
   void _drawerScreenControl(String controlText) {
     Navigator.of(context).pop();
     if (controlText == "Filters") {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
+      Navigator.of(context).push(MaterialPageRoute(
         builder: (context) {
-          return FiltersScreen();
+          return const FiltersScreen();
         },
       ));
     }
