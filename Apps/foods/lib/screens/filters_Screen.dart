@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:foods/screens/bottom_navigation_bar_screen.dart';
 import 'package:foods/widgets/SwitchListTileWidget.dart';
 import 'package:foods/widgets/app_bar.dart';
-import 'package:foods/widgets/dra_wer.dart';
 
 enum Filter {
   gluterFree,
@@ -47,6 +46,7 @@ class _FiltersScreen extends State<StatefulWidget> {
       //   },
       // ),
       body: PopScope(
+        canPop: false,
         onPopInvokedWithResult: (didPop, result) {
           if (didPop == true) return;
           // çünkü 2 aşamadan oluşuyor. istek sırasında false bitince true
