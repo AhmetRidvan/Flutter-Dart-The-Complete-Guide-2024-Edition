@@ -51,10 +51,10 @@ class _FiltersScreen extends State<StatefulWidget> {
           if (didPop == true) return;
           // çünkü 2 aşamadan oluşuyor. istek sırasında false bitince true
           Navigator.of(context).pop({
-            Filter.gluterFree: _glutenFreebool,
             Filter.lactoseFree: _lactoseFreebool,
-            Filter.vegan: _veganFreebool,
+            Filter.gluterFree: _glutenFreebool,
             Filter.vegetarian: _vegetarianFreebool,
+            Filter.vegan: _veganFreebool,
           });
         },
         child: Column(

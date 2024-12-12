@@ -85,7 +85,7 @@ class FoodItem extends StatelessWidget {
                     ),
                     FoodItemMeta(
                       icon: Icons.diamond,
-                      text: (AffordabilityToUpperCase),
+                      text: AffordabilityToUpperCase,
                     ),
                   ],
                 ),

@@ -49,21 +49,22 @@ class _BottomNavigationBarScreen extends State<BottomNavigationBarScreen> {
     });
   }
 
-  void _drawerScreenControl(String controlText) {
+  void _drawerScreenControl(String controlText) async {
     Navigator.of(context).pop();
     if (controlText == "Filters") {
-     Navigator.of(context).push(MaterialPageRoute(
+      var result =
+          await Navigator.of(context).push<Map<Filter, bool>>(MaterialPageRoute(
         builder: (context) {
           return const FiltersScreen();
         },
       ));
+      print(result);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     String title = "Categories";
-
     var color = Theme.of(context).colorScheme;
     Widget page = CategoriesScreen(
       changeFavorites: addOrRemoveFavorites,
