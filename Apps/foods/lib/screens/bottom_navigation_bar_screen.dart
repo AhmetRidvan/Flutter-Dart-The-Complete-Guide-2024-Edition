@@ -6,6 +6,13 @@ import 'package:foods/screens/foods_screen.dart';
 import 'package:foods/widgets/app_bar.dart';
 import 'package:foods/widgets/dra_wer.dart';
 
+final kFilter = {
+    Filter.lactoseFree: false,
+    Filter.gluterFree: false,
+    Filter.vegetarian: false,
+    Filter.vegan: false,
+  };
+
 class BottomNavigationBarScreen extends StatefulWidget {
   const BottomNavigationBarScreen({super.key});
 
@@ -18,6 +25,7 @@ class BottomNavigationBarScreen extends StatefulWidget {
 class _BottomNavigationBarScreen extends State<BottomNavigationBarScreen> {
   int currentPageIndex = 0;
   List<FoodModel> favorites = [];
+  Map<Filter, bool> selectedFilters = kFilter;
 
   void snack(String text) {
     ScaffoldMessenger.of(context).clearSnackBars();
@@ -58,12 +66,16 @@ class _BottomNavigationBarScreen extends State<BottomNavigationBarScreen> {
           return const FiltersScreen();
         },
       ));
-      print(result);
+      setState(() {
+      selectedFilters = result ?? kFilter;
+    });
     }
+    
   }
 
   @override
   Widget build(BuildContext context) {
+    
     String title = "Categories";
     var color = Theme.of(context).colorScheme;
     Widget page = CategoriesScreen(
