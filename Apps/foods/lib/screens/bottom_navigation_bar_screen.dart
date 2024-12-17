@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foods/data/data.dart';
 import 'package:foods/models/food_model.dart';
 import 'package:foods/screens/categories_Screen.dart';
 import 'package:foods/screens/filters_Screen.dart';
@@ -7,11 +8,11 @@ import 'package:foods/widgets/app_bar.dart';
 import 'package:foods/widgets/dra_wer.dart';
 
 final kFilter = {
-    Filter.lactoseFree: false,
-    Filter.gluterFree: false,
-    Filter.vegetarian: false,
-    Filter.vegan: false,
-  };
+  Filter.lactoseFree: false,
+  Filter.gluterFree: false,
+  Filter.vegetarian: false,
+  Filter.vegan: false,
+};
 
 class BottomNavigationBarScreen extends StatefulWidget {
   const BottomNavigationBarScreen({super.key});
@@ -67,18 +68,40 @@ class _BottomNavigationBarScreen extends State<BottomNavigationBarScreen> {
         },
       ));
       setState(() {
-      selectedFilters = result ?? kFilter;
-    });
+        print(result);
+        selectedFilters = result ?? kFilter;
+      });
     }
-    
   }
 
   @override
   Widget build(BuildContext context) {
-    
+    //9.32
+    var availableFoods = FoodsList.where(
+      (element) {
+        if (selectedFilters[Filter.lactoseFree]! && !element.isLactoseFree) {
+          return false;
+        }
+        if (selectedFilters[Filter.gluterFree]! && !element.isGlutenFree) {
+          return false;
+        }
+        if (selectedFilters[Filter.vegetarian]! && !element.isVegetarian) {
+          return false;
+        }
+        if (selectedFilters[Filter.vegan]! && !element.isVegan) {
+          return false;
+        }
+        return true;
+      },
+    ).toList();
+    for (var asd in availableFoods) {
+      print(asd.title);
+    }
+
     String title = "Categories";
     var color = Theme.of(context).colorScheme;
     Widget page = CategoriesScreen(
+      filteredFoods: availableFoods,
       changeFavorites: addOrRemoveFavorites,
       title: title,
     );

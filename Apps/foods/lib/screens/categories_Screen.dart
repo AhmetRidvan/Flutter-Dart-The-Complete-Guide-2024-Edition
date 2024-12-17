@@ -6,14 +6,15 @@ import 'package:foods/screens/foods_screen.dart';
 import 'package:foods/widgets/category_gridView_item.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  CategoriesScreen({super.key, required this.title, required this.changeFavorites});
+  CategoriesScreen(
+      {super.key, required this.title, required this.changeFavorites,required this.filteredFoods});
 
   void Function(FoodModel foodmodel) changeFavorites;
-
+  List<FoodModel> filteredFoods;
 
   String title;
   void _toTheFoodsScreen(BuildContext context, CategoryModel categoryModel1) {
-    List<FoodModel> filteredList = FoodsList.where(
+    List<FoodModel> filteredList = filteredFoods.where(
       (element) {
         return element.categories.contains(categoryModel1.id);
       },
