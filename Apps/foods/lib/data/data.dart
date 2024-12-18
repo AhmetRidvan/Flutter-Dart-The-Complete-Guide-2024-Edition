@@ -86,7 +86,7 @@ final FoodsList = [
       'The sauce will be done once the spaghetti are.',
       'Feel free to add some cheese on top of the finished dish.'
     ],
-    isGlutenFree: false, 
+    isGlutenFree: false,
     isVegan: true,
     isVegetarian: true,
     isLactoseFree: true,
@@ -219,7 +219,7 @@ final FoodsList = [
     ],
     isGlutenFree: true,
     isVegan: false,
-    isVegetarian: true,
+    isVegetarian: false,
     isLactoseFree: true,
   ),
   const FoodModel(
@@ -369,8 +369,7 @@ final FoodsList = [
     isGlutenFree: true,
     isVegan: false,
     isVegetarian: true,
-    isLactoseFree: false, 
-      
+    isLactoseFree: false,
   ),
   const FoodModel(
     id: 'm10',
