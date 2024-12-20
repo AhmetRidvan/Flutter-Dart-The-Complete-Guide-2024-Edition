@@ -76,7 +76,6 @@ class _BottomNavigationBarScreen extends State<BottomNavigationBarScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //9.32
     var availableFoods = FoodsList.where(
       (element) {
         if (selectedFilters[Filter.lactoseFree]! && !element.isLactoseFree) {
@@ -94,6 +93,7 @@ class _BottomNavigationBarScreen extends State<BottomNavigationBarScreen> {
         return true;
       },
     ).toList();
+   
     for (var asd in availableFoods) {
       print(asd.title);
     }
