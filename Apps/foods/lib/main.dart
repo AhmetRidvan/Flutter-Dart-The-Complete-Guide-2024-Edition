@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foods/screens/bottom_navigation_bar_screen.dart';
+import 'package:foods/screens/nothing.dart';
 
 //11:48
 final theme = ThemeData(
@@ -21,6 +22,12 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: theme,
+      initialRoute: "/",
+      routes: {
+        "Nothing": (context) {
+          return Nothing();
+        },
+      },
       home: const BottomNavigationBarScreen(),
       debugShowCheckedModeBanner: false,
     );

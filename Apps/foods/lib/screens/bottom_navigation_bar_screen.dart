@@ -63,8 +63,10 @@ class _BottomNavigationBarScreen extends State<BottomNavigationBarScreen> {
     if (controlText == "Filters") {
       var result =
           await Navigator.of(context).push<Map<Filter, bool>>(MaterialPageRoute(
-        builder: (context) {
-          return const FiltersScreen();
+        builder: (context) {  
+          return FiltersScreen(
+            currentFilters: selectedFilters,
+          );
         },
       ));
       setState(() {

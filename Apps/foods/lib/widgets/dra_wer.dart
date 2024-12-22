@@ -70,7 +70,12 @@ class Dra_wer extends StatelessWidget {
             onTap: () {
               textFunction("Filters");
             },
-          )
+          ),
+          TextButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed("Nothing");
+              },
+              child: Text(""))
         ],
       ),
     );
