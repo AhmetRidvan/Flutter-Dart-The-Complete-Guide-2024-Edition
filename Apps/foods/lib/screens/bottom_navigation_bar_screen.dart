@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:foods/data/data.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:foods/models/food_model.dart';
+import 'package:foods/providers/foods_provider.dart';
 import 'package:foods/screens/categories_Screen.dart';
 import 'package:foods/screens/filters_Screen.dart';
 import 'package:foods/screens/foods_screen.dart';
@@ -14,16 +16,17 @@ final kFilter = {
   Filter.vegan: false,
 };
 
-class BottomNavigationBarScreen extends StatefulWidget {
+class BottomNavigationBarScreen extends ConsumerStatefulWidget {
   const BottomNavigationBarScreen({super.key});
 
   @override
-  State<StatefulWidget> createState() {
+  ConsumerState<BottomNavigationBarScreen> createState() {
     return _BottomNavigationBarScreen();
   }
 }
 
-class _BottomNavigationBarScreen extends State<BottomNavigationBarScreen> {
+class _BottomNavigationBarScreen
+    extends ConsumerState<BottomNavigationBarScreen> {
   int currentPageIndex = 0;
   List<FoodModel> favorites = [];
   Map<Filter, bool> selectedFilters = kFilter;
@@ -63,7 +66,7 @@ class _BottomNavigationBarScreen extends State<BottomNavigationBarScreen> {
     if (controlText == "Filters") {
       var result =
           await Navigator.of(context).push<Map<Filter, bool>>(MaterialPageRoute(
-        builder: (context) {  
+        builder: (context) {
           return FiltersScreen(
             currentFilters: selectedFilters,
           );
@@ -78,6 +81,8 @@ class _BottomNavigationBarScreen extends State<BottomNavigationBarScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ref.watch(); 
+
     var availableFoods = FoodsList.where(
       (element) {
         if (selectedFilters[Filter.lactoseFree]! && !element.isLactoseFree) {
@@ -95,7 +100,7 @@ class _BottomNavigationBarScreen extends State<BottomNavigationBarScreen> {
         return true;
       },
     ).toList();
-   
+
     for (var asd in availableFoods) {
       print(asd.title);
     }
