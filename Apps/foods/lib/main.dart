@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foods/screens/bottom_navigation_bar_screen.dart';
 import 'package:foods/screens/nothing.dart';
 
-//3:17
+//4:07
 final theme = ThemeData(
   useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Nothing extends StatefulWidget {
-  Nothing({super.key});
+  const Nothing({super.key});
 
   @override
   State<StatefulWidget> createState() {

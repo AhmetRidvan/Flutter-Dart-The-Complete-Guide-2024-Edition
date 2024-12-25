@@ -81,9 +81,9 @@ class _BottomNavigationBarScreen
 
   @override
   Widget build(BuildContext context) {
-    ref.watch(); 
+    var _foodProvider = ref.watch(foodProvider);
 
-    var availableFoods = FoodsList.where(
+    var availableFoods = _foodProvider.where(
       (element) {
         if (selectedFilters[Filter.lactoseFree]! && !element.isLactoseFree) {
           return false;

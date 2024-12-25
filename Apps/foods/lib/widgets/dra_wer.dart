@@ -75,7 +75,7 @@ class Dra_wer extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).pushNamed("Nothing");
               },
-              child: Text(""))
+              child: const Text(""))
         ],
       ),
     );
