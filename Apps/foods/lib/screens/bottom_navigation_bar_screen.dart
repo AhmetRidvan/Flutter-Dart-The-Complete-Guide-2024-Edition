@@ -89,7 +89,7 @@ class _BottomNavigationBarScreen
           return false;
         }
         if (selectedFilters[Filter.gluterFree]! && !element.isGlutenFree) {
-          return false;
+          return false; 
         }
         if (selectedFilters[Filter.vegetarian]! && !element.isVegetarian) {
           return false;
