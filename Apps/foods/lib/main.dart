@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foods/screens/bottom_navigation_bar_screen.dart';
 import 'package:foods/screens/nothing.dart';
 
-//2:46
+//6:27
 final theme = ThemeData(
   useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(
