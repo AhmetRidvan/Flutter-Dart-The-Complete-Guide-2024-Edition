@@ -1,0 +1,4 @@
+Provider() sabit için
+StateNotifierProvider() değişebilenler için
+
+jeneric class = belirli bir tür yerine tüm türlerle çalışabilir

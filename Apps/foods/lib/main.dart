@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foods/screens/bottom_navigation_bar_screen.dart';
 import 'package:foods/screens/nothing.dart';
 
-//4:07
+//2:46
 final theme = ThemeData(
   useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(
@@ -12,7 +13,7 @@ final theme = ThemeData(
 );
 
 void main() {
-  runApp(const App());
+  runApp(const ProviderScope(child: App()));
 }
 
 class App extends StatelessWidget {
