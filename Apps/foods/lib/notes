@@ -1,4 +1,4 @@
 Provider() sabit için
 StateNotifierProvider() değişebilenler için
-
+... Spread
 jeneric class = belirli bir tür yerine tüm türlerle çalışabilir
