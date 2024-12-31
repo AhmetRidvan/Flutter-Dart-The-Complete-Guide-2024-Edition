@@ -7,9 +7,9 @@ import 'package:foods/widgets/category_gridView_item.dart';
 
 class CategoriesScreen extends StatelessWidget {
   CategoriesScreen(
-      {super.key, required this.title, required this.changeFavorites,required this.filteredFoods});
+      {super.key, required this.title,required this.filteredFoods});
 
-  void Function(FoodModel foodmodel) changeFavorites;
+
   List<FoodModel> filteredFoods;
 
   String title;
@@ -23,7 +23,7 @@ class CategoriesScreen extends StatelessWidget {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) {
         return FoodsScreen(
-          changeFavorites: changeFavorites,
+    
           categoryModel: categoryModel1,
           foodModelList: filteredList,
         );

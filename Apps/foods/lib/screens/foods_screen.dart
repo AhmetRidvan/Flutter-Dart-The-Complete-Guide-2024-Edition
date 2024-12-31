@@ -10,11 +10,11 @@ class FoodsScreen extends StatelessWidget {
       {super.key,
       this.categoryModel,
       required this.foodModelList,
-      required this.changeFavorites});
+  });
 
   CategoryModel? categoryModel;
   List<FoodModel> foodModelList;
-  void Function(FoodModel foodmodel) changeFavorites;
+ 
 
   void toFoodsDetailsScreenFunction_1(
       FoodModel foodmodel, BuildContext context, Color color) {
@@ -23,7 +23,7 @@ class FoodsScreen extends StatelessWidget {
         return FoodsDetailsScreen(
             foodModel: foodmodel,
             color: color,
-            changeFavorites: changeFavorites);
+          );
       },
     ));
   }

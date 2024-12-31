@@ -26,7 +26,7 @@ class App extends StatelessWidget {
       initialRoute: "/",
       routes: {
         "Nothing": (context) {
-          return Nothing();
+          return const Nothing();
         },
       },
       home: const BottomNavigationBarScreen(),

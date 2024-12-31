@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:foods/models/food_model.dart';
+import 'package:foods/providers/favorite_food_provider.dart';
 import 'package:foods/providers/foods_provider.dart';
 import 'package:foods/screens/categories_Screen.dart';
 import 'package:foods/screens/filters_Screen.dart';
@@ -28,7 +29,7 @@ class BottomNavigationBarScreen extends ConsumerStatefulWidget {
 class _BottomNavigationBarScreen
     extends ConsumerState<BottomNavigationBarScreen> {
   int currentPageIndex = 0;
-  List<FoodModel> favorites = [];
+ 
   Map<Filter, bool> selectedFilters = kFilter;
 
   void snack(String text) {
@@ -40,20 +41,6 @@ class _BottomNavigationBarScreen
     );
   }
 
-  void addOrRemoveFavorites(FoodModel foodmodel1) {
-    bool bool1 = favorites.contains(foodmodel1);
-    if (bool1) {
-      setState(() {
-        favorites.remove(foodmodel1);
-        snack("Removed");
-      });
-    } else {
-      setState(() {
-        favorites.add(foodmodel1);
-        snack("Added");
-      });
-    }
-  }
 
   void _selectPage(int value) {
     setState(() {
@@ -81,16 +68,15 @@ class _BottomNavigationBarScreen
 
   @override
   Widget build(BuildContext context) {
-    var _foodProvider = ref.watch(foodProvider);
+    var foodProvider1 = ref.watch(foodProvider);
 
-    var availableFoods = _foodProvider.where(
-      
+    var availableFoods = foodProvider1.where(
       (element) {
         if (selectedFilters[Filter.lactoseFree]! && !element.isLactoseFree) {
           return false;
         }
         if (selectedFilters[Filter.gluterFree]! && !element.isGlutenFree) {
-          return false; 
+          return false;
         }
         if (selectedFilters[Filter.vegetarian]! && !element.isVegetarian) {
           return false;
@@ -108,15 +94,15 @@ class _BottomNavigationBarScreen
 
     String title = "Categories";
     var color = Theme.of(context).colorScheme;
+
     Widget page = CategoriesScreen(
       filteredFoods: availableFoods,
-      changeFavorites: addOrRemoveFavorites,
       title: title,
     );
     if (currentPageIndex == 1) {
+      final favorites2 = ref.watch(FavoriteFoodStateNotifierProvider);
       page = FoodsScreen(
-        foodModelList: favorites,
-        changeFavorites: addOrRemoveFavorites,
+        foodModelList: favorites2,
       );
       title = "Favorites";
     }

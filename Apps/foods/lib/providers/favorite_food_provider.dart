@@ -20,10 +20,11 @@ class FavoriteFoodStateNotifier extends StateNotifier<List<FoodModel>> {
       state = [...state, f1];
     }
   }
-
-  final FavoriteFoodStateNotifierProvider = StateNotifierProvider<FavoriteFoodStateNotifier,List<FoodModel>>(
-    (ref) {
-      return FavoriteFoodStateNotifier();
-    },
-  );
 }
+
+final FavoriteFoodStateNotifierProvider =
+    StateNotifierProvider<FavoriteFoodStateNotifier, List<FoodModel>>(
+  (ref) {
+    return FavoriteFoodStateNotifier();
+  },
+);

@@ -8,11 +8,11 @@ class FoodsDetailsScreen extends StatelessWidget {
       {super.key,
       required this.foodModel,
       required this.color,
-      required this.changeFavorites});
+    });
 
   FoodModel foodModel;
   Color color;
-  void Function(FoodModel foodmodel) changeFavorites;
+
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +21,12 @@ class FoodsDetailsScreen extends StatelessWidget {
         appBar: apb(foodModel.title, color, context,
             is_it_a_favorite: true,
             foodmodel: foodModel,
-            function: changeFavorites),
+          ),
         body: ListView(
           children: [
             Column(
               children: [
-                Center(
+                Center( 
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(33),
                     child: FadeInImage(
