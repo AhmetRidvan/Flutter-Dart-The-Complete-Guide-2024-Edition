@@ -1,32 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foods/models/food_model.dart';
+import 'package:foods/providers/favorite_food_provider.dart';
 import 'package:foods/widgets/app_bar.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-class FoodsDetailsScreen extends StatelessWidget {
-  FoodsDetailsScreen(
-      {super.key,
-      required this.foodModel,
-      required this.color,
-    });
+class FoodsDetailsScreen extends ConsumerWidget {
+  FoodsDetailsScreen({
+    super.key,
+    required this.foodModel,
+    required this.color,
+  });
 
   FoodModel foodModel;
   Color color;
 
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.primary,
-        appBar: apb(foodModel.title, color, context,
-            is_it_a_favorite: true,
-            foodmodel: foodModel,
+        appBar: AppBar(
+          title: Text(
+            foodModel.title,
           ),
+          actions: [
+            IconButton(
+                onPressed: () {
+               final wasAdded = ref
+                      .read(FavoriteFoodStateNotifierProvider.notifier) //notifier provider üzerinden sınıfa gitmeni sağlıyor
+                      .ChangeFavoriteFood(foodModel);
+                  ScaffoldMessenger.of(context).clearSnackBars();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(wasAdded ? "Food is added as a favorite" : "Food removed"), 
+                    ),
+                  );
+                },
+                icon: Icon(Icons.stars))
+          ],
+        ),
         body: ListView(
           children: [
             Column(
               children: [
-                Center( 
+                Center(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(33),
                     child: FadeInImage(

@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:foods/models/food_model.dart';
 
-AppBar apb(String st1, Color c1, BuildContext context,
-    {bool? is_it_a_favorite,
-    Function(FoodModel asd)? function,
-    FoodModel? foodmodel}) {
+AppBar apb(
+  String st1,
+  Color c1,
+  BuildContext context, {
+  bool? is_it_a_favorite,
+ 
+  FoodModel? foodmodel,
+}) {
   if (is_it_a_favorite != null) {
     return AppBar(
       actions: [
         IconButton(
             onPressed: () {
-              function!(foodmodel!);
-              
+                
             },
             icon: const Icon(Icons.stacked_bar_chart))
       ],

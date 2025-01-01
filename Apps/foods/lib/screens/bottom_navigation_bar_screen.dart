@@ -32,15 +32,7 @@ class _BottomNavigationBarScreen
  
   Map<Filter, bool> selectedFilters = kFilter;
 
-  void snack(String text) {
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(text),
-      ),
-    );
-  }
-
+ 
 
   void _selectPage(int value) {
     setState(() {

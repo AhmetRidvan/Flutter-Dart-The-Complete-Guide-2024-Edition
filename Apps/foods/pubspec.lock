@@ -111,7 +111,7 @@ packages:
     source: hosted
     version: "5.1.1"
   built_value:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: built_value
       sha256: "28a712df2576b63c6c005c465989a348604960c0958d28be5303ba9baa841ac2"

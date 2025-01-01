@@ -7,7 +7,7 @@ import 'package:foods/models/food_model.dart';
 class FavoriteFoodStateNotifier extends StateNotifier<List<FoodModel>> {
   FavoriteFoodStateNotifier() : super([]);
 
-  ChangeFavoriteFood(FoodModel f1) {
+  bool ChangeFavoriteFood(FoodModel f1) {
     final dogrumu = state.contains(f1);
 
     if (dogrumu) {
@@ -16,8 +16,10 @@ class FavoriteFoodStateNotifier extends StateNotifier<List<FoodModel>> {
           return element.id != f1.id;
         },
       ).toList();
+      return false;
     } else {
       state = [...state, f1];
+      return true;
     }
   }
 }
