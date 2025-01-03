@@ -3,12 +3,6 @@ import 'package:foods/screens/bottom_navigation_bar_screen.dart';
 import 'package:foods/widgets/SwitchListTileWidget.dart';
 import 'package:foods/widgets/app_bar.dart';
 
-enum Filter {
-  gluterFree,
-  lactoseFree,
-  vegetarian,
-  vegan,
-}
 
 class FiltersScreen extends StatefulWidget {
   FiltersScreen({super.key, required this.currentFilters});
