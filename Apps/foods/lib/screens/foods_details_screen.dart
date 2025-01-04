@@ -36,7 +36,7 @@ class FoodsDetailsScreen extends ConsumerWidget {
                     ),
                   );
                 },
-                icon: Icon(Icons.stars))
+                icon: const Icon(Icons.stars))
           ],
         ),
         body: ListView(

@@ -37,7 +37,7 @@ class _FiltersScreen extends ConsumerState<FiltersScreen> {
     if (asd == "Foods") {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
         builder: (context) {
-          return const BottomNavigationBarScreen();
+          return const BottomNavigationBarScreen();   
         },
       ));
     }
