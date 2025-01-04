@@ -30,7 +30,7 @@ class FiltersNotifier extends StateNotifier<Map<Filter,bool>>{
 
 }
 
-var filtersProvider = StateNotifierProvider((ref) => ,);
+var filtersProvider = StateNotifierProvider<FiltersNotifier,Map<Filter,bool>>((ref) => FiltersNotifier(),);
 
 
 
