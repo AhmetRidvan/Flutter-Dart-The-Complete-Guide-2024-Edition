@@ -1,5 +1,3 @@
-
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 enum Filter {
@@ -9,28 +7,29 @@ enum Filter {
   vegan,
 }
 
-class FiltersNotifier extends StateNotifier<Map<Filter,bool>>{
-   FiltersNotifier() : super({
-    Filter.gluterFree : false,
-    Filter.lactoseFree : false,
-    Filter.vegetarian : false,
-    Filter.vegan : false
+class FiltersNotifier extends StateNotifier<Map<Filter, bool>> {
+  FiltersNotifier()
+      : super({
+          Filter.gluterFree: false,
+          Filter.lactoseFree: false,
+          Filter.vegetarian: false,
+          Filter.vegan: false
+        }); //State'e ilk durmunu veriyoruz
 
-
-
-   }); //State'e ilk durmunu veriyoruz
-
-  void setFilter(Filter filter,bool isActive){
-    state = {
-      ...state,
-      filter : isActive
-    };
+  void setFilters(Map<Filter,bool> asd) {
+    state = asd; 
+   
   }
 
-
+  void setFilter(Filter filter, bool isActive) {
+    state = {...state, filter: isActive}; 
+   
+  }
 }
 
-var filtersProvider = StateNotifierProvider<FiltersNotifier,Map<Filter,bool>>((ref) => FiltersNotifier(),);
+var filtersProvider = StateNotifierProvider<FiltersNotifier, Map<Filter, bool>>(
+  (ref) => FiltersNotifier(),
+);
 
 
 

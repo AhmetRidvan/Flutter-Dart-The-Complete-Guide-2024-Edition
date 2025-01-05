@@ -5,10 +5,10 @@ import 'package:foods/screens/bottom_navigation_bar_screen.dart';
 import 'package:foods/widgets/SwitchListTileWidget.dart';
 import 'package:foods/widgets/app_bar.dart';
 
-
 class FiltersScreen extends ConsumerStatefulWidget {
-  FiltersScreen({super.key, required this.currentFilters});
-  Map<Filter, bool> currentFilters;
+  FiltersScreen({
+    super.key,
+  });
 
   @override
   ConsumerState<FiltersScreen> createState() {
@@ -26,10 +26,11 @@ class _FiltersScreen extends ConsumerState<FiltersScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _lactoseFreebool = widget.currentFilters[Filter.lactoseFree]!;
-    _glutenFreebool = widget.currentFilters[Filter.gluterFree]!;
-    _vegetarianFreebool = widget.currentFilters[Filter.vegetarian]!;
-    _veganFreebool = widget.currentFilters[Filter.vegan]!;
+    final activeFilter = ref.read(filtersProvider);
+    _lactoseFreebool = activeFilter[Filter.lactoseFree]!;
+    _glutenFreebool = activeFilter[Filter.gluterFree]!;
+    _vegetarianFreebool = activeFilter[Filter.vegetarian]!;
+    _veganFreebool = activeFilter[Filter.vegan]!;
   }
 
   void _filterScreenDrawerFunction(String asd) {
@@ -37,7 +38,7 @@ class _FiltersScreen extends ConsumerState<FiltersScreen> {
     if (asd == "Foods") {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
         builder: (context) {
-          return const BottomNavigationBarScreen();   
+          return const BottomNavigationBarScreen();
         },
       ));
     }
@@ -53,12 +54,12 @@ class _FiltersScreen extends ConsumerState<FiltersScreen> {
       //   },
       // ),
       body: PopScope(
-        canPop: false,
+        canPop: true,
         onPopInvokedWithResult: (didPop, result) {
           if (didPop == true) return;
           // çünkü 2 aşamadan oluşuyor. istek sırasında false bitince true
-          Navigator.of(context).pop({
-            Filter.lactoseFree: _lactoseFreebool,
+          ref.read(filtersProvider.notifier).setFilters({
+            Filter.lactoseFree: _lactoseFreebool, 
             Filter.gluterFree: _glutenFreebool,
             Filter.vegetarian: _vegetarianFreebool,
             Filter.vegan: _veganFreebool,
