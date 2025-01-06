@@ -5,96 +5,57 @@ import 'package:foods/screens/bottom_navigation_bar_screen.dart';
 import 'package:foods/widgets/SwitchListTileWidget.dart';
 import 'package:foods/widgets/app_bar.dart';
 
-class FiltersScreen extends ConsumerStatefulWidget {
+class FiltersScreen extends ConsumerWidget {
   FiltersScreen({
     super.key,
   });
 
   @override
-  ConsumerState<FiltersScreen> createState() {
-    return _FiltersScreen();
-  }
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    var activeFilters = ref.watch(filtersProvider);
 
-class _FiltersScreen extends ConsumerState<FiltersScreen> {
-  bool _lactoseFreebool = false;
-  bool _glutenFreebool = false;
-  bool _vegetarianFreebool = false;
-  bool _veganFreebool = false;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    final activeFilter = ref.read(filtersProvider);
-    _lactoseFreebool = activeFilter[Filter.lactoseFree]!;
-    _glutenFreebool = activeFilter[Filter.gluterFree]!;
-    _vegetarianFreebool = activeFilter[Filter.vegetarian]!;
-    _veganFreebool = activeFilter[Filter.vegan]!;
-  }
-
-  void _filterScreenDrawerFunction(String asd) {
-    Navigator.pop(context);
-    if (asd == "Foods") {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) {
-          return const BottomNavigationBarScreen();
-        },
-      ));
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: apb("Filters", Theme.of(context).colorScheme.onPrimary, context),
-      // drawer: Dra_wer(
-      //   textFunction: (text) {
-      //     return _filterScreenDrawerFunction(text);
-      //   },
-      // ),
-      body: PopScope(
-        canPop: true,
-        onPopInvokedWithResult: (didPop, result) {
-          if (didPop == true) return;
-          // çünkü 2 aşamadan oluşuyor. istek sırasında false bitince true
-          ref.read(filtersProvider.notifier).setFilters({
-            Filter.lactoseFree: _lactoseFreebool, 
-            Filter.gluterFree: _glutenFreebool,
-            Filter.vegetarian: _vegetarianFreebool,
-            Filter.vegan: _veganFreebool,
-          });
-        },
+      body: Padding(
+        padding: const EdgeInsets.all(30.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SwitchListTileWidget(
-              callBack: (value) {
-                _lactoseFreebool = value;
+            SwitchListTile(
+              title: Text("glutenFree"),
+              onChanged: (value) {
+                ref
+                    .read(filtersProvider.notifier)
+                    .setFilter(Filter.glutenFree, value);
               },
-              b1: _lactoseFreebool,
-              t1: "Lactose-Free",
+              value: activeFilters[Filter.glutenFree]!,
             ),
-            SwitchListTileWidget(
-              callBack: (value) {
-                _glutenFreebool = value;
+            SwitchListTile(
+              title: Text("lactoseFree"),
+              onChanged: (value) {
+                ref
+                    .read(filtersProvider.notifier)
+                    .setFilter(Filter.lactoseFree, value);
               },
-              b1: _glutenFreebool,
-              t1: "Gluter-free",
+              value: activeFilters[Filter.lactoseFree]!,
             ),
-            SwitchListTileWidget(
-              callBack: (value) {
-                _vegetarianFreebool = value;
+            SwitchListTile(
+              title: Text("vegetarian"),
+              onChanged: (value) {
+                ref
+                    .read(filtersProvider.notifier)
+                    .setFilter(Filter.vegetarian, value);
               },
-              b1: _vegetarianFreebool,
-              t1: "Vegetarian-free",
+              value: activeFilters[Filter.vegetarian]!,
             ),
-            SwitchListTileWidget(
-              callBack: (value) {
-                _veganFreebool = value;
+            SwitchListTile(
+              title: Text("vegan"),
+              onChanged: (value) {
+                ref
+                    .read(filtersProvider.notifier)
+                    .setFilter(Filter.vegan, value);
               },
-              b1: _veganFreebool,
-              t1: "Vegan-free",
+              value: activeFilters[Filter.vegan]!,
             ),
           ],
         ),

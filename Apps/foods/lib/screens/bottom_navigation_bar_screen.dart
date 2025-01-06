@@ -11,7 +11,7 @@ import 'package:foods/widgets/dra_wer.dart';
 
 final kFilter = {
   Filter.lactoseFree: false,
-  Filter.gluterFree: false,
+  Filter.glutenFree: false,
   Filter.vegetarian: false,
   Filter.vegan: false,
 };
@@ -28,10 +28,6 @@ class BottomNavigationBarScreen extends ConsumerStatefulWidget {
 class _BottomNavigationBarScreen
     extends ConsumerState<BottomNavigationBarScreen> {
   int currentPageIndex = 0;
- 
-  Map<Filter, bool> selectedFilters = kFilter;
-
- 
 
   void _selectPage(int value) {
     setState(() {
@@ -42,37 +38,30 @@ class _BottomNavigationBarScreen
   void _drawerScreenControl(String controlText) async {
     Navigator.of(context).pop();
     if (controlText == "Filters") {
-      var result =
-          await Navigator.of(context).push<Map<Filter, bool>>(MaterialPageRoute(
+      var result = await Navigator.of(context).push(MaterialPageRoute(
         builder: (context) {
-          return FiltersScreen(
-            currentFilters: selectedFilters,
-          );
+          return FiltersScreen();
         },
       ));
-      setState(() {
-        print(result);
-        selectedFilters = result ?? kFilter;
-      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
     var foodProvider1 = ref.watch(foodProvider);
-
+    var _filteredProvider = ref.watch(filtersProvider);
     var availableFoods = foodProvider1.where(
       (element) {
-        if (selectedFilters[Filter.lactoseFree]! && !element.isLactoseFree) {
+        if (_filteredProvider[Filter.lactoseFree]! && !element.isLactoseFree) {
           return false;
         }
-        if (selectedFilters[Filter.gluterFree]! && !element.isGlutenFree) {
+        if (_filteredProvider[Filter.glutenFree]! && !element.isGlutenFree) {
           return false;
         }
-        if (selectedFilters[Filter.vegetarian]! && !element.isVegetarian) {
+        if (_filteredProvider[Filter.vegetarian]! && !element.isVegetarian) {
           return false;
         }
-        if (selectedFilters[Filter.vegan]! && !element.isVegan) {
+        if (_filteredProvider[Filter.vegan]! && !element.isVegan) {
           return false;
         }
         return true;
