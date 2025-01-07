@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foods/providers/favorite_food_provider.dart';
 import 'package:foods/providers/filters_provider.dart';
-import 'package:foods/providers/foods_provider.dart';
 import 'package:foods/screens/categories_Screen.dart';
 import 'package:foods/screens/filters_Screen.dart';
 import 'package:foods/screens/foods_screen.dart';
@@ -48,29 +47,7 @@ class _BottomNavigationBarScreen
 
   @override
   Widget build(BuildContext context) {
-    var foodProvider1 = ref.watch(foodProvider);
-    var _filteredProvider = ref.watch(filtersProvider);
-    var availableFoods = foodProvider1.where(
-      (element) {
-        if (_filteredProvider[Filter.lactoseFree]! && !element.isLactoseFree) {
-          return false;
-        }
-        if (_filteredProvider[Filter.glutenFree]! && !element.isGlutenFree) {
-          return false;
-        }
-        if (_filteredProvider[Filter.vegetarian]! && !element.isVegetarian) {
-          return false;
-        }
-        if (_filteredProvider[Filter.vegan]! && !element.isVegan) {
-          return false;
-        }
-        return true;
-      },
-    ).toList();
-
-    for (var asd in availableFoods) {
-      print(asd.title);
-    }
+    var availableFoods = ref.watch(filteredFoodsProvier);
 
     String title = "Categories";
     var color = Theme.of(context).colorScheme;

@@ -15,7 +15,7 @@ class FoodItem extends StatelessWidget {
   Function(FoodModel foodmodel, BuildContext context, Color color)
       toFoodsDetailsScreenFunction;
 
-  String get ComplexityToUpperCase {
+  String get ComplexityToUpperCase { 
     return foodModel.complexity.name[0].toUpperCase() +
         foodModel.complexity.name.substring(1);
   }
