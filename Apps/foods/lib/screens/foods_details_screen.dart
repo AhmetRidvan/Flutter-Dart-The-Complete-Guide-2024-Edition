@@ -17,6 +17,9 @@ class FoodsDetailsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var favoriteFoods = ref.watch(FavoriteFoodStateNotifierProvider);
+    final isFavorite = favoriteFoods.contains(foodModel);
+
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.primary,
         appBar: AppBar(
@@ -26,17 +29,22 @@ class FoodsDetailsScreen extends ConsumerWidget {
           actions: [
             IconButton(
                 onPressed: () {
-               final wasAdded = ref
-                      .read(FavoriteFoodStateNotifierProvider.notifier) //notifier provider üzerinden sınıfa gitmeni sağlıyor
+                  final wasAdded = ref
+                      .read(FavoriteFoodStateNotifierProvider
+                          .notifier) //notifier provider üzerinden sınıfa gitmeni sağlıyor
                       .ChangeFavoriteFood(foodModel);
                   ScaffoldMessenger.of(context).clearSnackBars();
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text(wasAdded ? "Food is added as a favorite" : "Food removed"), 
+                      content: Text(
+                        wasAdded
+                            ? "Food is added as a favorite"
+                            : "Food removed",
+                      ),
                     ),
                   );
                 },
-                icon: const Icon(Icons.stars))
+                icon: Icon(isFavorite ? Icons.stars : Icons.star_border))
           ],
         ),
         body: ListView(
