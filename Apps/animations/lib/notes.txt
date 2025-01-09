@@ -1,0 +1,29 @@
+Explicit animation = Her şey senin kontrolündedir dolayısıyla daha zahmetli
+Implicit animation = Kontrol Flutter'dadır ve daha az zahmetli
+
+late _falanFilan = kullanıldığında bir değer sahip olacak
+her sınıf beraberinde kendi türünüde getirir.
+
+with mixin'leri almak için kullanılır
+mixin'ler, sınıflara ek işlevsellik kazandırmak için kullanılan özel yapılar olup, class yerine mixin anahtar kelimesi ile tanımlanırlar.
+
+
+mixin A {
+  void aMethod() {
+    print('A method');
+  }
+}
+
+mixin B {
+  void bMethod() {
+    print('B method');
+  }
+}
+
+class C with A, B {}
+
+void main() {
+  C c = C();
+  c.aMethod(); // A method
+  c.bMethod(); // B method
+}
