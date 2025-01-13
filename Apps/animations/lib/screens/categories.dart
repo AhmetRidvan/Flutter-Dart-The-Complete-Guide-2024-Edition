@@ -20,15 +20,15 @@ class CategoriesScreen extends StatefulWidget {
 class _CategoriesScreenState extends State<CategoriesScreen>
     with SingleTickerProviderStateMixin {
   //Tek animationcontroller olunca böyle eyer birden fazla olsaydı TickerProviderStateMixin
-  late AnimationController
-      _animationController; // this _CategoriesScreenState sınıfının nesnesine referanas verir
+  late AnimationController _animationController;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _animationController = AnimationController(
-      vsync: this,
+      vsync:
+          this, // this _CategoriesScreenState sınıfının nesnesine referanas verir
       duration: Duration(
         milliseconds: 300,
       ),
@@ -65,18 +65,17 @@ class _CategoriesScreenState extends State<CategoriesScreen>
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
-        print(_animationController.value);
-        return Padding(
-          padding: EdgeInsets.only(
-            top: 100 - (_animationController.value * 100),
-          ),
+        return SlideTransition(
           child: child,
-        );
+          position: _animationController.drive(
+            Tween(
+              begin: Offset(0, 1), end: Offset(0, 0), // gerçek konumu //offset ters mantık çalışır.
+            ),
+          ),
+        ); //Drive AnimationController lowerBound ve upperBound değerlerini buradaki değerlere dönüştürür.
       },
       child: GridView(
-        // çocuk olan burası parrent aşağıdaki builder
-        //child değişmeyen yenilenmeyen alt öğe
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(24), //4.45
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 3 / 2,
@@ -84,6 +83,7 @@ class _CategoriesScreenState extends State<CategoriesScreen>
           mainAxisSpacing: 20,
         ),
         children: [
+          //child değişmeyen yenilenmeyen alt öğe
           // availableCategories.map((category) => CategoryGridItem(category: category)).toList()
           for (final category in availableCategories)
             CategoryGridItem(
