@@ -30,7 +30,7 @@ class _CategoriesScreenState extends State<CategoriesScreen>
       vsync:
           this, // this _CategoriesScreenState sınıfının nesnesine referanas verir
       duration: Duration(
-        milliseconds: 300,
+        milliseconds: 1000,
       ),
       lowerBound: 0, // animationController her zaman iki değer arasında çalışır
       upperBound: 1, //0 ile 1 arası standart
@@ -66,16 +66,17 @@ class _CategoriesScreenState extends State<CategoriesScreen>
       animation: _animationController,
       builder: (context, child) {
         return SlideTransition(
-          child: child,
-          position: _animationController.drive(
-            Tween(
-              begin: Offset(0, 1), end: Offset(0, 0), // gerçek konumu //offset ters mantık çalışır.
-            ),
-          ),
-        ); //Drive AnimationController lowerBound ve upperBound değerlerini buradaki değerlere dönüştürür.
+            child: child,
+            position: Tween(
+              begin: Offset(0, 5),
+              end: Offset(0, 0), // gerçek konumu //offset ters mantık çalışır.
+            ).animate(CurvedAnimation(
+                parent: _animationController,
+                curve: Curves
+                    .easeOutQuint))); //Drive AnimationController lowerBound ve upperBound değerlerini buradaki değerlere dönüştürür.
       },
       child: GridView(
-        padding: const EdgeInsets.all(24), //4.45
+        padding: const EdgeInsets.all(24),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 3 / 2,
