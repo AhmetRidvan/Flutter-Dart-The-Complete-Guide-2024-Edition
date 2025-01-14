@@ -3,8 +3,6 @@ import 'package:animations/providers/favorites_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-
-
 class MealDetailsScreen extends ConsumerWidget {
   const MealDetailsScreen({
     super.key,
@@ -34,7 +32,12 @@ class MealDetailsScreen extends ConsumerWidget {
                 ),
               );
             },
-            icon: Icon(isFavorite ? Icons.star : Icons.star_border),
+            icon: AnimatedSwitcher(
+                duration: Duration(seconds: 1),
+                transitionBuilder: (child, anima) {
+                  return ; 
+                },
+                child: Icon(isFavorite ? Icons.star : Icons.star_border)),
           )
         ]),
         body: SingleChildScrollView(
@@ -59,7 +62,7 @@ class MealDetailsScreen extends ConsumerWidget {
                 Text(
                   ingredient,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Theme.of(context).colorScheme.onBackground,
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                 ),
               const SizedBox(height: 24),
@@ -81,7 +84,7 @@ class MealDetailsScreen extends ConsumerWidget {
                     step,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Theme.of(context).colorScheme.onBackground,
+                          color: Theme.of(context).colorScheme.onSurface,
                         ),
                   ),
                 ),

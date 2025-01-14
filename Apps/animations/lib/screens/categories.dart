@@ -66,14 +66,14 @@ class _CategoriesScreenState extends State<CategoriesScreen>
       animation: _animationController,
       builder: (context, child) {
         return SlideTransition(
-            child: child,
             position: Tween(
               begin: Offset(0, 5),
               end: Offset(0, 0), // gerçek konumu //offset ters mantık çalışır.
             ).animate(CurvedAnimation(
                 parent: _animationController,
                 curve: Curves
-                    .easeOutQuint))); //Drive AnimationController lowerBound ve upperBound değerlerini buradaki değerlere dönüştürür.
+                    .easeOutQuint)),
+            child: child); //Drive AnimationController lowerBound ve upperBound değerlerini buradaki değerlere dönüştürür.
       },
       child: GridView(
         padding: const EdgeInsets.all(24),

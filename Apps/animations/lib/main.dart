@@ -13,7 +13,7 @@ final theme = ThemeData(
   textTheme: GoogleFonts.latoTextTheme(),
 );
 
-void main() { 
+void main() { //4:40
   runApp(
     const ProviderScope(
       child: App(),
