@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
-class MainDrawer extends StatelessWidget {
+class MainDrawer extends StatefulWidget {
   const MainDrawer({super.key, required this.onSelectScreen});
 
   final void Function(String identifier) onSelectScreen;
 
+  @override
+  State<MainDrawer> createState() => _MainDrawerState();
+}
+
+class _MainDrawerState extends State<MainDrawer> {
+  bool dogrumu = false;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -56,7 +62,7 @@ class MainDrawer extends StatelessWidget {
                   ),
             ),
             onTap: () {
-              onSelectScreen('meals');
+              widget.onSelectScreen('meals');
             },
           ),
           ListTile(
@@ -73,9 +79,23 @@ class MainDrawer extends StatelessWidget {
                   ),
             ),
             onTap: () {
-              onSelectScreen('filters');
+              widget.onSelectScreen('filters');
             },
           ),
+          AnimatedCrossFade(
+              firstChild: Icon(Icons.adb_outlined),
+              secondChild: Icon(Icons.ac_unit_rounded),
+              crossFadeState: dogrumu
+                  ? CrossFadeState.showFirst
+                  : CrossFadeState.showSecond,
+              duration: Duration(seconds: 2)),
+          ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  dogrumu = !dogrumu;
+                });
+              },
+              child: Text("AnimatedCrossFade"))
         ],
       ),
     );

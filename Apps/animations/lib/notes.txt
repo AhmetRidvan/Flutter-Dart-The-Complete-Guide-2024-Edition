@@ -1,5 +1,5 @@
-Explicit animation = Her şey senin kontrolündedir dolayısıyla daha zahmetli
-Implicit animation = Kontrol Flutter'dadır ve daha az zahmetli
+Explicit açık animation = Her şey senin kontrolündedir dolayısıyla daha zahmetli 
+Implicit örtük animation = Kontrol Flutter'dadır ve daha az zahmetli
 
 late _falanFilan = kullanıldığında bir değer sahip olacak
 her sınıf beraberinde kendi türünüde getirir.

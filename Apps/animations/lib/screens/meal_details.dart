@@ -33,11 +33,21 @@ class MealDetailsScreen extends ConsumerWidget {
               );
             },
             icon: AnimatedSwitcher(
-                duration: Duration(seconds: 1),
-                transitionBuilder: (child, anima) {
-                  return ; 
-                },
-                child: Icon(isFavorite ? Icons.star : Icons.star_border)),
+              duration: Duration(seconds: 1),
+              transitionBuilder: (child, animation) {
+                //child değiştikçe animasyon oynar
+                return RotationTransition(
+                  
+                  turns: Tween<double>(begin: 0.9, end: 1).animate(animation),
+                  child: child,
+                ); // burada nasıl değişmesi gerektiğini söylüyoruz
+              },
+              child: Icon(
+                isFavorite ? Icons.star : Icons.star_border,
+                key: ValueKey(isFavorite),
+              ),
+            ),
+            //key aynı tür farklı verili iki widget arasında ayrım yapmaya yarar
           )
         ]),
         body: SingleChildScrollView(
