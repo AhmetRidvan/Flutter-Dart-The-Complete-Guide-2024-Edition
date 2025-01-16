@@ -37,7 +37,6 @@ class MealDetailsScreen extends ConsumerWidget {
               transitionBuilder: (child, animation) {
                 //child değiştikçe animasyon oynar
                 return RotationTransition(
-                  
                   turns: Tween<double>(begin: 0.9, end: 1).animate(animation),
                   child: child,
                 ); // burada nasıl değişmesi gerektiğini söylüyoruz
@@ -53,11 +52,14 @@ class MealDetailsScreen extends ConsumerWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Image.network(
-                meal.imageUrl,
-                height: 300,
-                width: double.infinity,
-                fit: BoxFit.cover,
+              Hero(
+                tag: meal.id,
+                child: Image.network(
+                  meal.imageUrl,
+                  height: 300,  
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
               ),
               const SizedBox(height: 14),
               Text(
