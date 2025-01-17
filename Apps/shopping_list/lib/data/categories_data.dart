@@ -1,19 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_list/model/category_model.dart';
 
-enum CategoriesEnum {
-  vegetables,
-  fruit,
-  meat,
-  dairy,
-  carbs,
-  sweets,
-  spices,
-  convenience,
-  hygiene,
-  other
-}
-
 var categoriesMap = {
   CategoriesEnum.vegetables: CategoryModel(
     'Vegetables',
@@ -56,3 +43,16 @@ var categoriesMap = {
     Color.fromARGB(255, 0, 225, 255),
   ),
 };
+
+enum CategoriesEnum {
+  vegetables,
+  fruit,
+  meat,
+  dairy,
+  carbs,
+  sweets,
+  spices,
+  convenience,
+  hygiene,
+  other
+}

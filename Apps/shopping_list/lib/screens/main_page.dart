@@ -26,7 +26,7 @@ class _MainPage extends State<MainPage> {
               itemBuilder: (context, index) {
                 return ListTile(
                   leading: Container(
-                    color: groceryItemsList[index].category.renk,
+                    color: groceryItemsList[index].category.color,
                     width: 30,
                     height: 30,
                   ),

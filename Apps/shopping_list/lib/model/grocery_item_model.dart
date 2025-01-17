@@ -7,7 +7,7 @@ class GroceryItemModel {
   CategoryModel category;
 
   GroceryItemModel(
-      {required this.id,
+      {required this.id, 
       required this.name,
       required this.quantity,
       required this.category});

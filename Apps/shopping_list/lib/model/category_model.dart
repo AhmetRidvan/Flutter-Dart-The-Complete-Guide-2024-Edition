@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CategoryModel {
-  String name;
-  Color renk;
+  String title;
+  Color color;
 
-  CategoryModel(this.name, this.renk);
+  CategoryModel(this.title, this.color);
 }
