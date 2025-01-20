@@ -4,7 +4,7 @@ import 'package:shopping_list/model/category_model.dart';
 var categoriesMap = {
   CategoriesEnum.vegetables: CategoryModel(
     'Vegetables',
-    Color.fromARGB(255, 0, 255, 128),
+    Color.fromARGB(255, 0, 255, 128), 
   ),
   CategoriesEnum.fruit: CategoryModel(
     'Fruit',

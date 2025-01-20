@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_list/widgets/grocery_list.dart';
-import 'package:shopping_list/widgets/new_item.dart';
 
 void main() {
   runApp(MyApp());
