@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shopping_list/widgets/grocery_list.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MyApp()); //4:30
 }
 
 class MyApp extends StatelessWidget {
@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
         colorScheme: ColorScheme.fromSeed(
+          
           seedColor: Colors.pinkAccent,
           brightness: Brightness.dark,
         ),

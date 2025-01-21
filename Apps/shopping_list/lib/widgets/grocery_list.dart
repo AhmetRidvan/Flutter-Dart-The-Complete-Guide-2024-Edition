@@ -21,7 +21,9 @@ class _GroceryListState extends State<GroceryList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.onPrimary,
       appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.onPrimary,
         actions: [
           IconButton(
             onPressed: _addItem,

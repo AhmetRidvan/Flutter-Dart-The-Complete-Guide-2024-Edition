@@ -1,0 +1,4 @@
+entries map'in key ve valuelerini kullanabilmeni sağlar
+
+ve &&
+veya ||
