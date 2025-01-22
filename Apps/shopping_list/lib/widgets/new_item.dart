@@ -15,7 +15,7 @@ class _NewItem extends State<NewItem> {
   final _formKey = GlobalKey<FormState>();
 
   void _save() {
-    print("asd");
+    
   }
 
   @override
@@ -38,7 +38,7 @@ class _NewItem extends State<NewItem> {
                     validator: (value) {
                       if (value == null ||
                           value.isEmpty ||
-                          value.trim().length <= 1 || //0:18
+                          value.trim().length <= 1 ||
                           value.trim().length > 50) {
                         return "Must be between 1 and 50 characters";
                       } else {
