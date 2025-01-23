@@ -6,7 +6,7 @@ void main() {
 }
 /*
  4:30
-https://www.youtube.com/watch?v=bIkcWIWb70Y
+
 */
 
 
@@ -17,7 +17,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
         colorScheme: ColorScheme.fromSeed(
-          
           seedColor: Colors.pinkAccent,
           brightness: Brightness.dark,
         ),

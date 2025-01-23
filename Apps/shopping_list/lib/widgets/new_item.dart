@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_list/data/categories_data.dart';
+import 'package:shopping_list/model/category_model.dart';
 
 class NewItem extends StatefulWidget {
   const NewItem({super.key});
@@ -13,9 +14,19 @@ class _NewItem extends State<NewItem> {
   //GlobalKey Formun durum yönetiminde tam kontrol sağlar bu yüzden Form için tercih edilir.
   //build yeniden çalıştırıldığında durumu yinede korur.
   final _formKey = GlobalKey<FormState>();
+  String _enteredName = "";
+  int _enteredQuantity = 1;
+  CategoryModel _selectedCategory = categoriesMap[CategoriesEnum.vegetables]!;
 
   void _save() {
-    
+    if (_formKey.currentState!.validate()) {
+      //doğrulamadan geçer ise
+      //Doğrulamadan geçer ise kaydedicek
+      _formKey.currentState!.save();
+      print(_enteredName);
+      print(_enteredQuantity);
+      print(_selectedCategory.title);
+    }
   }
 
   @override
@@ -34,6 +45,9 @@ class _NewItem extends State<NewItem> {
               child: Column(
                 children: [
                   TextFormField(
+                    onChanged: (value) {
+                      _enteredName = value;
+                    },
                     maxLength: 50,
                     validator: (value) {
                       if (value == null ||
@@ -54,6 +68,7 @@ class _NewItem extends State<NewItem> {
                     children: [
                       Expanded(
                           child: TextFormField(
+                        keyboardType: TextInputType.number,
                         validator: (value) {
                           if (value == null ||
                               value.isEmpty ||
@@ -64,14 +79,18 @@ class _NewItem extends State<NewItem> {
                             return null; //buradaki null değer geçerli demek
                           }
                         },
+                        initialValue: _enteredQuantity.toString(),
+                        onChanged: (value) {
+                          _enteredQuantity = int.tryParse(value)!;
+                        },
                         decoration: InputDecoration(label: Text("Quantity")),
-                        initialValue: "1",
                       )),
                       SizedBox(
                         width: 10,
                       ),
                       Expanded(
                         child: DropdownButtonFormField(
+                          value: _selectedCategory,
                           dropdownColor:
                               Theme.of(context).colorScheme.onPrimary,
                           // seçili öğeyi göstermek için
@@ -95,7 +114,9 @@ class _NewItem extends State<NewItem> {
                                     ],
                                   )),
                           ],
-                          onChanged: (value) {},
+                          onChanged: (value) {
+                            _selectedCategory = value!;
+                          },
                         ),
                       )
                     ],
@@ -106,7 +127,11 @@ class _NewItem extends State<NewItem> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      TextButton(onPressed: () {}, child: Text("Reset")),
+                      TextButton(
+                          onPressed: () {
+                            _formKey.currentState!.reset();
+                          },
+                          child: Text("Reset")),
                       ElevatedButton(onPressed: _save, child: Text("Add Item"))
                     ],
                   )
