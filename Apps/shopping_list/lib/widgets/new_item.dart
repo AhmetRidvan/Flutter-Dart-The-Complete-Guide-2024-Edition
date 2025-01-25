@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_list/data/categories_data.dart';
 import 'package:shopping_list/model/category_model.dart';
+import 'package:shopping_list/model/grocery_item_model.dart';
 
 class NewItem extends StatefulWidget {
   const NewItem({super.key});
@@ -23,9 +24,12 @@ class _NewItem extends State<NewItem> {
       //doğrulamadan geçer ise
       //Doğrulamadan geçer ise kaydedicek
       _formKey.currentState!.save();
-      print(_enteredName);
-      print(_enteredQuantity);
-      print(_selectedCategory.title);
+      Navigator.of(context).pop(GroceryItemModel(
+        id: DateTime.now().toString(),
+        name: _enteredName,
+        quantity: _enteredQuantity,
+        category: _selectedCategory,
+      ));
     }
   }
 
@@ -46,7 +50,9 @@ class _NewItem extends State<NewItem> {
                 children: [
                   TextFormField(
                     onChanged: (value) {
-                      _enteredName = value;
+                      setState(() {
+                        _enteredName = value;
+                      });
                     },
                     maxLength: 50,
                     validator: (value) {
@@ -81,7 +87,14 @@ class _NewItem extends State<NewItem> {
                         },
                         initialValue: _enteredQuantity.toString(),
                         onChanged: (value) {
-                          _enteredQuantity = int.tryParse(value)!;
+                          setState(() {
+                            int? parseredValue = int.tryParse(value);
+                            if (parseredValue != null) {
+                              _enteredQuantity = parseredValue;
+                            } else {
+                              _enteredQuantity = 1;
+                            }
+                          });
                         },
                         decoration: InputDecoration(label: Text("Quantity")),
                       )),
@@ -115,7 +128,9 @@ class _NewItem extends State<NewItem> {
                                   )),
                           ],
                           onChanged: (value) {
-                            _selectedCategory = value!;
+                            setState(() {
+                              _selectedCategory = value!;
+                            });
                           },
                         ),
                       )
