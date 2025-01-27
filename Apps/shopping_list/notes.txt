@@ -2,3 +2,5 @@ entries map'in key ve valuelerini kullanabilmeni sağlar
 
 ve &&
 veya ||
+
+headers request'e içerik hakkında ek bilgi sağlar sunucuya.

@@ -2,13 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shopping_list/widgets/grocery_list.dart';
 
 void main() {
-  runApp(MyApp()); 
+  runApp(MyApp()); // 7:59
 }
-/*
- 4:30
-
-*/
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

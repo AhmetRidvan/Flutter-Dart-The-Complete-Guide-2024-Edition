@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:shopping_list/data/categories_data.dart';
 import 'package:shopping_list/model/category_model.dart';
 import 'package:shopping_list/model/grocery_item_model.dart';
+
+import 'package:http/http.dart' as http;
 
 class NewItem extends StatefulWidget {
   const NewItem({super.key});
@@ -24,6 +28,17 @@ class _NewItem extends State<NewItem> {
       //doğrulamadan geçer ise
       //Doğrulamadan geçer ise kaydedicek
       _formKey.currentState!.save();
+      final _url = Uri.https('my-database-880f1-default-rtdb.firebaseio.com',
+          'shopping_list.json');
+      http.post(_url,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: json.encode({
+            'name': _enteredName,
+            'quantity': _enteredQuantity,
+            'category': _selectedCategory.title,
+          }));
       Navigator.of(context).pop(GroceryItemModel(
         id: DateTime.now().toString(),
         name: _enteredName,
