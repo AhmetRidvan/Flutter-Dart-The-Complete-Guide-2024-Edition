@@ -4,3 +4,5 @@ ve &&
 veya ||
 
 headers request'e içerik hakkında ek bilgi sağlar sunucuya.
+
+mounted o widget'in widget ağacında olup olmadığı kontrol eder.

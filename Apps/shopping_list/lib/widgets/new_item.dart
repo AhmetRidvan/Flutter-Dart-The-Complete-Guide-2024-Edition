@@ -23,14 +23,16 @@ class _NewItem extends State<NewItem> {
   int _enteredQuantity = 1;
   CategoryModel _selectedCategory = categoriesMap[CategoriesEnum.vegetables]!;
 
-  void _save() {
+  void _save() async {
     if (_formKey.currentState!.validate()) {
       //doğrulamadan geçer ise
       //Doğrulamadan geçer ise kaydedicek
       _formKey.currentState!.save();
-      final _url = Uri.https('my-database-880f1-default-rtdb.firebaseio.com',
-          'shopping_list.json');
-      http.post(_url,
+      final _url = Uri.https(
+        'my-database-880f1-default-rtdb.firebaseio.com',
+        'shopping_list.json',
+      );
+      var r1 = await http.post(_url,
           headers: {
             'Content-Type': 'application/json',
           },
@@ -39,12 +41,20 @@ class _NewItem extends State<NewItem> {
             'quantity': _enteredQuantity,
             'category': _selectedCategory.title,
           }));
-      Navigator.of(context).pop(GroceryItemModel(
-        id: DateTime.now().toString(),
-        name: _enteredName,
-        quantity: _enteredQuantity,
-        category: _selectedCategory,
-      ));
+
+      print(r1.body);
+      print(r1.statusCode);
+
+      if (mounted) {
+        Navigator.pop(context);
+      }
+
+      // Navigator.of(context).pop(GroceryItemModel(
+      //   id: DateTime.now().toString(),
+      //   name: _enteredName,
+      //   quantity: _enteredQuantity,
+      //   category: _selectedCategory,
+      // ));
     }
   }
 
