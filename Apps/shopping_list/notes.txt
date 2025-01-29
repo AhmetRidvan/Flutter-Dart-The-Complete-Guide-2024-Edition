@@ -6,3 +6,6 @@ veya ||
 headers request'e içerik hakkında ek bilgi sağlar sunucuya.
 
 mounted o widget'in widget ağacında olup olmadığı kontrol eder.
+
+encode json'a çeviriyor
+decode dart'a dönüştürüyor
