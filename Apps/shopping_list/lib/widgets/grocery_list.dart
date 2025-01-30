@@ -16,27 +16,40 @@ class GroceryList extends StatefulWidget {
 }
 
 class _GroceryListState extends State<GroceryList> {
+  List<GroceryItemModel> _groceryItems = [];
+
   @override
   void initState() {
     super.initState();
     _loadItems();
   }
 
-  List<GroceryItemModel> _groceryItems = [];
-
   void _loadItems() async {
     final _url = Uri.https(
         'my-database-880f1-default-rtdb.firebaseio.com', 'shopping_list.json');
     final response = await http.get(_url);
     final List<GroceryItemModel> _temporaryList = [];
-    Map<String, Map<String, dynamic>> listData = json.decode(response.body);
+    Map<String, dynamic> listData = json.decode(response.body); //!
+    print(listData);
     for (final x in listData.entries) {
-      _temporaryList.add(GroceryItemModel(
-          id: x.key,
-          name: x.value["name"],
-          quantity: x.value["quantity"],
-          category: CategoryModel(x.value["category"], )));
+      final category = categoriesMap.entries.firstWhere(
+        //where ile dene
+
+        (element) {
+          return element.value.title == x.value["category"];
+        },
+      );
+      _temporaryList.add(
+        GroceryItemModel(
+            id: x.key,
+            name: x.value["name"],
+            quantity: x.value["quantity"],
+            category: category.value),
+      );
     }
+    setState(() {
+      _groceryItems = _temporaryList;
+    });
   }
 
   void _addItem() async {
