@@ -21,6 +21,8 @@ class _NewItem extends State<NewItem> {
   final _formKey = GlobalKey<FormState>();
   String _enteredName = "";
   int _enteredQuantity = 1;
+  var _isSending = false;
+
   CategoryModel _selectedCategory = categoriesMap[CategoriesEnum.vegetables]!;
 
   void _save() async {
@@ -28,11 +30,15 @@ class _NewItem extends State<NewItem> {
       //doğrulamadan geçer ise
       //Doğrulamadan geçer ise kaydedicek
       _formKey.currentState!.save();
+      setState(() {
+        _isSending = true;
+      });
+
       final _url = Uri.https(
         'my-database-880f1-default-rtdb.firebaseio.com',
         'shopping_list.json',
       );
-      var r1 = await http.post(_url,
+      var _response = await http.post(_url,
           headers: {
             'Content-Type': 'application/json',
           },
@@ -42,13 +48,17 @@ class _NewItem extends State<NewItem> {
             'category': _selectedCategory.title,
           }));
 
-      print(r1.body);
-      print(r1.statusCode);
+      final Map<String, dynamic> _formattedResponse =
+          json.decode(_response.body);
 
       if (mounted) {
-        Navigator.pop(context);
+        Navigator.of(context).pop(GroceryItemModel(
+            id: _formattedResponse["name"],
+            name: _enteredName,
+            quantity: _enteredQuantity,
+            category: _selectedCategory));
       }
-
+      
       // Navigator.of(context).pop(GroceryItemModel(
       //   id: DateTime.now().toString(),
       //   name: _enteredName,
@@ -168,11 +178,21 @@ class _NewItem extends State<NewItem> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(
-                          onPressed: () {
-                            _formKey.currentState!.reset();
-                          },
+                          onPressed: _isSending
+                              ? null
+                              : () {
+                                  _formKey.currentState!.reset();
+                                },
                           child: Text("Reset")),
-                      ElevatedButton(onPressed: _save, child: Text("Add Item"))
+                      ElevatedButton(
+                        onPressed: _isSending ? null : _save,
+                        child: _isSending
+                            ? SizedBox(
+                                width: 16,
+                                height: 16,
+                                child: CircularProgressIndicator())
+                            : Text("Add Item"),
+                      ),
                     ],
                   )
                 ],

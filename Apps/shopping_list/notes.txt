@@ -9,3 +9,10 @@ mounted o widget'in widget ağacında olup olmadığı kontrol eder.
 
 encode json'a çeviriyor
 decode dart'a dönüştürüyor
+
+state bir widget'in verileri ve özellikleri demek
+
+const derleme 
+final çalışma ve 2.kez atanamaz.
+
+setState widget ağacı yeniden oluşur.

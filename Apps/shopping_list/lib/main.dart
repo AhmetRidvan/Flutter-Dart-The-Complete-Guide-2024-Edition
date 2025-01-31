@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shopping_list/widgets/grocery_list.dart';
 
 void main() {
-  runApp(MyApp()); //1:49
+  runApp(MyApp()); //1:54 
 }
 
 class MyApp extends StatelessWidget {

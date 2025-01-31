@@ -17,6 +17,7 @@ class GroceryList extends StatefulWidget {
 
 class _GroceryListState extends State<GroceryList> {
   List<GroceryItemModel> _groceryItems = [];
+  bool _isloading = true;
 
   @override
   void initState() {
@@ -25,41 +26,52 @@ class _GroceryListState extends State<GroceryList> {
   }
 
   void _loadItems() async {
-    final _url = Uri.https(
-        'my-database-880f1-default-rtdb.firebaseio.com', 'shopping_list.json');
-    final response = await http.get(_url);
-    final List<GroceryItemModel> _temporaryList = [];
-    Map<String, dynamic> listData = json.decode(response.body); //!
-    print(listData);
-    for (final x in listData.entries) {
-      final category = categoriesMap.entries.firstWhere(
-        //where ile dene
+    final _url = Uri.https('asdasdasd',
+        'shopping_list.json'); //my-database-880f1-default-rtdb.firebaseio.com
 
-        (element) {
-          return element.value.title == x.value["category"];
-        },
-      );
-      _temporaryList.add(
-        GroceryItemModel(
-            id: x.key,
-            name: x.value["name"],
-            quantity: x.value["quantity"],
-            category: category.value),
-      );
+    final response = await http.get(_url);
+    print(response.statusCode);
+    final List<GroceryItemModel> _temporaryList = [];
+
+    Map<String, dynamic>? listData = json.decode(response.body);
+    if (listData != null) {
+      for (final x in listData.entries) {
+        final category = categoriesMap.entries.firstWhere(
+          (element) {
+            return element.value.title == x.value["category"];
+          },
+        );
+        _temporaryList.add(
+          GroceryItemModel(
+              id: x.key,
+              name: x.value["name"],
+              quantity: x.value["quantity"],
+              category: category.value),
+        );
+      }
+      setState(() {
+        _groceryItems = _temporaryList;
+        _isloading = false;
+      });
     }
-    setState(() {
-      _groceryItems = _temporaryList;
-    });
   }
 
   void _addItem() async {
-    await Navigator.of(context).push(MaterialPageRoute(
+    final newItem =
+        await Navigator.of(context).push<GroceryItemModel>(MaterialPageRoute(
       builder: (context) {
         return NewItem();
       },
     ));
 
-    _loadItems();
+    if (newItem == null) {
+      return;
+    } else {
+      setState(() {
+        groceryItemsList.add(newItem);
+        _loadItems();
+      });
+    }
   }
 
   void _removeFromList(GroceryItemModel m1) {
@@ -75,6 +87,12 @@ class _GroceryListState extends State<GroceryList> {
     Widget _content = Center(
       child: Text("Nothing here"),
     );
+
+    if (_isloading) {
+      _content = Center(
+        child: CircularProgressIndicator(),
+      );
+    }
 
     if (_groceryItems.isNotEmpty) {
       _content = ListView.builder(
