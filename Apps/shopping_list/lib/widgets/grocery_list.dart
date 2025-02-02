@@ -31,9 +31,16 @@ class _GroceryListState extends State<GroceryList> {
         'my-database-880f1-default-rtdb.firebaseio.com', 'shopping_list.json');
     try {
       final response = await http.get(_url);
-
-      print(response.statusCode);
       final List<GroceryItemModel> _temporaryList = [];
+
+      throw Exception("Error");
+
+      if (response.body == "null") {
+        setState(() {
+          _isloading = false;
+        });
+        return;
+      }
 
       Map<String, dynamic>? listData = json.decode(response.body);
       if (listData != null) {
@@ -83,17 +90,27 @@ class _GroceryListState extends State<GroceryList> {
     }
   }
 
-  void _removeFromList(GroceryItemModel m1) {
-    final _url = Uri.https("my-database-880f1-default-rtdb.firebaseio.com",
-        "shopping_list/${m1.id}.json");
-    http.delete(_url);
+  void _removeFromList(GroceryItemModel m1) async {
+    final _index = _groceryItems.indexOf(m1);
     setState(() {
       _groceryItems.remove(m1);
     });
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text("Deleted"),
-      backgroundColor: Theme.of(context).colorScheme.primary,
-    ));
+
+    final _url = Uri.https("my-database-880f1-default-rtdb.firebaseio.com",
+        "shopping_list/${m1.id}.json");
+    final response = await http.delete(_url);
+    if (response.statusCode >= 400) {
+      setState(() {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Error, try again later!")));
+        _groceryItems.insert(_index, m1);
+      });
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Deleted"),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+      ));
+    }
   }
 
   @override
