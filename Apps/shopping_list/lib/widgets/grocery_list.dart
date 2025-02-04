@@ -26,50 +26,35 @@ class _GroceryListState extends State<GroceryList> {
     _loadItems();
   }
 
-  void _loadItems() async {
-    final _url = Uri.https(
+  Future<List<GroceryItemModel>> _loadItems() async {
+    final url = Uri.https(
         'my-database-880f1-default-rtdb.firebaseio.com', 'shopping_list.json');
-    try {
-      final response = await http.get(_url);
-      final List<GroceryItemModel> _temporaryList = [];
 
-      throw Exception("Error");
+    final response = await http.get(url);
+    final List<GroceryItemModel> temporaryList = [];
 
-      if (response.body == "null") {
-        setState(() {
-          _isloading = false;
-        });
-        return;
-      }
-
-      Map<String, dynamic>? listData = json.decode(response.body);
-      if (listData != null) {
-        for (final x in listData.entries) {
-          final category = categoriesMap.entries.firstWhere(
-            (element) {
-              return element.value.title == x.value["category"];
-            },
-          );
-          _temporaryList.add(
-            GroceryItemModel(
-                id: x.key,
-                name: x.value["name"],
-                quantity: x.value["quantity"],
-                category: category.value),
-          );
-        }
-        setState(() {
-          _groceryItems = _temporaryList;
-          _isloading = false;
-        });
-      }
-    } catch (e) {
-      setState(() {
-        _error = "Failed to fetch data. Please try again later.";
-        print(e);
-        print(_error);
-      });
+    if (response.body == "null") {
+      return [];
     }
+
+    Map<String, dynamic>? listData = json.decode(response.body);
+    if (listData != null) {
+      for (final x in listData.entries) {
+        final category = categoriesMap.entries.firstWhere(
+          (element) {
+            return element.value.title == x.value["category"];
+          },
+        );
+        temporaryList.add(
+          GroceryItemModel(
+              id: x.key,
+              name: x.value["name"],
+              quantity: x.value["quantity"],
+              category: category.value),
+        );
+      }
+    }
+    return temporaryList;
   }
 
   void _addItem() async {
@@ -91,19 +76,19 @@ class _GroceryListState extends State<GroceryList> {
   }
 
   void _removeFromList(GroceryItemModel m1) async {
-    final _index = _groceryItems.indexOf(m1);
+    final index = _groceryItems.indexOf(m1);
     setState(() {
       _groceryItems.remove(m1);
     });
 
-    final _url = Uri.https("my-database-880f1-default-rtdb.firebaseio.com",
+    final url = Uri.https("my-database-880f1-default-rtdb.firebaseio.com",
         "shopping_list/${m1.id}.json");
-    final response = await http.delete(_url);
+    final response = await http.delete(url);
     if (response.statusCode >= 400) {
       setState(() {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text("Error, try again later!")));
-        _groceryItems.insert(_index, m1);
+        _groceryItems.insert(index, m1);
       });
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -115,18 +100,18 @@ class _GroceryListState extends State<GroceryList> {
 
   @override
   Widget build(BuildContext context) {
-    Widget _content = Center(
+    Widget content = Center(
       child: Text("Nothing here"),
     );
 
     if (_isloading) {
-      _content = Center(
+      content = Center(
         child: CircularProgressIndicator(),
       );
     }
 
     if (_groceryItems.isNotEmpty) {
-      _content = ListView.builder(
+      content = ListView.builder(
         itemCount: _groceryItems.length,
         itemBuilder: (context, index) {
           return Dismissible(
@@ -157,7 +142,7 @@ class _GroceryListState extends State<GroceryList> {
     }
 
     if (_error != null) {
-      _content = Center(
+      content = Center(
         child: Text(_error!),
       );
     }
@@ -174,6 +159,11 @@ class _GroceryListState extends State<GroceryList> {
           ],
           title: Text("Your Groceries"),
         ),
-        body: _content);
+        body: FutureBuilder(
+          future: _loadItems(),
+          builder: (context, snapshot) {
+            return ;
+          },
+        ));
   }
 }

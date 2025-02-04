@@ -16,3 +16,5 @@ const derleme
 final çalışma ve 2.kez atanamaz.
 
 setState widget ağacı yeniden oluşur.
+
+throw Exception kasten hata almak için kullanılır

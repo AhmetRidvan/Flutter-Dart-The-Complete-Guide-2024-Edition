@@ -34,31 +34,35 @@ class _NewItem extends State<NewItem> {
         _isSending = true;
       });
 
-      final _url = Uri.https(
+      final url = Uri.https(
         'my-database-880f1-default-rtdb.firebaseio.com',
         'shopping_list.json',
       );
-      var _response = await http.post(_url,
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: json.encode({
-            'name': _enteredName,
-            'quantity': _enteredQuantity,
-            'category': _selectedCategory.title,
-          }));
+      try {
+        var response = await http.post(url,
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: json.encode({
+              'name': _enteredName,
+              'quantity': _enteredQuantity,
+              'category': _selectedCategory.title,
+            }));
 
-      final Map<String, dynamic> _formattedResponse =
-          json.decode(_response.body);
+        final Map<String, dynamic> formattedResponse =
+            json.decode(response.body);
 
-      if (mounted) {
-        Navigator.of(context).pop(GroceryItemModel(
-            id: _formattedResponse["name"],
-            name: _enteredName,
-            quantity: _enteredQuantity,
-            category: _selectedCategory));
+        if (mounted) {
+          Navigator.of(context).pop(GroceryItemModel(
+              id: formattedResponse["name"],
+              name: _enteredName,
+              quantity: _enteredQuantity,
+              category: _selectedCategory));
+        }
+      } catch (e) {
+        print("Error");
       }
-      
+
       // Navigator.of(context).pop(GroceryItemModel(
       //   id: DateTime.now().toString(),
       //   name: _enteredName,
