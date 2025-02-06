@@ -16,7 +16,6 @@ class GroceryList extends StatefulWidget {
 }
 
 class _GroceryListState extends State<GroceryList> {
-  final List<GroceryItemModel> _groceryItems = [];
   late Future<List<GroceryItemModel>> _loadedItems;
 
   @override
@@ -72,16 +71,16 @@ class _GroceryListState extends State<GroceryList> {
       return;
     } else {
       setState(() {
-        groceryItemsList.add(newItem);
-        _loadItems();
+        _loadedItems = _loadItems();
       });
     }
   }
 
   void _removeFromList(GroceryItemModel m1) async {
-    final index = _groceryItems.indexOf(m1);
+    final items = await _loadedItems;
+    final index = items.indexOf(m1);
     setState(() {
-      _groceryItems.remove(m1);
+      items.remove(m1);
     });
 
     final url = Uri.https("my-database-880f1-default-rtdb.firebaseio.com",
@@ -91,7 +90,7 @@ class _GroceryListState extends State<GroceryList> {
       setState(() {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text("Error, try again later!")));
-        _groceryItems.insert(index, m1);
+        items.insert(index, m1);
       });
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
