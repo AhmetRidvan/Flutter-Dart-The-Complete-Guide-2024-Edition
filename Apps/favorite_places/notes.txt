@@ -1,0 +1,2 @@
+const derleme sırasın da sabit
+final çalışma sırasın da 2. atama yok
