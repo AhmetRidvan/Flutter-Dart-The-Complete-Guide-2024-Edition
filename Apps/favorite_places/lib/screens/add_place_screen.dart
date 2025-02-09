@@ -1,16 +1,31 @@
+import 'package:favorite_places/providers/user_places.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AddPlaceScreen extends StatefulWidget {
+class AddPlaceScreen extends ConsumerStatefulWidget {
   const AddPlaceScreen({super.key});
 
   @override
-  State<StatefulWidget> createState() {
+  ConsumerState<AddPlaceScreen> createState() {
     return _addPlaceScren();
   }
 }
 
-class _addPlaceScren extends State<AddPlaceScreen> {
+class _addPlaceScren extends ConsumerState<AddPlaceScreen> {
   final _titleController = TextEditingController();
+
+  void addPlace() {
+    final enteredText = _titleController.text;
+    if (enteredText.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("No imput"),
+        backgroundColor: Colors.red,
+      ));
+      return;
+    }
+    ref.read(UserPlacesNotifierProvider.notifier).addPlace(enteredText);
+    Navigator.of(context).pop();
+  }
 
   @override
   void dispose() {
@@ -48,7 +63,9 @@ class _addPlaceScren extends State<AddPlaceScreen> {
               height: 20,
             ),
             ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: () {
+                addPlace();
+              },
               label: Text("Add place"),
               icon: Icon(Icons.add),
             ),

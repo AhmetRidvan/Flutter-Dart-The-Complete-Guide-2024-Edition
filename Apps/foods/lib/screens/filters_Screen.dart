@@ -6,7 +6,7 @@ import 'package:foods/widgets/SwitchListTileWidget.dart';
 import 'package:foods/widgets/app_bar.dart';
 
 class FiltersScreen extends ConsumerWidget {
-  FiltersScreen({
+  const FiltersScreen({
     super.key,
   });
 
@@ -22,7 +22,7 @@ class FiltersScreen extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SwitchListTile(
-              title: Text("glutenFree"),
+              title: const Text("glutenFree"),
               onChanged: (value) {
                 ref
                     .read(filtersProvider.notifier)
@@ -31,7 +31,7 @@ class FiltersScreen extends ConsumerWidget {
               value: activeFilters[Filter.glutenFree]!,
             ),
             SwitchListTile(
-              title: Text("lactoseFree"),
+              title: const Text("lactoseFree"),
               onChanged: (value) {
                 ref
                     .read(filtersProvider.notifier)
@@ -40,7 +40,7 @@ class FiltersScreen extends ConsumerWidget {
               value: activeFilters[Filter.lactoseFree]!,
             ),
             SwitchListTile(
-              title: Text("vegetarian"),
+              title: const Text("vegetarian"),
               onChanged: (value) {
                 ref
                     .read(filtersProvider.notifier)
@@ -49,7 +49,7 @@ class FiltersScreen extends ConsumerWidget {
               value: activeFilters[Filter.vegetarian]!,
             ),
             SwitchListTile(
-              title: Text("vegan"),
+              title: const Text("vegan"),
               onChanged: (value) {
                 ref
                     .read(filtersProvider.notifier)
