@@ -33,9 +33,7 @@ final theme = ThemeData().copyWith(
       fontWeight: FontWeight.bold,
     ),
     titleMedium: GoogleFonts.pixelifySans(
-      fontWeight: FontWeight.bold,
-      color: color.onSurface
-    ),
+        fontWeight: FontWeight.bold, color: color.onSurface),
     titleLarge: GoogleFonts.pixelifySans(
       fontWeight: FontWeight.bold,
     ),
