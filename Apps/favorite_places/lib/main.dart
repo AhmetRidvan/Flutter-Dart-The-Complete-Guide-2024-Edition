@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(ProviderScope(child: MyApp())); //2:29
+  runApp(ProviderScope(child: MyApp())); //1:40
 }
 
 class MyApp extends StatefulWidget {

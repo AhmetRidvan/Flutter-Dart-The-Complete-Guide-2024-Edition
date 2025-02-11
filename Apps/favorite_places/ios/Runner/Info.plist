@@ -4,6 +4,12 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Pick your favorite place image</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Access you camreta</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Acces you microphone</string>
 	<key>CFBundleDisplayName</key>
 	<string>Favorite Places</string>
 	<key>CFBundleExecutable</key>

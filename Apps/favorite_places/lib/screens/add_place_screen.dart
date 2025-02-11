@@ -24,7 +24,7 @@ class _addPlaceScren extends ConsumerState<AddPlaceScreen> {
       ));
       return;
     }
-    ref.read(UserPlacesNotifierProvider.notifier).addPlace(enteredText);
+    ref.read(UserPlacesNotifierProvider.notifier).addPlace(enteredText,);
     Navigator.of(context).pop();
   }
 
