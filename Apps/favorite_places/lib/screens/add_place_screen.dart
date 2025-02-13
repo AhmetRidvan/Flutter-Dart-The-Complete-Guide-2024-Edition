@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:favorite_places/providers/user_places.dart';
 import 'package:favorite_places/widgets/image_input.dart';
 import 'package:flutter/material.dart';
@@ -14,17 +16,20 @@ class AddPlaceScreen extends ConsumerStatefulWidget {
 
 class _addPlaceScren extends ConsumerState<AddPlaceScreen> {
   final _titleController = TextEditingController();
+  File? incomingImage;
 
   void addPlace() {
     final enteredText = _titleController.text;
-    if (enteredText.isEmpty) {
+    if (enteredText.isEmpty || incomingImage == null) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("No imput"),
         backgroundColor: Colors.red,
       ));
       return;
     }
-    ref.read(UserPlacesNotifierProvider.notifier).addPlace(enteredText,);
+    ref
+        .read(UserPlacesNotifierProvider.notifier)
+        .addPlace(enteredText, incomingImage!);
     Navigator.of(context).pop();
   }
 
@@ -63,7 +68,11 @@ class _addPlaceScren extends ConsumerState<AddPlaceScreen> {
             SizedBox(
               height: 20,
             ),
-            imageInput(),
+            imageInput(
+              transferredImage: (file) {
+                incomingImage = file;
+              },
+            ),
             SizedBox(
               height: 20,
             ),

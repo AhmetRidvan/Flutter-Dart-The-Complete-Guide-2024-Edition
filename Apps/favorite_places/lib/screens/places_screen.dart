@@ -11,9 +11,11 @@ class PlacesScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userPlaces = ref.watch<List<Placemodel>>(UserPlacesNotifierProvider);
-
     return Scaffold(
-      body: PlacesList(places: userPlaces),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: PlacesList(places: userPlaces),
+      ),
       appBar: AppBar(
         title: Text(
           "Your places",

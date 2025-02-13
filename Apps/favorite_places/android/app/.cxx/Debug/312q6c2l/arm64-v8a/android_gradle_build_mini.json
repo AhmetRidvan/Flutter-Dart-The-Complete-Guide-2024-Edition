@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/Users/ahmetridvanordulu/development/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/ahmetridvanordulu/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/ahmetridvanordulu/Documents/Flutter-Dart-The-Complete-Guide-2024-Edition/Apps/favorite_places/android/app/.cxx/Debug/312q6c2l/arm64-v8a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/ahmetridvanordulu/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/ahmetridvanordulu/Documents/Flutter-Dart-The-Complete-Guide-2024-Edition/Apps/favorite_places/android/app/.cxx/Debug/312q6c2l/arm64-v8a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}
