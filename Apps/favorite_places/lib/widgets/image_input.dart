@@ -37,7 +37,10 @@ class _imageInputState extends State<imageInput> {
   Widget build(BuildContext context) {
     Widget content = TextButton.icon(
       icon: Icon(Icons.camera_alt),
-      label: Text("Take picture"),
+      label: Text(
+        "Take picture",
+        style: Theme.of(context).textTheme.titleMedium,
+      ),
       onPressed: _takePicture,
     );
     if (_selectedImage != null) {

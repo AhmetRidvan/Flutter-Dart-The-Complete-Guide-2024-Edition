@@ -14,17 +14,37 @@ class _locationInput extends State<LocationInput> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(),
+        Container(
+          width: double.infinity,
+          alignment: Alignment.center,
+          height: 170,
+          decoration: BoxDecoration(
+              border: Border.all(
+                  width: 5, color: Theme.of(context).colorScheme.onSurface)),
+          child: Text(
+            "No location chosen",
+            style: Theme.of(context).textTheme.titleMedium,
+            textAlign: TextAlign.center,
+          ),
+        ),
         Row(
-          children: [ // 5:58
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
             TextButton.icon(
-              label: Text("Get Current Location"),
+              label: Text(
+                "Get Current Location",
+                style: Theme.of(context).textTheme.titleSmall!.copyWith(),
+              ),
               icon: Icon(Icons.location_on),
               onPressed: () {},
             ),
             TextButton.icon(
-              onPressed: () {},icon: Icon(Icons.map),
-              label: Text("Select on Map"),
+              onPressed: () {},
+              icon: Icon(Icons.map),
+              label: Text(
+                "Select on Map",
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
             )
           ],
         )
