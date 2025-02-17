@@ -8,7 +8,7 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key}); //5:02
+  const MyApp({super.key}); //2:19
 
   @override
   State<StatefulWidget> createState() {

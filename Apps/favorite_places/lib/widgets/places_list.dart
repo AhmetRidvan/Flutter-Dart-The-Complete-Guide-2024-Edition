@@ -30,9 +30,13 @@ class PlacesList extends StatelessWidget {
                 },
               ));
             },
+            subtitle: Text(
+              places[index].location.adress,
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
             title: Text(
               places[index].title,
-              style: Theme.of(context).textTheme.titleMedium,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             leading: CircleAvatar(
               radius: 30,

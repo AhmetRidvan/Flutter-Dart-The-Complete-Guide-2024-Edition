@@ -1,12 +1,14 @@
 import 'dart:convert';
 
-import 'package:favorite_places/models/place_model.dart';
 import 'package:flutter/material.dart';
-import 'package:location/location.dart';
 import 'package:http/http.dart' as http;
 
+import 'package:location/location.dart';
+import 'package:favorite_places/models/place_model.dart';
+
 class LocationInput extends StatefulWidget {
-  const LocationInput({super.key});
+  LocationInput({super.key, required this.sad});
+  void Function(PlaceLocation placeLocation) sad;
 
   @override
   State<LocationInput> createState() {
@@ -15,7 +17,7 @@ class LocationInput extends StatefulWidget {
 }
 
 class _locationInput extends State<LocationInput> {
-String key = "AIzaSyCNsqbFhqmjze6fJI_aMVeQNGeIccy9Esk";
+  String key = "AIzaSyCNsqbFhqmjze6fJI_aMVeQNGeIccy9Esk";
   bool _isGettingLocation = false;
   PlaceLocation? picketLocation;
 
@@ -25,7 +27,7 @@ String key = "AIzaSyCNsqbFhqmjze6fJI_aMVeQNGeIccy9Esk";
     }
     final lat = picketLocation!.latitude;
     final long = picketLocation!.longitude;
-    return 'https://maps.googleapis.com/maps/api/staticmap?center=$lat,$long&zoom=20&size=600x300&maptype=roadmap&markers=color:yellow%7Clabel:S%7C$lat,$long&key=$key';
+    return 'https://maps.googleapis.com/maps/api/staticmap?center=$lat,$long&zoom=15&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C$lat,$long&key=$key';
   }
 
   void getCurrentLocation() async {
@@ -57,7 +59,6 @@ String key = "AIzaSyCNsqbFhqmjze6fJI_aMVeQNGeIccy9Esk";
     locationData = await location.getLocation();
     final lat = locationData.latitude;
     final long = locationData.longitude;
-    
 
     if (lat == null || long == null) {
       return;
@@ -75,6 +76,8 @@ String key = "AIzaSyCNsqbFhqmjze6fJI_aMVeQNGeIccy9Esk";
       _isGettingLocation = false;
     });
 
+    widget.sad(picketLocation!);
+
     print(locationData.latitude);
     print(locationData.longitude);
   }
@@ -86,6 +89,14 @@ String key = "AIzaSyCNsqbFhqmjze6fJI_aMVeQNGeIccy9Esk";
       style: Theme.of(context).textTheme.titleMedium,
       textAlign: TextAlign.center,
     );
+    if (picketLocation != null) {
+      content = Image.network(
+        width: double.infinity,
+        height: double.infinity,
+        locationImageUrl,
+        fit: BoxFit.cover,
+      );
+    }
     if (_isGettingLocation) {
       content = CircularProgressIndicator();
     }

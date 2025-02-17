@@ -23,6 +23,14 @@ class PlaceDetailScreen extends StatelessWidget {
               height: double.infinity,
               fit: BoxFit.cover,
             ),
+            Positioned(
+              bottom: 0,
+              child: Column(
+                children: [
+                  Text("asdasd"),
+                ],
+              ),
+            )
           ],
         ));
   }

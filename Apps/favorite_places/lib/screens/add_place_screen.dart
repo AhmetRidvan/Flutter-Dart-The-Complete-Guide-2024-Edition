@@ -1,10 +1,11 @@
 import 'dart:io';
-
+import 'package:favorite_places/models/place_model.dart';
 import 'package:favorite_places/providers/user_places.dart';
 import 'package:favorite_places/widgets/image_input.dart';
 import 'package:favorite_places/widgets/location_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+//import sıralaması dart, package, page
 
 class AddPlaceScreen extends ConsumerStatefulWidget {
   const AddPlaceScreen({super.key});
@@ -18,19 +19,22 @@ class AddPlaceScreen extends ConsumerStatefulWidget {
 class _addPlaceScren extends ConsumerState<AddPlaceScreen> {
   final _titleController = TextEditingController();
   File? incomingImage;
+  PlaceLocation? _selectedLocation;
 
   void addPlace() {
     final enteredText = _titleController.text;
-    if (enteredText.isEmpty || incomingImage == null) {
+    if (enteredText.isEmpty || incomingImage == null || _selectedLocation == null) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("No imput"),
         backgroundColor: Colors.red,
       ));
       return;
     }
-    ref
-        .read(UserPlacesNotifierProvider.notifier)
-        .addPlace(enteredText, incomingImage!);
+    ref.read(UserPlacesNotifierProvider.notifier).addPlace(
+          enteredText,
+          incomingImage!,
+          _selectedLocation!,
+        );
     Navigator.of(context).pop();
   }
 
@@ -77,7 +81,11 @@ class _addPlaceScren extends ConsumerState<AddPlaceScreen> {
             SizedBox(
               height: 20,
             ),
-            LocationInput(),
+            LocationInput(
+              sad: (placeLocation) {
+                _selectedLocation = placeLocation;
+              },
+            ),
             SizedBox(
               height: 20,
             ),
