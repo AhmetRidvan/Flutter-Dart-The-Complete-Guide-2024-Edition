@@ -5,11 +5,14 @@ import 'package:uuid/uuid.dart';
 final u1 = Uuid();
 
 class PlaceLocation {
-  PlaceLocation(
-      {required this.latitude, required this.longitude, required this.adress});
-  double latitude;
-  double longitude;
-  String adress;
+  const PlaceLocation({
+    required this.latitude,
+    required this.longitude,
+    required this.adress,
+  });
+  final double latitude;
+  final double longitude;
+  final String adress;
 }
 
 class Placemodel {

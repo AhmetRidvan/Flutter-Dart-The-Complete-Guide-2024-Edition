@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:favorite_places/screens/map_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -122,7 +123,13 @@ class _locationInput extends State<LocationInput> {
               onPressed: getCurrentLocation,
             ),
             TextButton.icon(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return MapScreen();
+                  },
+                ));
+              },
               icon: Icon(Icons.map),
               label: Text(
                 "Select on Map",

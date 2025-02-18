@@ -3,12 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 
+//4:36
 void main() {
-  runApp(ProviderScope(child: MyApp())); 
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key}); //2:19
+  const MyApp({super.key});
 
   @override
   State<StatefulWidget> createState() {
