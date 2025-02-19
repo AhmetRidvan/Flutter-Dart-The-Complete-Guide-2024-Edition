@@ -1,3 +1,12 @@
 File değişkeni dosyalar için kullanılıyor
 
 super.key bu StatelessWidget veya StatefulWidget widget'dan key parametresini alır,böylece benzersiz bir kimliğe sahip olur.
+
+void main(){ Set'in özelliği sadece şu aynı değerden bir başka olamıyor.
+  Set<String> fruits = {"Apple","Banana","Orange"};
+  fruits.add("Apple");
+  print(fruits);
+}
+
+?? soru işareti operatörü sadece null kontrolünde kullanılır
+

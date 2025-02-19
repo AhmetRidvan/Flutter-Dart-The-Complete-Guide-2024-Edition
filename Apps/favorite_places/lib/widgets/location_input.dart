@@ -123,13 +123,7 @@ class _locationInput extends State<LocationInput> {
               onPressed: getCurrentLocation,
             ),
             TextButton.icon(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) {
-                    return MapScreen();
-                  },
-                ));
-              },
+              onPressed: () {},
               icon: Icon(Icons.map),
               label: Text(
                 "Select on Map",

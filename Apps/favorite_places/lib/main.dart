@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 
-//4:36
-void main() {
+
+void main() { //3:11
   runApp(ProviderScope(child: MyApp()));
 }
 
