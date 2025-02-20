@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart'; //duçi
 
 import 'package:favorite_places/models/place_model.dart';
 import 'package:favorite_places/screens/map_screen.dart';
+
 
 class PlaceDetailScreen extends StatelessWidget {
   PlaceDetailScreen({super.key, required this.p1});
@@ -40,9 +42,12 @@ class PlaceDetailScreen extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
+                      Navigator.of(context).push<LatLng>(MaterialPageRoute(
                         builder: (context) {
-                          return MapScreen(location: p1.location,isSelecting: false,);
+                          return MapScreen(
+                            location: p1.location,
+                            ShouldItChoose: false,
+                          );
                         },
                       ));
                     },

@@ -4,14 +4,14 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:favorite_places/models/place_model.dart'; //Düçi
 
 class MapScreen extends StatefulWidget {
-  MapScreen({
+  const MapScreen({
     super.key,
     this.location =
         const PlaceLocation(latitude: 37.422, longitude: -122.084, adress: ""),
-    this.isSelecting = true,
+    required this.ShouldItChoose,
   });
   final PlaceLocation location;
-  final bool isSelecting;
+  final bool ShouldItChoose;
   @override
   State<StatefulWidget> createState() {
     return _mapScreenState();
@@ -25,13 +25,18 @@ class _mapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-            Text(widget.isSelecting ? "Pick your location" : "Your Location"),
+        centerTitle: true,
+        title: Text(
+          widget.ShouldItChoose ? "Pick your location" : "Your Location",
+          style: TextStyle(color: Theme.of(context).colorScheme.surface),
+        ),
         actions: [
-          if (widget.isSelecting)
+          if (widget.ShouldItChoose)
             IconButton(
               color: Theme.of(context).colorScheme.surface,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pop(_picketLocation);
+              },
               icon: Icon(Icons.save),
             )
         ],
@@ -39,19 +44,22 @@ class _mapScreenState extends State<MapScreen> {
       body: GoogleMap(
           onTap: (argument) {
             setState(() {
-              _picketLocation = argument;
+              if (widget.ShouldItChoose == true) {
+                _picketLocation = argument;
+              } else {
+                return;
+              }
             });
           },
-          markers: _picketLocation != null
-              ? <Marker>{
+          markers: (_picketLocation == null && widget.ShouldItChoose)
+              ? {}
+              : {
                   Marker(
-                      visible: true,
                       markerId: MarkerId("S1"),
                       position: _picketLocation ??
                           LatLng(widget.location.latitude,
                               widget.location.longitude)),
-                }
-              : <Marker>{},
+                },
           initialCameraPosition: CameraPosition(
               zoom: 16,
               target:

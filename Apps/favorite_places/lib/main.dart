@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 
 
-void main() { //3:11
+void main() { //1:35 
   runApp(ProviderScope(child: MyApp()));
 }
 
