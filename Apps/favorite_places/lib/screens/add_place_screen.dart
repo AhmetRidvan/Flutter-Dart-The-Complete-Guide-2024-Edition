@@ -47,6 +47,7 @@ class _addPlaceScren extends ConsumerState<AddPlaceScreen> {
   GlobalKey k1 = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         title: Text(
