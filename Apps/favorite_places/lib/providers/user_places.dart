@@ -25,7 +25,7 @@ Future<Database> _getDatabase() async {
 class UserPlacesNotifier extends StateNotifier<List<Placemodel>> {
   UserPlacesNotifier() : super([]);
 
-  Future<void> loadDatabase() async {
+  Future<void> loadPlaces() async {
     final db = await _getDatabase();
     final data = await db.query('user_places');
     final places = data.map(
@@ -43,7 +43,6 @@ class UserPlacesNotifier extends StateNotifier<List<Placemodel>> {
     ).toList();
 
     state = places;
-   
   }
 
   void addPlace(String title, File f1, PlaceLocation pl) async {
