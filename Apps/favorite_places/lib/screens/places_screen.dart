@@ -13,7 +13,9 @@ class PlacesScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final userPlaces = ref.watch<List<Placemodel>>(UserPlacesNotifierProvider);
     return Scaffold(
-      body: PlacesList(places: userPlaces),
+      body: FutureBuilder(future: , builder: (context, snapshot) {
+        snapshot.connectionState == ConnectionState.waiting ? Center(child: CircularProgressIndicator()) : PlacesList(places: );
+      },), 
       appBar: AppBar(
         title: Text(
           "Your places",

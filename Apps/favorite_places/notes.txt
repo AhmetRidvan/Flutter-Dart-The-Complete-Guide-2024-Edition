@@ -10,3 +10,5 @@ void main(){ Set'in özelliği sadece şu aynı değerden bir başka olamıyor.
 
 ?? soru işareti operatörü sadece null kontrolünde kullanılır
 
+as String gelicek verinin String olacağını dart'a garanti eder
+
