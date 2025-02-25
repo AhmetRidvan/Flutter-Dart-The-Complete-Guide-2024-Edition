@@ -10,6 +10,19 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _authScreen extends State<AuthScreen> {
+  final GlobalKey<FormState> _key = GlobalKey<FormState>();
+  bool _isLogin = true;
+  String? _enteredEmail = "";
+  String? _enteredPassword = "";
+
+  void _submit() {
+    if (_key.currentState!.validate()) {
+      _key.currentState!.save();
+    }
+    print(_enteredEmail);
+    print(_enteredPassword);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,10 +44,22 @@ class _authScreen extends State<AuthScreen> {
                   child: Padding(
                     padding: EdgeInsets.all(20),
                     child: Form(
+                      key: _key,
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           TextFormField(
+                            validator: (value) {
+                              if (value == null ||
+                                  value.trim().isEmpty ||
+                                  !value.contains('@')) {
+                                return "Please enter a valid email adress";
+                              }
+                              return null;
+                            },
+                            onSaved: (newValue) {
+                              _enteredEmail = newValue;
+                            },
                             autocorrect: false,
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
@@ -43,10 +68,46 @@ class _authScreen extends State<AuthScreen> {
                             textCapitalization: TextCapitalization.none,
                           ),
                           TextFormField(
+                            onSaved: (newValue) {
+                              _enteredPassword = newValue;
+                            },
+                            validator: (value) {
+                              if (value == null || value.trim().length < 6) {
+                                return "Password must be at least 6 characters long";
+                              } else {
+                                return null;
+                              }
+                            },
                             autocorrect: false,
                             obscureText: true,
                             decoration: InputDecoration(
                               label: Text("Password"),
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.primary,
+                            ),
+                            onPressed: _submit,
+                            child: Text(
+                              _isLogin ? "Login" : "Signup",
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onPrimary,
+                              ),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              setState(() {
+                                _isLogin = !_isLogin;
+                              });
+                            },
+                            child: Text(
+                              _isLogin
+                                  ? "Create an account"
+                                  : "I already have an account",
                             ),
                           ),
                         ],
