@@ -83,4 +83,5 @@ class DefaultFirebaseOptions {
     authDomain: 'chat-app-6990e.firebaseapp.com',
     storageBucket: 'chat-app-6990e.firebasestorage.app',
   );
+
 }
