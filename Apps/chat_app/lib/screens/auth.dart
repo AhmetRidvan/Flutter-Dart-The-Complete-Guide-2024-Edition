@@ -15,29 +15,34 @@ class AuthScreen extends StatefulWidget {
 class _authScreen extends State<AuthScreen> {
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
   bool _isLogin = true;
-  String? _enteredEmail = "";
+  String? _enteredEmail = ""; 
   String? _enteredPassword = "";
 
   void _submit() async {
     if (_key.currentState!.validate()) {
       _key.currentState!.save();
-      if (_isLogin) {
-        return;
-      } else {
-        try {
+      try {
+        if (_isLogin) {
+          final user = await _auth.signInWithEmailAndPassword(
+            email: _enteredEmail!,
+            password: _enteredPassword!,
+          );
+          print(user);
+      
+        } else {
           final user = await _auth.createUserWithEmailAndPassword(
             email: _enteredEmail!,
             password: _enteredPassword!,
           );
           print(user);
-        } on FirebaseAuthException catch (error) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(error.message ?? "Authentication failed"),
-              backgroundColor: Colors.redAccent,
-            ),
-          );
         }
+      } on FirebaseAuthException catch (error) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(error.message ?? "Authentication failed"),
+            backgroundColor: Colors.redAccent,
+          ),
+        );
       }
     }
   }
