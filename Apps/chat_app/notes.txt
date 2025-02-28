@@ -1,0 +1,2 @@
+StreamBuilder sürekli Stream dinleyip arayüzü günceller
+Stream sürekli gelen asenkron verileri dinler.
