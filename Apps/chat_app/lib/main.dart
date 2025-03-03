@@ -7,17 +7,16 @@ import 'package:chat_app/screens/splash_screen.dart';
 import 'firebase_options.dart';
 import 'package:chat_app/screens/auth_screen.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget { //0:36
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: StreamBuilder(
