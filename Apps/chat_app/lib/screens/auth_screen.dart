@@ -1,3 +1,4 @@
+import 'package:chat_app/widgets/user_image_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -13,10 +14,11 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _authScreen extends State<AuthScreen> {
-  final GlobalKey<FormState> _key = GlobalKey<FormState>();
+  final GlobalKey<FormState> _key = GlobalKey<FormState>(); 
   bool _isLogin = true;
-  String? _enteredEmail = ""; 
+  String? _enteredEmail = "";
   String? _enteredPassword = "";
+
 
   void _submit() async {
     if (_key.currentState!.validate()) {
@@ -28,7 +30,6 @@ class _authScreen extends State<AuthScreen> {
             password: _enteredPassword!,
           );
           print(user);
-      
         } else {
           final user = await _auth.createUserWithEmailAndPassword(
             email: _enteredEmail!,
@@ -67,11 +68,12 @@ class _authScreen extends State<AuthScreen> {
                 child: SingleChildScrollView(
                   child: Padding(
                     padding: EdgeInsets.all(20),
-                    child: Form(
+                    child: Form( //FormState durum yönetimi
                       key: _key,
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
+                          if (_isLogin) UserImagePicker(),
                           TextFormField(
                             validator: (value) {
                               if (value == null ||
