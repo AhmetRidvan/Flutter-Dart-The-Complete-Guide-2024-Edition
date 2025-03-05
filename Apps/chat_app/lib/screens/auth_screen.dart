@@ -1,6 +1,10 @@
-import 'package:chat_app/widgets/user_image_picker.dart';
+import 'dart:io';
+import 'dart:math';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'package:chat_app/widgets/user_image_picker.dart';
 
 final _auth = FirebaseAuth.instance;
 
@@ -14,14 +18,26 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _authScreen extends State<AuthScreen> {
-  final GlobalKey<FormState> _key = GlobalKey<FormState>(); 
+  final GlobalKey<FormState> _key = GlobalKey<FormState>();
   bool _isLogin = true;
   String? _enteredEmail = "";
   String? _enteredPassword = "";
-
+  File? incomingPicture;
 
   void _submit() async {
     if (_key.currentState!.validate()) {
+      if ((!_key.currentState!.validate()) ||
+          (!_isLogin && incomingPicture == null)) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("No picture added!"),
+            backgroundColor: Theme.of(context).colorScheme.error,
+          ),
+        );
+        return;
+      }
+
+
       _key.currentState!.save();
       try {
         if (_isLogin) {
@@ -29,13 +45,14 @@ class _authScreen extends State<AuthScreen> {
             email: _enteredEmail!,
             password: _enteredPassword!,
           );
-          print(user);
+          
         } else {
+
           final user = await _auth.createUserWithEmailAndPassword(
             email: _enteredEmail!,
             password: _enteredPassword!,
           );
-          print(user);
+        //0:20
         }
       } on FirebaseAuthException catch (error) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -68,12 +85,20 @@ class _authScreen extends State<AuthScreen> {
                 child: SingleChildScrollView(
                   child: Padding(
                     padding: EdgeInsets.all(20),
-                    child: Form( //FormState durum yönetimi
+                    child: Form(
+                      //FormState durum yönetimi yapar.
                       key: _key,
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          if (_isLogin) UserImagePicker(),
+                          if (_isLogin)
+                            UserImagePicker(
+                              sendPicture: (pic) {
+                                setState(() {
+                                  incomingPicture = pic;
+                                });
+                              },
+                            ),
                           TextFormField(
                             validator: (value) {
                               if (value == null ||
