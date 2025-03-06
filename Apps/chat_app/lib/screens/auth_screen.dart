@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 import 'package:chat_app/widgets/user_image_picker.dart';
@@ -37,22 +38,26 @@ class _authScreen extends State<AuthScreen> {
         return;
       }
 
-
       _key.currentState!.save();
       try {
         if (_isLogin) {
-          final user = await _auth.signInWithEmailAndPassword(
+          final userCredentials = await _auth.signInWithEmailAndPassword(
             email: _enteredEmail!,
             password: _enteredPassword!,
           );
-          
         } else {
-
-          final user = await _auth.createUserWithEmailAndPassword(
+          final userCredentials = await _auth.createUserWithEmailAndPassword(
             email: _enteredEmail!,
             password: _enteredPassword!,
           );
-        //0:20
+
+          final refer = FirebaseStorage.instance
+              .ref()
+              .child('user_images')
+              .child('${userCredentials.user!.uid}.jpg');
+          await refer.putFile(incomingPicture!);
+          String imageUrl = await refer.getDownloadURL();
+          print(imageUrl);
         }
       } on FirebaseAuthException catch (error) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -91,7 +96,7 @@ class _authScreen extends State<AuthScreen> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          if (_isLogin)
+                          if (!_isLogin)
                             UserImagePicker(
                               sendPicture: (pic) {
                                 setState(() {
