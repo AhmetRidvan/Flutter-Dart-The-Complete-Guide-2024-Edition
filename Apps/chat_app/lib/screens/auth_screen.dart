@@ -24,6 +24,7 @@ class _authScreen extends State<AuthScreen> {
   String? _enteredEmail = "";
   String? _enteredPassword = "";
   File? incomingPicture;
+  bool isTrying = false;
 
   void _submit() async {
     if (_key.currentState!.validate()) {
@@ -40,6 +41,9 @@ class _authScreen extends State<AuthScreen> {
 
       _key.currentState!.save();
       try {
+        setState(() {
+          isTrying = true;
+        });
         if (_isLogin) {
           final userCredentials = await _auth.signInWithEmailAndPassword(
             email: _enteredEmail!,
@@ -54,10 +58,9 @@ class _authScreen extends State<AuthScreen> {
           final refer = FirebaseStorage.instance
               .ref()
               .child('user_images')
-              .child('${userCredentials.user!.uid}.jpg');
+              .child('${userCredentials.user!.uid}.jpg'); //dosyanın referansı (işaret etmek.)
           await refer.putFile(incomingPicture!);
           String imageUrl = await refer.getDownloadURL();
-          print(imageUrl);
         }
       } on FirebaseAuthException catch (error) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -66,6 +69,9 @@ class _authScreen extends State<AuthScreen> {
             backgroundColor: Colors.redAccent,
           ),
         );
+        setState(() {
+          isTrying = false;
+        });
       }
     }
   }
@@ -141,31 +147,35 @@ class _authScreen extends State<AuthScreen> {
                             ),
                           ),
                           SizedBox(height: 10),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  Theme.of(context).colorScheme.primary,
-                            ),
-                            onPressed: _submit,
-                            child: Text(
-                              _isLogin ? "Login" : "Signup",
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.onPrimary,
+                          if (isTrying) CircularProgressIndicator(),
+                          if (!isTrying)
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    Theme.of(context).colorScheme.primary,
+                              ),
+                              onPressed: _submit,
+                              child: Text(
+                                _isLogin ? "Login" : "Signup",
+                                style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary,
+                                ),
                               ),
                             ),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              setState(() {
-                                _isLogin = !_isLogin;
-                              });
-                            },
-                            child: Text(
-                              _isLogin
-                                  ? "Create an account"
-                                  : "I already have an account",
+                          if (!isTrying)
+                            TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  _isLogin = !_isLogin;
+                                });
+                              },
+                              child: Text(
+                                _isLogin
+                                    ? "Create an account"
+                                    : "I already have an account",
+                              ),
                             ),
-                          ),
                         ],
                       ),
                     ),
