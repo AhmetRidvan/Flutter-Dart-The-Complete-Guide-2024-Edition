@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:chat_app/widgets/user_image_picker.dart';
 
@@ -60,7 +61,9 @@ class _authScreen extends State<AuthScreen> {
               .child('user_images')
               .child('${userCredentials.user!.uid}.jpg'); //dosyanın referansı (işaret etmek.)
           await refer.putFile(incomingPicture!);
-          String imageUrl = await refer.getDownloadURL();
+          String imageUrl = await refer.getDownloadURL(); 
+
+          FirebaseFirestore.instance.collection('users').doc(userCredentials.user!.uid);
         }
       } on FirebaseAuthException catch (error) {
         ScaffoldMessenger.of(context).showSnackBar(
