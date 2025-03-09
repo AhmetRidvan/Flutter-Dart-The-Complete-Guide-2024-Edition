@@ -24,6 +24,7 @@ class _authScreen extends State<AuthScreen> {
   bool _isLogin = true;
   String? _enteredEmail = "";
   String? _enteredPassword = "";
+  String? _enteredUsarName = "";
   File? incomingPicture;
   bool isTrying = false;
 
@@ -59,11 +60,20 @@ class _authScreen extends State<AuthScreen> {
           final refer = FirebaseStorage.instance
               .ref()
               .child('user_images')
-              .child('${userCredentials.user!.uid}.jpg'); //dosyanın referansı (işaret etmek.)
+              .child(
+                '${userCredentials.user!.uid}.jpg',
+              ); //dosyanın referansı (işaret etmek.)
           await refer.putFile(incomingPicture!);
-          String imageUrl = await refer.getDownloadURL(); 
+          String imageUrl = await refer.getDownloadURL();
 
-          FirebaseFirestore.instance.collection('users').doc(userCredentials.user!.uid);
+          await FirebaseFirestore.instance
+              .collection('users')
+              .doc(userCredentials.user!.uid)
+              .set({
+                "username": _enteredUsarName,
+                "email": _enteredEmail,
+                "image_url": imageUrl,
+              });
         }
       } on FirebaseAuthException catch (error) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -132,6 +142,24 @@ class _authScreen extends State<AuthScreen> {
                             ),
                             textCapitalization: TextCapitalization.none,
                           ),
+                          if (!_isLogin)
+                            TextFormField(
+                              decoration: InputDecoration(
+                                labelText: "Username",
+                              ),
+                              enableSuggestions: false,
+                              onSaved: (newValue) {
+                                _enteredUsarName = newValue!;
+                              },
+                              validator: (value) {
+                                if (value == null ||
+                                    value.trim().isEmpty ||
+                                    value.trim().length < 4) {
+                                  return "Please enter at least 4 characters!";
+                                }
+                                return null;
+                              },
+                            ),
                           TextFormField(
                             onSaved: (newValue) {
                               _enteredPassword = newValue;
