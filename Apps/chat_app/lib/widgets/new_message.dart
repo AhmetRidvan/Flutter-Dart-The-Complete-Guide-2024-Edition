@@ -50,7 +50,6 @@ class _NewMessageState extends State<NewMessage> {
 
   void submitMessage() async {
     final enteredMessage = t1.text;
-    FocusScope.of(context).unfocus(); 
 
     if (enteredMessage.trim().isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -61,7 +60,8 @@ class _NewMessageState extends State<NewMessage> {
       );
       return;
     }
-
+    t1.clear();
+    FocusScope.of(context).unfocus();
     final user = FirebaseAuth.instance.currentUser!;
     final userData =
         await FirebaseFirestore.instance
@@ -76,7 +76,5 @@ class _NewMessageState extends State<NewMessage> {
       'username': userData.data()!["username"],
       'userImage': userData.data()!["image_url"],
     });
-
-    t1.clear();
   }
 }
