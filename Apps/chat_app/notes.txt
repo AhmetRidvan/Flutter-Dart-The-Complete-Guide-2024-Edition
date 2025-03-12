@@ -1,2 +1,3 @@
 StreamBuilder sürekli Stream dinleyip arayüzü günceller
 Stream sürekli gelen asenkron verileri dinler.
+Expanded widget Kullanılabilir olan tüm yerleri kullanır.
