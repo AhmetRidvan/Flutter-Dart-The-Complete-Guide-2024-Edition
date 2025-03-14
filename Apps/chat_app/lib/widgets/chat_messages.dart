@@ -22,13 +22,19 @@ class ChatMessages extends StatelessWidget {
         } else if (snapshot.hasError) {
           return Center(child: Text("Something went wrong!"));
         } else {
-          final loadedMessages = snapshot.data!.docs;
+          final loadedMessages = snapshot.data!.docs; // map'ler
           return ListView.builder(
             padding: EdgeInsets.only(left: 10, right: 10, bottom: 15, top: 15),
             reverse: true,
             itemCount: loadedMessages.length,
             itemBuilder: (context, index) {
-              return Text(loadedMessages[index]['text']);
+              final message = loadedMessages[index]; // map
+              final nextmessage =
+                  // index + 1 sonraki mesaj
+                  // <             items = 5, 0,1,2,3,4
+                  index + 1 < loadedMessages.length
+                      ? loadedMessages[index + 1]
+                      : null;
             },
           );
         }
