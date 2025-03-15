@@ -28,13 +28,12 @@ class ChatMessages extends StatelessWidget {
             reverse: true,
             itemCount: loadedMessages.length,
             itemBuilder: (context, index) {
-              final message = loadedMessages[index]; // map
-              final nextmessage =
-                  // index + 1 sonraki mesaj
-                  // <             items = 5, 0,1,2,3,4
-                  index + 1 < loadedMessages.length
+              final chatMessages = loadedMessages[index];
+              final nextChatMessages =
+                  index + 1 < //0,1,2,3,4,5,6,7,8,9 //length 10 liste kadar sonraki soruyu kontrol ediyor.
+                          loadedMessages.length
                       ? loadedMessages[index + 1]
-                      : null;
+                      : null; //listenin uzunluğu kadar hamle yapıyım; // 5:50
             },
           );
         }
@@ -42,3 +41,43 @@ class ChatMessages extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+sıradakiMesaj = chatList[index + 1]
+Mesaj = chatList[index]
+chatList = merhaba
+nasılsın
+iyi misin
+umarım iyisindir
+*/
+
+
+
+
+
+
+
+
+
+       // index + 1 sonraki mesaj
+                  // <             items = 5, 0,1,2,3,4
+
+                  /*
+          1        6 tane map var 
+
+                  */
+
+    
