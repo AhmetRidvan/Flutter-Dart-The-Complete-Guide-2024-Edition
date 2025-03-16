@@ -1,4 +1,7 @@
+import 'package:chat_app/widgets/message_bubble.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/widgets.dart';
@@ -8,6 +11,7 @@ class ChatMessages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authenticatedUser = FirebaseAuth.instance.currentUser;
     return StreamBuilder(
       stream:
           FirebaseFirestore.instance
@@ -30,10 +34,30 @@ class ChatMessages extends StatelessWidget {
             itemBuilder: (context, index) {
               final chatMessages = loadedMessages[index];
               final nextChatMessages =
-                  index + 1 < //0,1,2,3,4,5,6,7,8,9 //length 10 liste kadar sonraki soruyu kontrol ediyor.
-                          loadedMessages.length
+                  index + 1 < loadedMessages.length
                       ? loadedMessages[index + 1]
-                      : null; //listenin uzunluğu kadar hamle yapıyım; // 5:50
+                      : null;
+              final currentMessageUserId = chatMessages['userId'];
+              final nextMessageUserId =
+                  nextChatMessages != null ? nextChatMessages['userId'] : null;
+              final nextUserIsSame = currentMessageUserId == nextMessageUserId;
+
+              if (nextUserIsSame) {
+                //ilk mesaj mı ?
+                return MessageBubble.next(
+                  message: chatMessages['text'],
+                  isMe:
+                      authenticatedUser!.uid ==
+                      currentMessageUserId, //benim mesajım mı   // isFirstInSequence
+                );
+              } else {
+                return MessageBubble.first(
+                  userImage: chatMessages['userImage'],
+                  username: chatMessages['username'],
+                  message: chatMessages['text'],
+                  isMe: authenticatedUser!.uid == currentMessageUserId,
+                );
+              }
             },
           );
         }

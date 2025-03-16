@@ -16,9 +16,9 @@ class MessageBubble extends StatelessWidget {
     super.key,
     required this.message,
     required this.isMe,
-  })  : isFirstInSequence = false,
-        userImage = null,
-        username = null;
+  }) : isFirstInSequence = false,
+       userImage = null,
+       username = null;
 
   // Whether or not this message bubble is the first in a sequence of messages
   // from the same user.
@@ -42,18 +42,20 @@ class MessageBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    String? newUsername;
+    if (username != null) {
+      newUsername = username![0].toUpperCase() + username!.substring(1);
+    }
 
     return Stack(
       children: [
         if (userImage != null)
           Positioned(
-            top: 15,
+            top: 11,
             // Align user image to the right, if the message is from me.
             right: isMe ? 0 : null,
             child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                userImage!,
-              ),
+              backgroundImage: NetworkImage(userImage!),
               backgroundColor: theme.colorScheme.primary.withAlpha(180),
               radius: 23,
             ),
@@ -73,15 +75,12 @@ class MessageBubble extends StatelessWidget {
                 children: [
                   // First messages in the sequence provide a visual buffer at
                   // the top.
-                  if (isFirstInSequence) const SizedBox(height: 18),
+                  if (isFirstInSequence) const SizedBox(height: 30),
                   if (username != null)
                     Padding(
-                      padding: const EdgeInsets.only(
-                        left: 13,
-                        right: 13,
-                      ),
+                      padding: const EdgeInsets.only(left: 13, right: 13),
                       child: Text(
-                        username!,
+                        newUsername!,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.black87,
@@ -92,20 +91,23 @@ class MessageBubble extends StatelessWidget {
                   // The "speech" box surrounding the message.
                   Container(
                     decoration: BoxDecoration(
-                      color: isMe
-                          ? Colors.grey[300]
-                          : theme.colorScheme.secondary.withAlpha(200),
+                      color:
+                          isMe
+                              ? Colors.grey[300]
+                              : theme.colorScheme.secondary.withAlpha(200),
                       // Only show the message bubble's "speaking edge" if first in
                       // the chain.
                       // Whether the "speaking edge" is on the left or right depends
                       // on whether or not the message bubble is the current user.
                       borderRadius: BorderRadius.only(
-                        topLeft: !isMe && isFirstInSequence
-                            ? Radius.zero
-                            : const Radius.circular(12),
-                        topRight: isMe && isFirstInSequence
-                            ? Radius.zero
-                            : const Radius.circular(12),
+                        topLeft:
+                            !isMe && isFirstInSequence
+                                ? Radius.zero
+                                : const Radius.circular(12),
+                        topRight:
+                            isMe && isFirstInSequence
+                                ? Radius.zero
+                                : const Radius.circular(12),
                         bottomLeft: const Radius.circular(12),
                         bottomRight: const Radius.circular(12),
                       ),
@@ -129,9 +131,10 @@ class MessageBubble extends StatelessWidget {
                         // Add a little line spacing to make the text look nicer
                         // when multilined.
                         height: 1.3,
-                        color: isMe
-                            ? Colors.black87
-                            : theme.colorScheme.onSecondary,
+                        color:
+                            isMe
+                                ? Colors.black87
+                                : theme.colorScheme.onSecondary,
                       ),
                       softWrap: true,
                     ),
