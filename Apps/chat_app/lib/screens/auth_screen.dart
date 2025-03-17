@@ -11,7 +11,7 @@ import 'package:chat_app/widgets/user_image_picker.dart';
 final _auth = FirebaseAuth.instance;
 
 class AuthScreen extends StatefulWidget {
-  AuthScreen({super.key});
+  const AuthScreen({super.key});
 
   @override
   State<AuthScreen> createState() {

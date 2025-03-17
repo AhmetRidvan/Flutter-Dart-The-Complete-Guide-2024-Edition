@@ -1,10 +1,8 @@
 import 'package:chat_app/widgets/message_bubble.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter/widgets.dart';
 
 class ChatMessages extends StatelessWidget {
   const ChatMessages({super.key});
@@ -42,7 +40,7 @@ class ChatMessages extends StatelessWidget {
                   nextChatMessages != null ? nextChatMessages['userId'] : null;
               final nextUserIsSame = currentMessageUserId == nextMessageUserId;
 
-              if (nextUserIsSame) {
+              if (nextUserIsSame) {  
                 //ilk mesaj mı ?
                 return MessageBubble.next(
                   message: chatMessages['text'],
