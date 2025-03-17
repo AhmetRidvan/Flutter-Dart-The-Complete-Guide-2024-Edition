@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         },
       ),
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlue), 
       ),
     );
   }
