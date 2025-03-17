@@ -10,7 +10,7 @@ import 'package:chat_app/screens/auth_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(MyApp(),); // Projenin kritik kısımlarını baştan anlayarak oku. //1 : 40
+  runApp(MyApp(),); //6:44
 }
 
 class MyApp extends StatelessWidget {

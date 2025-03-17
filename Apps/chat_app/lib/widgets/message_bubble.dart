@@ -16,7 +16,7 @@ class MessageBubble extends StatelessWidget {
     super.key,
     required this.message,
     required this.isMe,
-  }) : isFirstInSequence = false,
+  }) : isFirstInSequence = false, // ilk mesaj değil
        userImage = null,
        username = null;
 

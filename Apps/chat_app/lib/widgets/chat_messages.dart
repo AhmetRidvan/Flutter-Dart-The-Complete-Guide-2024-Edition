@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-
 class ChatMessages extends StatelessWidget {
   const ChatMessages({super.key});
 
@@ -38,15 +37,12 @@ class ChatMessages extends StatelessWidget {
               final currentMessageUserId = chatMessages['userId'];
               final nextMessageUserId =
                   nextChatMessages != null ? nextChatMessages['userId'] : null;
-              final nextUserIsSame = currentMessageUserId == nextMessageUserId;
+              final nextUserIsSame = currentMessageUserId == nextMessageUserId; // şuan ki ve bir sonraki mesajın kullanıcılarını tutar
 
-              if (nextUserIsSame) {  
-                //ilk mesaj mı ?
+              if (nextUserIsSame) {
                 return MessageBubble.next(
                   message: chatMessages['text'],
-                  isMe:
-                      authenticatedUser!.uid ==
-                      currentMessageUserId, //benim mesajım mı   // isFirstInSequence
+                  isMe: authenticatedUser!.uid == currentMessageUserId, // mesajın kullanıcısının oturum açıp açmadığına bakıyor
                 );
               } else {
                 return MessageBubble.first(
