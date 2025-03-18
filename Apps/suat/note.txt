@@ -10,14 +10,19 @@ class Mainpage extends StatefulWidget {
 }
 
 class _mainPage extends State<Mainpage> {
-  final store = FirebaseFirestore.instance;
-
-  void whenPressed() {}
+  int number = 0;
+  void whenPressed() {
+    final db = FirebaseFirestore.instance;
+    final col = db.collection('testCollection');
+    col.add({'test': number});
+    setState(() {
+      number++;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final movies = store.collection('movies');
-    return Scaffold(
+    return Scaffold(body: Center(child: Text(number.toString()),),
       backgroundColor: Theme.of(context).colorScheme.primary,
       floatingActionButton: FloatingActionButton(
         onPressed: whenPressed,
@@ -29,7 +34,6 @@ class _mainPage extends State<Mainpage> {
 
         centerTitle: true,
       ),
-      body: Center(child: Text(movies.path)),
     );
   }
 }
