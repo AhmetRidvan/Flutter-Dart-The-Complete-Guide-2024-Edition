@@ -1,19 +1,23 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * const {onCall} = require("firebase-functions/v2/https");
- * const {onDocumentWritten} = require("firebase-functions/v2/firestore");
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
+const functions = require('firebase-functions');
+const admin = require('firebase-admin');
 
-const {onRequest} = require("firebase-functions/v2/https");
-const logger = require("firebase-functions/logger");
+admin.initializeApp();
 
-// Create and deploy your first functions
-// https://firebase.google.com/docs/functions/get-started
+// Cloud Firestore triggers ref: https://firebase.google.com/docs/functions/firestore-events
+exports.myFunction = functions.firestore
+  .document('chat/{messageId}')
+  .onCreate((snapshot, context) => {
+    const messageData = snapshot.data();
+    const payload = {
+      notification: {
+        title: messageData.username,
+        body: messageData.text,
+      },
+      data: {
+        click_action: 'FLUTTER_NOTIFICATION_CLICK',
+      },
+      topic: 'chat',
+    };
 
-// exports.helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+    return admin.messaging().send(payload);
+  });
