@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "112989588842",
+    "project_id": "fir-suat-ozkaya-ea31d",
+    "storage_bucket": "fir-suat-ozkaya-ea31d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:112989588842:android:d2cc408a3b3d6bebbfa913",
+        "android_client_info": {
+          "package_name": "com.example.suat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3B0lyUBYDC5yPW2t6IT3d7csrQU2MySo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
