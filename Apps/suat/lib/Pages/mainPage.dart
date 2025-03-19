@@ -12,15 +12,14 @@ class Mainpage extends StatefulWidget {
 class _mainPage extends State<Mainpage> {
   final store = FirebaseFirestore.instance;
 
-  void whenPressed() {}
-
   @override
   Widget build(BuildContext context) {
-    final movies = store.collection('movies');
+    final meyveler = store.collection('Meyveler');
+    final armut = meyveler.doc('NSOgOIRrKbKppcgtiR0u');
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primary,
       floatingActionButton: FloatingActionButton(
-        onPressed: whenPressed,
+        onPressed: () async {},
         child: Icon(Icons.radio_button_checked),
       ),
       appBar: AppBar(
@@ -29,7 +28,12 @@ class _mainPage extends State<Mainpage> {
 
         centerTitle: true,
       ),
-      body: Center(child: Text(movies.path)),
+      body: StreamBuilder(
+        stream: armut.snapshots(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          return Text(snapshot.data.data()); // left 12 
+        },
+      ),
     );
   }
 }
