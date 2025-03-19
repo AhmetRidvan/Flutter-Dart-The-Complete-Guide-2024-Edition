@@ -5,7 +5,7 @@ import 'package:suat/Pages/mainPage.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp()); //https://www.youtube.com/watch?v=3no4ihrucHY&list=PLJ5EAGz05Q3Eh6Qvly8qoA1y8VSPdt_ke&index=15
+  runApp(MyApp()); //https://youtu.be/3no4ihrucHY?si=C7jOm99EsCFHGV3u&t=301
 }
 
 class MyApp extends StatelessWidget {
