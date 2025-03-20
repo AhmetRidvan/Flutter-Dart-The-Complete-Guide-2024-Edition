@@ -37,3 +37,13 @@ class _mainPage extends State<Mainpage> {
     );
   }
 }
+
+Future<void> meyvelerDocuments() async {
+      final deneme = await meyveler.get();
+      final listem = deneme.docs;
+      for (var x in listem) {
+        print(x.id);
+      }
+    }
+
+    meyvelerDocuments();
